@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronDown, Gavel, MapPin, Menu, MessageCircle, Search, ShieldCheck, Sparkles, Users, X } from "lucide-react";
 import { specialties } from "./data/specialties";
 
@@ -10,7 +10,7 @@ export function App() {
   const [searched, setSearched] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const matches = useMemo(() => specialties.filter(s => (s.name + " " + s.description).toLocaleLowerCase("es").includes(query.toLocaleLowerCase("es").trim())), [query]);
-  const runSearch = (event: React.FormEvent) => { event.preventDefault(); setSearched(true); document.getElementById("especialidades")?.scrollIntoView({ behavior: "smooth" }); };
+  const runSearch = (event: FormEvent) => { event.preventDefault(); setSearched(true); document.getElementById("especialidades")?.scrollIntoView({ behavior: "smooth" }); };
   return (
     <>
       <header className="site-header">

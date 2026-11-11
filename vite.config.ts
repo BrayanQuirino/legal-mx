@@ -1,4 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({ plugins: [react()], base: process.env.GITHUB_PAGES === "true" ? "/legal-mx/" : "/" });
+export default defineConfig(({ command }) => ({
+  plugins: [react()],
+  base: command === "serve" ? "/" : "/legal-mx/",
+}));
