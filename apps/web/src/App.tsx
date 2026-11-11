@@ -1,6 +1,6 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronDown, Gavel, MapPin, Menu, MessageCircle, Search, ShieldCheck, Sparkles, Users, X } from "lucide-react";
-import { specialties } from "./data/specialties";
+import { matchSpecialties } from "./lib/matchSpecialties";
 
 type Region = "Todas las ubicaciones" | "Ciudad de México" | "Estado de México";
 
@@ -9,7 +9,8 @@ export function App() {
   const [region, setRegion] = useState<Region>("Todas las ubicaciones");
   const [searched, setSearched] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const matches = useMemo(() => specialties.filter(s => (s.name + " " + s.description).toLocaleLowerCase("es").includes(query.toLocaleLowerCase("es").trim())), [query]);
+  const [activeExample, setActiveExample] = useState("");
+  const matches = useMemo(() => matchSpecialties(query), [query]);
   const runSearch = (event: FormEvent) => { event.preventDefault(); setSearched(true); document.getElementById("especialidades")?.scrollIntoView({ behavior: "smooth" }); };
   return (
     <>
@@ -32,10 +33,11 @@ export function App() {
             <h1>La ayuda legal que necesitas, <em>más cerca de ti.</em></h1>
             <p className="hero-description">Entender tus derechos debería ser sencillo. Encuentra el área legal que necesitas y descubre una forma más clara de recibir orientación.</p>
             <form className="search-box" onSubmit={runSearch} role="search">
-              <label className="search-field"><Search size={21}/><span className="sr-only">Especialidad o problema legal</span><input value={query} onChange={e => {setQuery(e.target.value); setSearched(false);}} placeholder="¿Qué problema legal necesitas resolver?"/></label>
+              <label className="search-field"><Search size={21}/><span className="sr-only">Especialidad o problema legal</span><input value={query} onChange={e => {setQuery(e.target.value); setActiveExample(""); setSearched(false);}} placeholder="Ej. me despidieron, pensión alimenticia…"/></label>
               <label className="region-field"><MapPin size={19}/><span className="sr-only">Ubicación</span><select value={region} onChange={e => setRegion(e.target.value as Region)}><option>Todas las ubicaciones</option><option>Ciudad de México</option><option>Estado de México</option></select><ChevronDown className="select-chevron" size={15}/></label>
               <button type="submit">Buscar <ArrowRight size={17}/></button>
             </form>
+            <div className="example-searches" aria-label="Ejemplos de búsquedas"><span>Prueba con:</span>{["Me despidieron","Pensión alimenticia","Problemas con mi renta"].map(example => <button type="button" key={example} className={activeExample === example ? "example-chip active" : "example-chip"} onClick={() => {setQuery(example);setActiveExample(example);setSearched(true);document.getElementById("especialidades")?.scrollIntoView({behavior:"smooth"});}}>{example}</button>)}</div>
             <div className="hero-footnote"><CheckCircle2 size={15}/> Sin complicaciones <span className="dot-separator">·</span> Información clara <span className="dot-separator">·</span> Pensado para ti</div>
           </div>
           <div className="hero-art" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="hero-emblem"><Gavel size={110} strokeWidth={1.15}/></div><div className="floating-card one"><span className="card-icon blue"><ShieldCheck size={19}/></span><span><strong>Confianza</strong><small>Información responsable</small></span></div><div className="floating-card two"><span className="card-icon gold"><BookOpen size={19}/></span><span><strong>Claridad</strong><small>Entiende tus opciones</small></span></div><div className="art-star star-one">✧</div><div className="art-star star-two">✦</div></div>
@@ -43,7 +45,7 @@ export function App() {
         <section className="trust-strip"><div className="container trust-items"><span><ShieldCheck size={21}/> Diseñado con responsabilidad</span><span><MapPin size={21}/> CDMX y Estado de México</span><span><Users size={21}/> Centrado en las personas</span></div></section>
         <section className="specialties-section" id="especialidades"><div className="container">
           <div className="section-intro"><span className="section-label">ÁREAS DE PRÁCTICA</span><h2>¿En qué podemos <em>orientarte?</em></h2><p>Elige el área que mejor describa tu situación. Estamos preparando la conexión con profesionales verificados.</p></div>
-          {searched && <div className="search-feedback" role="status">{matches.length ? `Encontramos ${matches.length} especialidad(es) relacionada(s) con tu búsqueda en ${region.toLowerCase()}.` : "No encontramos una especialidad con esas palabras. Intenta una búsqueda más general."}</div>}
+          {searched && <div className="search-feedback" role="status">{matches.length ? `Encontramos ${matches.length} área(s) legal(es) relacionada(s) con tu búsqueda. Ubicación seleccionada: ${region}. Aún no hay perfiles de abogados disponibles.` : "No encontramos una especialidad con esas palabras. Intenta una búsqueda más general."}</div>}
           <div className="specialty-grid">{matches.map((specialty, index) => <article className="specialty-card" key={specialty.id}><span className="specialty-icon"><Gavel size={23} strokeWidth={1.7}/></span><span className="specialty-number">0{index + 1}</span><h3>{specialty.name}</h3><p>{specialty.description}</p><span className="coming-label">Directorio en preparación <ArrowRight size={16}/></span></article>)}</div>
         </div></section>
         <section id="como-funciona" className="how-section"><div className="container"><div className="section-intro"><span className="section-label">SIMPLE DESDE EL PRINCIPIO</span><h2>Tu camino, <em>más claro.</em></h2></div><div className="steps"><div><span className="step-num">01</span><Search/><h3>Cuéntanos qué necesitas</h3><p>Busca por tema legal o selecciona una especialidad.</p></div><div><span className="step-num">02</span><BookOpen/><h3>Conoce tus opciones</h3><p>Consulta información comprensible y fuentes verificables cuando estén disponibles.</p></div><div><span className="step-num">03</span><CalendarDays/><h3>Conecta con un profesional</h3><p>Próximamente podrás consultar perfiles y solicitar una cita.</p></div></div></div></section>
