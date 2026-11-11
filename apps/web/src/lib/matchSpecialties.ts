@@ -18,11 +18,12 @@ const aliases: Record<string, readonly string[]> = {
 export function matchSpecialties(query: string) {
   const normalized = normalizeSearch(query);
   if (!normalized) return [...specialties];
-  const terms = normalized.split(" ").filter(t => t.length > 2);
+  const stopWords = new Set(["con", "por", "para", "los", "las", "una", "uno", "que", "del", "mis", "tengo", "problemas", "problema", "necesito"]);
+  const terms = normalized.split(" ").filter(t => t.length > 2 && !stopWords.has(t));
   return specialties.map((specialty) => {
     const termsToSearch = [specialty.name, specialty.description, ...(aliases[specialty.id] ?? [])].map(normalizeSearch);
     const wholePhrase = termsToSearch.some(t => t.includes(normalized) || normalized.includes(t));
     const matches = terms.filter(term => termsToSearch.some(t => t.split(" ").some(word => word.startsWith(term)) || t.includes(term))).length;
     return { specialty, score: wholePhrase ? matches + 5 : matches };
-  }).filter(result => result.score > 0 && (result.score >= Math.max(1, Math.ceil(terms.length / 2)))).sort((a,b) => b.score-a.score).map(({ specialty }) => specialty);
+  }).filter(result => result.score > 0).sort((a,b) => b.score-a.score).map(({ specialty }) => specialty);
 }
