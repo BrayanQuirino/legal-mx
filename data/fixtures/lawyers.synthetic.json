@@ -1,0 +1,1074 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_type": "lawyer_profiles",
+  "synthetic": true,
+  "created_for": "legal-mx local and staging tests only",
+  "legal_notice": "Datos totalmente ficticios. No son profesionistas, pacientes, clientes, reseñas ni reservas reales.",
+  "allow_public_profiles": false,
+  "record_count": 40,
+  "records": [
+    {
+      "id": "demo-lawyer-001",
+      "full_name": "Profesional de prueba 001",
+      "display_name": "Abogacía Demo 001",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Cuauhtémoc",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 2,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-002",
+      "full_name": "Profesional de prueba 002",
+      "display_name": "Abogacía Demo 002",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Gustavo A. Madero",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 5,
+      "consultation_price_mxn_demo": 600,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-003",
+      "full_name": "Profesional de prueba 003",
+      "display_name": "Abogacía Demo 003",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Metepec",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 8,
+      "consultation_price_mxn_demo": 750,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-004",
+      "full_name": "Profesional de prueba 004",
+      "display_name": "Abogacía Demo 004",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Álvaro Obregón",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 11,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-005",
+      "full_name": "Profesional de prueba 005",
+      "display_name": "Abogacía Demo 005",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Toluca",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 14,
+      "consultation_price_mxn_demo": 1050,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-006",
+      "full_name": "Profesional de prueba 006",
+      "display_name": "Abogacía Demo 006",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "mercantil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Miguel Hidalgo",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 17,
+      "consultation_price_mxn_demo": 1200,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-007",
+      "full_name": "Profesional de prueba 007",
+      "display_name": "Abogacía Demo 007",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Atizapán de Zaragoza",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 20,
+      "consultation_price_mxn_demo": 1350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-008",
+      "full_name": "Profesional de prueba 008",
+      "display_name": "Abogacía Demo 008",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Benito Juárez",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 4,
+      "consultation_price_mxn_demo": 1500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-009",
+      "full_name": "Profesional de prueba 009",
+      "display_name": "Abogacía Demo 009",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Naucalpan de Juárez",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 7,
+      "consultation_price_mxn_demo": 1650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-010",
+      "full_name": "Profesional de prueba 010",
+      "display_name": "Abogacía Demo 010",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Huixquilucan",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 10,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-011",
+      "full_name": "Profesional de prueba 011",
+      "display_name": "Abogacía Demo 011",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "inmobiliario"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Tlalpan",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 13,
+      "consultation_price_mxn_demo": 600,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-012",
+      "full_name": "Profesional de prueba 012",
+      "display_name": "Abogacía Demo 012",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "mercantil"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Nezahualcóyotl",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 16,
+      "consultation_price_mxn_demo": 750,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-013",
+      "full_name": "Profesional de prueba 013",
+      "display_name": "Abogacía Demo 013",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Iztapalapa",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 19,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-014",
+      "full_name": "Profesional de prueba 014",
+      "display_name": "Abogacía Demo 014",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Ecatepec de Morelos",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 3,
+      "consultation_price_mxn_demo": 1050,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-015",
+      "full_name": "Profesional de prueba 015",
+      "display_name": "Abogacía Demo 015",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Coyoacán",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 6,
+      "consultation_price_mxn_demo": 1200,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-016",
+      "full_name": "Profesional de prueba 016",
+      "display_name": "Abogacía Demo 016",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Tlalnepantla de Baz",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 9,
+      "consultation_price_mxn_demo": 1350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-017",
+      "full_name": "Profesional de prueba 017",
+      "display_name": "Abogacía Demo 017",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Cuauhtémoc",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 12,
+      "consultation_price_mxn_demo": 1500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-018",
+      "full_name": "Profesional de prueba 018",
+      "display_name": "Abogacía Demo 018",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "mercantil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Gustavo A. Madero",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 15,
+      "consultation_price_mxn_demo": 1650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-019",
+      "full_name": "Profesional de prueba 019",
+      "display_name": "Abogacía Demo 019",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Metepec",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 18,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-020",
+      "full_name": "Profesional de prueba 020",
+      "display_name": "Abogacía Demo 020",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Álvaro Obregón",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 2,
+      "consultation_price_mxn_demo": 600,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-021",
+      "full_name": "Profesional de prueba 021",
+      "display_name": "Abogacía Demo 021",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Toluca",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 5,
+      "consultation_price_mxn_demo": 750,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-022",
+      "full_name": "Profesional de prueba 022",
+      "display_name": "Abogacía Demo 022",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Miguel Hidalgo",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 8,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-023",
+      "full_name": "Profesional de prueba 023",
+      "display_name": "Abogacía Demo 023",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "inmobiliario"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Atizapán de Zaragoza",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 11,
+      "consultation_price_mxn_demo": 1050,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-024",
+      "full_name": "Profesional de prueba 024",
+      "display_name": "Abogacía Demo 024",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "mercantil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Benito Juárez",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 14,
+      "consultation_price_mxn_demo": 1200,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-025",
+      "full_name": "Profesional de prueba 025",
+      "display_name": "Abogacía Demo 025",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Naucalpan de Juárez",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 17,
+      "consultation_price_mxn_demo": 1350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-026",
+      "full_name": "Profesional de prueba 026",
+      "display_name": "Abogacía Demo 026",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Huixquilucan",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 20,
+      "consultation_price_mxn_demo": 1500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-027",
+      "full_name": "Profesional de prueba 027",
+      "display_name": "Abogacía Demo 027",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Tlalpan",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 4,
+      "consultation_price_mxn_demo": 1650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-028",
+      "full_name": "Profesional de prueba 028",
+      "display_name": "Abogacía Demo 028",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Nezahualcóyotl",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 7,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-029",
+      "full_name": "Profesional de prueba 029",
+      "display_name": "Abogacía Demo 029",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Iztapalapa",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 10,
+      "consultation_price_mxn_demo": 600,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-030",
+      "full_name": "Profesional de prueba 030",
+      "display_name": "Abogacía Demo 030",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "mercantil"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Ecatepec de Morelos",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 13,
+      "consultation_price_mxn_demo": 750,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-031",
+      "full_name": "Profesional de prueba 031",
+      "display_name": "Abogacía Demo 031",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Coyoacán",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 16,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-032",
+      "full_name": "Profesional de prueba 032",
+      "display_name": "Abogacía Demo 032",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Tlalnepantla de Baz",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 19,
+      "consultation_price_mxn_demo": 1050,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-033",
+      "full_name": "Profesional de prueba 033",
+      "display_name": "Abogacía Demo 033",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Cuauhtémoc",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 3,
+      "consultation_price_mxn_demo": 1200,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-034",
+      "full_name": "Profesional de prueba 034",
+      "display_name": "Abogacía Demo 034",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Gustavo A. Madero",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 6,
+      "consultation_price_mxn_demo": 1350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-035",
+      "full_name": "Profesional de prueba 035",
+      "display_name": "Abogacía Demo 035",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "inmobiliario"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Metepec",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 9,
+      "consultation_price_mxn_demo": 1500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-036",
+      "full_name": "Profesional de prueba 036",
+      "display_name": "Abogacía Demo 036",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "mercantil"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Álvaro Obregón",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 12,
+      "consultation_price_mxn_demo": 1650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-037",
+      "full_name": "Profesional de prueba 037",
+      "display_name": "Abogacía Demo 037",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Toluca",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 15,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-038",
+      "full_name": "Profesional de prueba 038",
+      "display_name": "Abogacía Demo 038",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "laboral"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Miguel Hidalgo",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 18,
+      "consultation_price_mxn_demo": 600,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-039",
+      "full_name": "Profesional de prueba 039",
+      "display_name": "Abogacía Demo 039",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "civil"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Atizapán de Zaragoza",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 2,
+      "consultation_price_mxn_demo": 750,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    },
+    {
+      "id": "demo-lawyer-040",
+      "full_name": "Profesional de prueba 040",
+      "display_name": "Abogacía Demo 040",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "penal"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Benito Juárez",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 5,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true
+    }
+  ]
+}
