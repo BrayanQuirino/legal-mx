@@ -1,0 +1,1187 @@
+{
+  "schema_version": "1.0.0",
+  "kind": "synthetic_lawyers",
+  "synthetic": true,
+  "public_use": "testing_only",
+  "count": 40,
+  "records": [
+    {
+      "id": "law_mock_001",
+      "mock": true,
+      "name": "Andrea Muestra 001",
+      "jurisdiction": "CDMX",
+      "municipality": "Benito Juárez",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 1,
+      "consultation_fee_mxn": 0,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es",
+        "en"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_002",
+      "mock": true,
+      "name": "Valeria Muestra 002",
+      "jurisdiction": "CDMX",
+      "municipality": "Cuauhtémoc",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 4,
+      "consultation_fee_mxn": 350,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_003",
+      "mock": true,
+      "name": "Renata Muestra 003",
+      "jurisdiction": "CDMX",
+      "municipality": "Coyoacán",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 7,
+      "consultation_fee_mxn": 500,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_004",
+      "mock": true,
+      "name": "Camila Muestra 004",
+      "jurisdiction": "CDMX",
+      "municipality": "Miguel Hidalgo",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 10,
+      "consultation_fee_mxn": 650,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_005",
+      "mock": true,
+      "name": "Daniela Muestra 005",
+      "jurisdiction": "CDMX",
+      "municipality": "Iztapalapa",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "years_experience": 13,
+      "consultation_fee_mxn": 800,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_006",
+      "mock": true,
+      "name": "Fernanda Muestra 006",
+      "jurisdiction": "CDMX",
+      "municipality": "Tlalpan",
+      "specialties": [
+        "mercantil",
+        "laboral"
+      ],
+      "years_experience": 16,
+      "consultation_fee_mxn": 1100,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_007",
+      "mock": true,
+      "name": "Mariana Muestra 007",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Naucalpan",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 19,
+      "consultation_fee_mxn": 1500,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_008",
+      "mock": true,
+      "name": "Lucía Muestra 008",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Tlalnepantla",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 22,
+      "consultation_fee_mxn": 0,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_009",
+      "mock": true,
+      "name": "Sofía Muestra 009",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Atizapán de Zaragoza",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 25,
+      "consultation_fee_mxn": 350,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_010",
+      "mock": true,
+      "name": "Elena Muestra 010",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Ecatepec",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 3,
+      "consultation_fee_mxn": 500,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es",
+        "en"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_011",
+      "mock": true,
+      "name": "Mateo Ejemplo 011",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Toluca",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "years_experience": 6,
+      "consultation_fee_mxn": 650,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_012",
+      "mock": true,
+      "name": "Diego Ejemplo 012",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Metepec",
+      "specialties": [
+        "mercantil",
+        "laboral"
+      ],
+      "years_experience": 9,
+      "consultation_fee_mxn": 800,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_013",
+      "mock": true,
+      "name": "Emilio Ejemplo 013",
+      "jurisdiction": "CDMX",
+      "municipality": "Benito Juárez",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 12,
+      "consultation_fee_mxn": 1100,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_014",
+      "mock": true,
+      "name": "Santiago Ejemplo 014",
+      "jurisdiction": "CDMX",
+      "municipality": "Cuauhtémoc",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 15,
+      "consultation_fee_mxn": 1500,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_015",
+      "mock": true,
+      "name": "Andrés Ejemplo 015",
+      "jurisdiction": "CDMX",
+      "municipality": "Coyoacán",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 18,
+      "consultation_fee_mxn": 0,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_016",
+      "mock": true,
+      "name": "Hugo Ejemplo 016",
+      "jurisdiction": "CDMX",
+      "municipality": "Miguel Hidalgo",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 21,
+      "consultation_fee_mxn": 350,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_017",
+      "mock": true,
+      "name": "Rodrigo Ejemplo 017",
+      "jurisdiction": "CDMX",
+      "municipality": "Iztapalapa",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "years_experience": 24,
+      "consultation_fee_mxn": 500,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_018",
+      "mock": true,
+      "name": "Javier Ejemplo 018",
+      "jurisdiction": "CDMX",
+      "municipality": "Tlalpan",
+      "specialties": [
+        "mercantil",
+        "laboral"
+      ],
+      "years_experience": 2,
+      "consultation_fee_mxn": 650,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_019",
+      "mock": true,
+      "name": "Alonso Ejemplo 019",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Naucalpan",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 5,
+      "consultation_fee_mxn": 800,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es",
+        "en"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_020",
+      "mock": true,
+      "name": "Gabriel Ejemplo 020",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Tlalnepantla",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 8,
+      "consultation_fee_mxn": 1100,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_021",
+      "mock": true,
+      "name": "Andrea Prueba 021",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Atizapán de Zaragoza",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 11,
+      "consultation_fee_mxn": 1500,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_022",
+      "mock": true,
+      "name": "Valeria Prueba 022",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Ecatepec",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 14,
+      "consultation_fee_mxn": 0,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_023",
+      "mock": true,
+      "name": "Renata Prueba 023",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Toluca",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "years_experience": 17,
+      "consultation_fee_mxn": 350,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_024",
+      "mock": true,
+      "name": "Camila Prueba 024",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Metepec",
+      "specialties": [
+        "mercantil",
+        "laboral"
+      ],
+      "years_experience": 20,
+      "consultation_fee_mxn": 500,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_025",
+      "mock": true,
+      "name": "Daniela Prueba 025",
+      "jurisdiction": "CDMX",
+      "municipality": "Benito Juárez",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 23,
+      "consultation_fee_mxn": 650,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_026",
+      "mock": true,
+      "name": "Fernanda Prueba 026",
+      "jurisdiction": "CDMX",
+      "municipality": "Cuauhtémoc",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 1,
+      "consultation_fee_mxn": 800,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_027",
+      "mock": true,
+      "name": "Mariana Prueba 027",
+      "jurisdiction": "CDMX",
+      "municipality": "Coyoacán",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 4,
+      "consultation_fee_mxn": 1100,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_028",
+      "mock": true,
+      "name": "Lucía Prueba 028",
+      "jurisdiction": "CDMX",
+      "municipality": "Miguel Hidalgo",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 7,
+      "consultation_fee_mxn": 1500,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es",
+        "en"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_029",
+      "mock": true,
+      "name": "Sofía Prueba 029",
+      "jurisdiction": "CDMX",
+      "municipality": "Iztapalapa",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "years_experience": 10,
+      "consultation_fee_mxn": 0,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_030",
+      "mock": true,
+      "name": "Elena Prueba 030",
+      "jurisdiction": "CDMX",
+      "municipality": "Tlalpan",
+      "specialties": [
+        "mercantil",
+        "laboral"
+      ],
+      "years_experience": 13,
+      "consultation_fee_mxn": 350,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_031",
+      "mock": true,
+      "name": "Mateo Simulada 031",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Naucalpan",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 16,
+      "consultation_fee_mxn": 500,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_032",
+      "mock": true,
+      "name": "Diego Simulada 032",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Tlalnepantla",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 19,
+      "consultation_fee_mxn": 650,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_033",
+      "mock": true,
+      "name": "Emilio Simulada 033",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Atizapán de Zaragoza",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 22,
+      "consultation_fee_mxn": 800,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_034",
+      "mock": true,
+      "name": "Santiago Simulada 034",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Ecatepec",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 25,
+      "consultation_fee_mxn": 1100,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_035",
+      "mock": true,
+      "name": "Andrés Simulada 035",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Toluca",
+      "specialties": [
+        "inmobiliario",
+        "familiar"
+      ],
+      "years_experience": 3,
+      "consultation_fee_mxn": 1500,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_036",
+      "mock": true,
+      "name": "Hugo Simulada 036",
+      "jurisdiction": "EDOMEX",
+      "municipality": "Metepec",
+      "specialties": [
+        "mercantil",
+        "laboral"
+      ],
+      "years_experience": 6,
+      "consultation_fee_mxn": 0,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_037",
+      "mock": true,
+      "name": "Rodrigo Simulada 037",
+      "jurisdiction": "CDMX",
+      "municipality": "Benito Juárez",
+      "specialties": [
+        "familiar",
+        "civil"
+      ],
+      "years_experience": 9,
+      "consultation_fee_mxn": 350,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es",
+        "en"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_038",
+      "mock": true,
+      "name": "Javier Simulada 038",
+      "jurisdiction": "CDMX",
+      "municipality": "Cuauhtémoc",
+      "specialties": [
+        "laboral",
+        "penal"
+      ],
+      "years_experience": 12,
+      "consultation_fee_mxn": 500,
+      "consultation_modes": [
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_039",
+      "mock": true,
+      "name": "Alonso Simulada 039",
+      "jurisdiction": "CDMX",
+      "municipality": "Coyoacán",
+      "specialties": [
+        "civil",
+        "inmobiliario"
+      ],
+      "years_experience": 15,
+      "consultation_fee_mxn": 650,
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    },
+    {
+      "id": "law_mock_040",
+      "mock": true,
+      "name": "Gabriel Simulada 040",
+      "jurisdiction": "CDMX",
+      "municipality": "Miguel Hidalgo",
+      "specialties": [
+        "penal",
+        "mercantil"
+      ],
+      "years_experience": 18,
+      "consultation_fee_mxn": 800,
+      "consultation_modes": [
+        "online"
+      ],
+      "languages": [
+        "es"
+      ],
+      "bio": "Perfil completamente ficticio para pruebas de diseño, filtros y búsqueda. No representa a un profesional real.",
+      "professional_license": null,
+      "identity_verified": false,
+      "license_verified": false,
+      "profile_status": "synthetic_test_only",
+      "rating": null,
+      "review_count": 0,
+      "availability": [],
+      "phone": null,
+      "email": null
+    }
+  ]
+}
