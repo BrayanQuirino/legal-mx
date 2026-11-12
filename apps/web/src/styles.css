@@ -3,3 +3,6 @@
 
 /* Search discovery v0.2 */
 .example-searches{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:15px;font-size:11px;color:#7c8c97}.example-chip{border:1px solid #dbe4e9;background:#fff;color:#37546a;border-radius:20px;padding:7px 11px;font-size:11px;transition:background .2s,border-color .2s}.example-chip:hover,.example-chip.active{background:#e6eff3;border-color:#9cb9c8}.example-chip:focus-visible,.search-box button:focus-visible,.mobile-menu:focus-visible{outline:3px solid #b8935c;outline-offset:3px}
+
+/* Accessible portal controls */
+.nav-cta{border:0;cursor:pointer;font-family:inherit}.mobile-access{display:none;background:#f0f4f6;border:0;padding:13px 15px;border-radius:7px;color:#1d475e;font-weight:700;font-size:12px}@media(max-width:940px){.nav-cta{display:flex}}@media(max-width:650px){.nav-cta{display:none}.mobile-access{display:block;width:100%;text-align:left}}
