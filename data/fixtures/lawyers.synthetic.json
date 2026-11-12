@@ -32,7 +32,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.4266,
+        "longitude": -99.13905,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Cuauhtémoc",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-002",
@@ -58,7 +68,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.48625,
+        "longitude": -99.11335,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Gustavo A. Madero",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-003",
@@ -85,7 +105,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.2515,
+        "longitude": -99.6092,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Metepec",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-004",
@@ -111,7 +141,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.35975,
+        "longitude": -99.2287,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Álvaro Obregón",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-005",
@@ -138,7 +178,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.291,
+        "longitude": -99.65955,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Toluca",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-006",
@@ -165,7 +215,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.43225,
+        "longitude": -99.19405,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Miguel Hidalgo",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-007",
@@ -191,7 +251,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.55375,
+        "longitude": -99.2719,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-008",
@@ -217,7 +287,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.368,
+        "longitude": -99.1594,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Benito Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-009",
@@ -245,7 +325,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.47725,
+        "longitude": -99.24025,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Naucalpan de Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-010",
@@ -271,7 +361,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.3625,
+        "longitude": -99.34775,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Huixquilucan",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-011",
@@ -297,7 +397,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.29175,
+        "longitude": -99.1706,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalpan",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-012",
@@ -324,7 +434,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.407,
+        "longitude": -99.0101,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Nezahualcóyotl",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-013",
@@ -351,7 +471,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.3535,
+        "longitude": -99.09395,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Iztapalapa",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-014",
@@ -377,7 +507,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.60375,
+        "longitude": -99.04545,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Ecatepec de Morelos",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-015",
@@ -404,7 +544,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.35,
+        "longitude": -99.1633,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Coyoacán",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-016",
@@ -430,7 +580,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.54225,
+        "longitude": -99.1908,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalnepantla de Baz",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-017",
@@ -457,7 +617,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.4371,
+        "longitude": -99.13385,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Cuauhtémoc",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-018",
@@ -484,7 +654,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.484,
+        "longitude": -99.10815,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Gustavo A. Madero",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-019",
@@ -510,7 +690,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.24925,
+        "longitude": -99.604,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Metepec",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-020",
@@ -536,7 +726,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.3575,
+        "longitude": -99.23585,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Álvaro Obregón",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-021",
@@ -564,7 +764,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.28875,
+        "longitude": -99.65435,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Toluca",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-022",
@@ -590,7 +800,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.43,
+        "longitude": -99.2012,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Miguel Hidalgo",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-023",
@@ -616,7 +836,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.56425,
+        "longitude": -99.2667,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-024",
@@ -643,7 +873,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.36575,
+        "longitude": -99.16655,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Benito Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-025",
@@ -670,7 +910,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.475,
+        "longitude": -99.23505,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Naucalpan de Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-026",
@@ -696,7 +946,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.36025,
+        "longitude": -99.3549,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Huixquilucan",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-027",
@@ -723,7 +983,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.2895,
+        "longitude": -99.1654,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalpan",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-028",
@@ -749,7 +1019,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.40475,
+        "longitude": -99.01725,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Nezahualcóyotl",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-029",
@@ -776,7 +1056,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.364,
+        "longitude": -99.08875,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Iztapalapa",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-030",
@@ -803,7 +1093,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.6015,
+        "longitude": -99.0526,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Ecatepec de Morelos",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-031",
@@ -829,7 +1129,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.34775,
+        "longitude": -99.1581,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Coyoacán",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-032",
@@ -855,7 +1165,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.54,
+        "longitude": -99.19795,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalnepantla de Baz",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-033",
@@ -883,7 +1203,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.43485,
+        "longitude": -99.12865,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Cuauhtémoc",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-034",
@@ -909,7 +1239,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.4945,
+        "longitude": -99.1153,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Gustavo A. Madero",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-035",
@@ -935,7 +1275,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.247,
+        "longitude": -99.5988,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Metepec",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-036",
@@ -962,7 +1312,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.35525,
+        "longitude": -99.23065,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Álvaro Obregón",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-037",
@@ -989,7 +1349,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.2865,
+        "longitude": -99.64915,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Toluca",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-038",
@@ -1015,7 +1385,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.42775,
+        "longitude": -99.196,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Miguel Hidalgo",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-039",
@@ -1042,7 +1422,17 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.562,
+        "longitude": -99.27385,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     },
     {
       "id": "demo-lawyer-040",
@@ -1068,7 +1458,19 @@
       "review_count": 0,
       "profile_image": null,
       "public_profile_enabled": false,
-      "is_synthetic": true
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.37625,
+        "longitude": -99.16135,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Benito Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      }
     }
-  ]
+  ],
+  "geo_schema_version": 1,
+  "geo_disclaimer": "Todos los puntos son georreferencias ficticias aproximadas por zona; no son domicilios, oficinas o ubicaciones de abogados reales."
 }
