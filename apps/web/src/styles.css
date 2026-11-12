@@ -6,3 +6,6 @@
 
 /* Accessible portal controls */
 .nav-cta{border:0;cursor:pointer;font-family:inherit}.mobile-access{display:none;background:#f0f4f6;border:0;padding:13px 15px;border-radius:7px;color:#1d475e;font-weight:700;font-size:12px}@media(max-width:940px){.nav-cta{display:flex}}@media(max-width:650px){.nav-cta{display:none}.mobile-access{display:block;width:100%;text-align:left}}
+
+/* Directory navigation follows the visual language of the main header. */
+.directory-nav-link{border:0;background:transparent;color:#526272;font-size:13px;font-weight:700;padding:8px 0;cursor:pointer;white-space:nowrap}.directory-nav-link:hover{color:#b6915b}.directory-specialty-button{background:none;border:0;color:#ac8855;display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:11px;padding:0;cursor:pointer}.directory-specialty-button:focus-visible,.directory-nav-link:focus-visible{outline:3px solid #b6915b;outline-offset:3px}@media(max-width:1000px){.nav-links{gap:14px}.directory-nav-link{font-size:12px}}@media(max-width:650px){.directory-nav-link{padding:10px 0}}
