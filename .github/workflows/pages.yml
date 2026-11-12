@@ -37,6 +37,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+      # GitHub's artifacts API can return an empty listing immediately after a successful upload.
+      - name: Wait for artifact metadata propagation
+        run: sleep 20
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
