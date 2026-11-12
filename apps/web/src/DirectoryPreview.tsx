@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Building2, Filter, Gavel, MapPin, Search, ShieldAlert, SlidersHorizontal, UserRound, Video, X } from "lucide-react";
 import sample from "../../../data/fixtures/lawyers.synthetic.json";
 import { specialties } from "./data/specialties";
+import { matchSpecialties } from "./lib/matchSpecialties";
 import "./directory.css";
 
 type Lawyer = (typeof sample.records)[number];
@@ -11,8 +12,11 @@ type Mode = "all" | "online" | "presencial";
  * This explorer is never a production directory or a professional verification system.
  */
 export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "" }: { onClose: () => void; initialQuery?: string; initialRegion?: string }) {
-  const [term, setTerm] = useState(initialQuery);
-  const [specialty, setSpecialty] = useState("all");
+  // A colloquial search is translated into its relevant legal area instead of filtering names literally.
+  const matchedSpecialty = matchSpecialties(initialQuery)[0]?.id;
+  const initialIsLegalQuery = Boolean(initialQuery && matchedSpecialty);
+  const [term, setTerm] = useState(initialIsLegalQuery ? "" : initialQuery);
+  const [specialty, setSpecialty] = useState(initialIsLegalQuery ? matchedSpecialty : "all");
   const [region, setRegion] = useState(initialRegion || "all");
   const [mode, setMode] = useState<Mode>("all");
   const [maxPrice, setMaxPrice] = useState(1800);
