@@ -29,6 +29,16 @@ describe("synthetic Legal MX fixtures", () => {
     )).toBe(true);
   });
 
+  it("stores only bounded, synthetic, approximate positions", () => {
+    expect(lawyers.records.every(lawyer =>
+      lawyer.geo.synthetic === true && lawyer.geo.approximate === true &&
+      lawyer.geo.address === null &&
+      Number.isFinite(lawyer.geo.latitude) && lawyer.geo.latitude >= 18.8 && lawyer.geo.latitude <= 20 &&
+      Number.isFinite(lawyer.geo.longitude) && lawyer.geo.longitude >= -100.1 && lawyer.geo.longitude <= -98.6 &&
+      lawyer.geo.kind === (lawyer.consultation_modes.includes("presencial") ? "simulated_office_area" : "simulated_service_area")
+    )).toBe(true);
+  });
+
   it("covers two jurisdictions and six specialties", () => {
     const jurisdictions = new Set(lawyers.records.flatMap((lawyer) => lawyer.jurisdictions));
     const specialties = new Set(lawyers.records.flatMap((lawyer) => lawyer.specialties));
