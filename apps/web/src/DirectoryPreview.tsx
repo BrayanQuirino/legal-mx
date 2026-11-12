@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { LayoutGrid, Map as MapIcon } from "lucide-react";
+import { LawyerMap } from "./LawyerMap";
 import { ArrowLeft, ArrowRight, Building2, Filter, Gavel, MapPin, Search, ShieldAlert, SlidersHorizontal, UserRound, Video, X } from "lucide-react";
 import sample from "../../../data/fixtures/lawyers.synthetic.json";
 import { specialties } from "./data/specialties";
@@ -22,6 +24,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
   const [maxPrice, setMaxPrice] = useState(1800);
   const [selected, setSelected] = useState<Lawyer | null>(null);
   const [limit, setLimit] = useState(9);
+  const [display, setDisplay] = useState<"cards"|"map">("cards");
 
   const filtered = useMemo(() => sample.records.filter(lawyer => {
     const haystack = [lawyer.display_name, lawyer.municipality, ...lawyer.specialties.map(key => specialties.find(s => s.id === key)?.name ?? key)].join(" ").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
@@ -50,15 +53,15 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
           <label className="directory-field">Precio máximo de demostración <strong>${maxPrice.toLocaleString("es-MX")} MXN</strong><input type="range" min="450" max="1800" step="150" value={maxPrice} onChange={e=>{setMaxPrice(Number(e.target.value));setLimit(9);}}/></label>
         </aside>
         <section className="directory-results" aria-label="Abogados ficticios">
-          <div className="directory-result-header"><div><strong>{filtered.length} perfiles de prueba</strong><p>Coincidencias según los filtros seleccionados</p></div><span className="directory-tag"><Filter size={15}/> Vista previa, no indexable</span></div>
-          {filtered.length===0 ? <div className="directory-empty"><Search size={28}/><h3>No hay coincidencias</h3><p>Prueba cambiar la especialidad, la ubicación o el precio.</p><button onClick={reset} type="button">Restablecer filtros</button></div> :
+          <div className="directory-result-header"><div><strong>{filtered.length} perfiles de prueba</strong><p>Coincidencias según los filtros seleccionados</p></div><div className="directory-view-tools"><span className="directory-tag"><Filter size={15}/> Solo demostración</span><div className="directory-switch" role="group" aria-label="Visualización de resultados"><button type="button" aria-pressed={display==="cards"} className={display==="cards"?"active":""} onClick={()=>setDisplay("cards")}><LayoutGrid size={16}/> Lista</button><button type="button" aria-pressed={display==="map"} className={display==="map"?"active":""} onClick={()=>setDisplay("map")}><MapIcon size={16}/> Mapa</button></div></div></div>
+          {display==="map" ? <LawyerMap profiles={filtered} onSelect={(id)=>setSelected(sample.records.find(x=>x.id===id) ?? null)} /> : filtered.length===0 ? <div className="directory-empty"><Search size={28}/><h3>No hay coincidencias</h3><p>Prueba cambiar la especialidad, la ubicación o el precio.</p><button onClick={reset} type="button">Restablecer filtros</button></div> :
           <div className="directory-cards">{visible.map(lawyer=><article key={lawyer.id} className="directory-card">
             <div className="directory-card-top"><div className="directory-avatar"><UserRound size={33}/></div><div><span className="directory-small-tag">PERFIL SINTÉTICO · SIN VERIFICAR</span><h3>{lawyer.display_name}</h3><p><MapPin size={14}/> {lawyer.municipality}, {lawyer.jurisdictions[0]==="CDMX"?"CDMX":"Edomex"}</p></div></div>
             <div className="directory-tags">{lawyer.specialties.map(s=><span key={s}>{specialties.find(a=>a.id===s)?.name ?? s}</span>)}</div>
             <div className="directory-meta"><span><Gavel size={15}/> {lawyer.years_experience_demo} años (demo)</span><span>{lawyer.consultation_modes.includes("online")?<Video size={15}/>:<Building2 size={15}/>} {lawyer.consultation_modes.length===2?"Video y presencial":lawyer.consultation_modes[0]==="online"?"Videollamada":"Presencial"}</span></div>
             <div className="directory-card-foot"><div><small>Consulta estimada · demo</small><strong>${lawyer.consultation_price_mxn_demo.toLocaleString("es-MX")} MXN</strong></div><button type="button" onClick={()=>setSelected(lawyer)}>Ver perfil <ArrowRight size={16}/></button></div>
           </article>)}</div>}
-          {filtered.length>limit&&<button className="directory-more" type="button" onClick={()=>setLimit(v=>v+9)}>Mostrar más perfiles ({filtered.length-limit} restantes)</button>}
+          {display==="cards"&&filtered.length>limit&&<button className="directory-more" type="button" onClick={()=>setLimit(v=>v+9)}>Mostrar más perfiles ({filtered.length-limit} restantes)</button>}
         </section>
       </div>
     </div>
