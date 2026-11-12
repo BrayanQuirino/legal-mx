@@ -1,10 +1,12 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronDown, Gavel, MapPin, Menu, MessageCircle, Search, ShieldCheck, Sparkles, Users, X } from "lucide-react";
 import { matchSpecialties } from "./lib/matchSpecialties";
+import { Portal } from "./Portal";
 
 type Region = "Todas las ubicaciones" | "Ciudad de México" | "Estado de México";
 
 export function App() {
+  const [portalOpen, setPortalOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState<Region>("Todas las ubicaciones");
   const [searched, setSearched] = useState(false);
@@ -16,17 +18,17 @@ export function App() {
     <>
       <header className="site-header">
         <div className="container nav">
-          <a className="brand" href="#inicio" aria-label="Legal MX, inicio"><span className="brand-mark"><Gavel size={22}/></span><span>legal<span className="brand-accent">mx</span><small>JUSTICIA MÁS CERCA</small></span></a>
+          <a className="brand" href="#inicio" onClick={() => setPortalOpen(false)} aria-label="Legal MX, inicio"><span className="brand-mark"><Gavel size={22}/></span><span>legal<span className="brand-accent">mx</span><small>JUSTICIA MÁS CERCA</small></span></a>
           <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Navegación principal">
-            <a href="#especialidades" onClick={() => setMenuOpen(false)}>Especialidades</a>
-            <a href="#como-funciona" onClick={() => setMenuOpen(false)}>Cómo funciona</a>
-            <a href="#asistente" onClick={() => setMenuOpen(false)}>Asistente legal <span className="new-tag">Próximamente</span></a>
+            <a href="#especialidades" onClick={() => {setPortalOpen(false);setMenuOpen(false);}}>Especialidades</a>
+            <a href="#como-funciona" onClick={() => {setPortalOpen(false);setMenuOpen(false);}}>Cómo funciona</a>
+            <a href="#asistente" onClick={() => {setPortalOpen(false);setMenuOpen(false);}}>Asistente legal <span className="new-tag">Próximamente</span></a><button type="button" className="mobile-access" onClick={() => {setPortalOpen(true);setMenuOpen(false);}}>Iniciar sesión / Registrarse</button>
           </nav>
-          <a className="nav-cta" href="#especialidades">Explorar servicios <ArrowRight size={16}/></a>
+          <button className="nav-cta" type="button" onClick={() => {setPortalOpen(true);setMenuOpen(false);}}>Iniciar sesión / Registrarse <ArrowRight size={16}/></button>
           <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}>{menuOpen ? <X/> : <Menu/>}</button>
         </div>
       </header>
-      <main>
+      {portalOpen ? <Portal onBack={() => {setPortalOpen(false);window.scrollTo({top:0,behavior:"smooth"});}} /> : <main>
         <section id="inicio" className="hero"><div className="container hero-grid">
           <div className="hero-content">
             <div className="eyebrow"><span className="eyebrow-dot"/> ORIENTACIÓN LEGAL EN MÉXICO</div>
@@ -50,7 +52,7 @@ export function App() {
         </div></section>
         <section id="como-funciona" className="how-section"><div className="container"><div className="section-intro"><span className="section-label">SIMPLE DESDE EL PRINCIPIO</span><h2>Tu camino, <em>más claro.</em></h2></div><div className="steps"><div><span className="step-num">01</span><Search/><h3>Cuéntanos qué necesitas</h3><p>Busca por tema legal o selecciona una especialidad.</p></div><div><span className="step-num">02</span><BookOpen/><h3>Conoce tus opciones</h3><p>Consulta información comprensible y fuentes verificables cuando estén disponibles.</p></div><div><span className="step-num">03</span><CalendarDays/><h3>Conecta con un profesional</h3><p>Próximamente podrás consultar perfiles y solicitar una cita.</p></div></div></div></section>
         <section id="asistente" className="assistant-section"><div className="container assistant-panel"><div className="assistant-icon"><Sparkles size={28}/></div><div><span className="section-label">PRÓXIMAMENTE</span><h2>Un asistente legal que habla tu idioma.</h2><p>Estamos diseñando un asistente para orientarte sobre la normativa de Ciudad de México y Estado de México, con referencias a fuentes oficiales. Aún no acepta consultas.</p></div><span className="assistant-status"><MessageCircle size={17}/> En desarrollo</span></div></section>
-      </main>
+      </main>}
       <footer><div className="container footer-inner"><span className="footer-brand">legal<span>mx</span></span><p>Prototipo en desarrollo. El contenido no constituye asesoría jurídica ni sustituye la consulta con un profesional.</p><small>© {new Date().getFullYear()} Legal MX</small></div></footer>
     </>
   );
