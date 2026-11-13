@@ -38,7 +38,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     const rule=latestRule(store.recurringHours.filter(r=>r.lawyerId===lawyerId&&r.hour===hour),dates[0]);
     return Boolean(rule?.blocked)||(store.weeklyBlockedHours[lawyerId]??[]).includes(hour);
   };
-  const showBulk=(item:{kind:"hour"|"day";hour?:number;date?:string;blocked:boolean})=>{
+  const showBulk=(item:{kind:"hour"|"day"|"multi";hour?:number;date?:string;hours?:number[];dates?:string[];blocked:boolean})=>{
     setBulkScope("once");setPendingBulk(item);
   };
   const toggleHourSelection=(hour:number)=>setSelectedHours(prev=>prev.includes(hour)?prev.filter(x=>x!==hour):[...prev,hour]);
