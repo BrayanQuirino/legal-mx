@@ -57,6 +57,6 @@ export function App() {
         <section id="asistente" className="assistant-section"><div className="container assistant-panel"><div className="assistant-icon"><Sparkles size={28}/></div><div><span className="section-label">PRÓXIMAMENTE</span><h2>Un asistente legal que habla tu idioma.</h2><p>Estamos diseñando un asistente para orientarte sobre la normativa de Ciudad de México y Estado de México, con referencias a fuentes oficiales. Aún no acepta consultas.</p></div><span className="assistant-status"><MessageCircle size={17}/> En desarrollo</span></div></section>
       </main>}
       <footer><div className="container footer-inner"><span className="footer-brand">legal<span>mx</span></span><p>Prototipo en desarrollo. El contenido no constituye asesoría jurídica ni sustituye la consulta con un profesional.</p><small>© {new Date().getFullYear()} Legal MX</small></div></footer>
-    </>
+    </DemoStoreProvider>
   );
 }
