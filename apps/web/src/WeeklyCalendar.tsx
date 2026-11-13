@@ -12,7 +12,7 @@ const shiftWeek=(monday:string,delta:number)=>new Date(new Date(monday+"T12:00:0
 export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const store=useDemoStore();
   const [week,setWeek]=useState(nextFutureWeekStart);
-  const [pendingBulk,setPendingBulk]=useState<{kind:"hour"|"day"|"multi"|"cell";hour?:number;date?:string;hours?:number[];dates?:string[];blocked:boolean}|null>(null);
+  const [pendingBulk,setPendingBulk]=useState<{kind:"hour"|"day"|"multi"|"cell"|"cell";hour?:number;date?:string;hours?:number[];dates?:string[];blocked:boolean}|null>(null);
   const [selectMode,setSelectMode]=useState(false);
   const [selectedHours,setSelectedHours]=useState<number[]>([]);
   const [selectedDates,setSelectedDates]=useState<string[]>([]);
@@ -38,7 +38,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     const rule=latestRule(store.recurringHours.filter(r=>r.lawyerId===lawyerId&&r.hour===hour),dates[0]);
     return Boolean(rule?.blocked)||(store.weeklyBlockedHours[lawyerId]??[]).includes(hour);
   };
-  const showBulk=(item:{kind:"hour"|"day"|"multi";hour?:number;date?:string;hours?:number[];dates?:string[];blocked:boolean})=>{
+  const showBulk=(item:{kind:"hour"|"day"|"multi"|"cell";hour?:number;date?:string;hours?:number[];dates?:string[];blocked:boolean})=>{
     setBulkScope("once");setPendingBulk(item);
   };
   const toggleHourSelection=(hour:number)=>setSelectedHours(prev=>prev.includes(hour)?prev.filter(x=>x!==hour):[...prev,hour]);
