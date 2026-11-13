@@ -24,6 +24,16 @@ interface Props {
 const DEFAULT_CENTER: Coordinates = MAP_CENTERS.cdmx;
 const DEFAULT_RADIUS_KM = 20;
 
+function lawyerPin(remoteOnly: boolean, near: boolean): L.DivIcon {
+  const color = remoteOnly ? "#24536d" : "#ad8850";
+  const svg = `<svg width="38" height="50" viewBox="0 0 38 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M19 2C9.7 2 2.5 9.6 2.5 18.8c0 12.8 16.5 28.7 16.5 28.7s16.5-15.9 16.5-28.7C35.5 9.6 28.3 2 19 2Z" fill="${color}" stroke="white" stroke-width="2.8"/>
+  <circle cx="19" cy="18.5" r="12" fill="white" fill-opacity=".12"/>
+  <g fill="none" stroke="white" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11v16M11 15.5h16M11 18l-3 6h6l-3-6Zm16 0-3 6h6l-3-6ZM15 27.5h8"/></g>
+  <circle cx="19" cy="46.2" r="1.4" fill="white"/></svg>`;
+  return L.divIcon({className: "legal-mx-pin-container " + (near ? "inside-search" : "outside-search"), html: svg, iconSize: [38,50], iconAnchor: [19,49], popupAnchor: [0,-44]});
+}
+
 /**
  * Synthetic demonstration only. Radius filters the geographic coordinates in local JSON.
  * Never request visitor geolocation. No professional verification or physical addresses.
