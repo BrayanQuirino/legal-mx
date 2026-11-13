@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import fixture from "../../../data/fixtures/appointments.synthetic.json";
 import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
-import { slotEnabled, type HourRule, type DayRule } from "./lib/availabilityPolicy";
+import { slotEnabled, latestRule, type HourRule, type DayRule } from "./lib/availabilityPolicy";
 
 export type Mode = "online"|"presencial";
 export type Appointment = { id:string;lawyer_id:string;user_id:string;date:string;hour:string;modality:Mode;status:"confirmed"|"pending"|"cancelled";synthetic:true };
@@ -97,7 +97,17 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
       return;
     }
     const matches=(slot:Block)=>slot.lawyerId===lawyerId&&slot.hour===hh&&dates.includes(slot.date);
-    const valid=dates.filter(date=>date>getMexicoToday()&&!appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hh&&a.status!=="cancelled"));
+    const closedDay=(date:string)=>{
+      const day=new Date(date+"T12:00:00Z").getUTCDay();
+      const recurring=latestRule(recurringDays.filter(r=>r.lawyerId===lawyerId&&r.weekday===day),date);
+      return leaves.some(l=>l.lawyerId===lawyerId&&l.date===date)
+        ||(daysOff[lawyerId]??[]).includes(day)
+        ||Boolean(recurring?.off);
+    };
+    // Opening a whole row must not reopen dates already marked as rest/closed.
+    const valid=dates.filter(date=>date>getMexicoToday()
+      &&(shouldBlock||!closedDay(date))
+      &&!appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hh&&a.status!=="cancelled"));
     if(shouldBlock){
       setEnabledSlots(prev=>prev.filter(slot=>!matches(slot)));
       setBlocked(prev=>[...prev.filter(slot=>!matches(slot)),...valid.map(date=>({lawyerId,date,hour:hh}))]);
