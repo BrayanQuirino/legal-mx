@@ -1,0 +1,234 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_type": "appointments",
+  "synthetic": true,
+  "notice": "25 simulaciones pre-agendadas: 5 clientes distintos por cada uno de 5 abogados ficticios. Sin datos reales ni servicios externos.",
+  "record_count": 25,
+  "records": [
+    {
+      "id": "demo-appointment-001",
+      "lawyer_id": "demo-lawyer-001",
+      "user_id": "demo-user-001",
+      "slot_index": 0,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-002",
+      "lawyer_id": "demo-lawyer-001",
+      "user_id": "demo-user-002",
+      "slot_index": 2,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-003",
+      "lawyer_id": "demo-lawyer-001",
+      "user_id": "demo-user-003",
+      "slot_index": 4,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-004",
+      "lawyer_id": "demo-lawyer-001",
+      "user_id": "demo-user-004",
+      "slot_index": 6,
+      "modality": "online",
+      "status": "pending",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-005",
+      "lawyer_id": "demo-lawyer-001",
+      "user_id": "demo-user-005",
+      "slot_index": 8,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-006",
+      "lawyer_id": "demo-lawyer-002",
+      "user_id": "demo-user-006",
+      "slot_index": 0,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-007",
+      "lawyer_id": "demo-lawyer-002",
+      "user_id": "demo-user-007",
+      "slot_index": 2,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-008",
+      "lawyer_id": "demo-lawyer-002",
+      "user_id": "demo-user-008",
+      "slot_index": 4,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-009",
+      "lawyer_id": "demo-lawyer-002",
+      "user_id": "demo-user-009",
+      "slot_index": 6,
+      "modality": "presencial",
+      "status": "pending",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-010",
+      "lawyer_id": "demo-lawyer-002",
+      "user_id": "demo-user-010",
+      "slot_index": 8,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-011",
+      "lawyer_id": "demo-lawyer-003",
+      "user_id": "demo-user-011",
+      "slot_index": 0,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-012",
+      "lawyer_id": "demo-lawyer-003",
+      "user_id": "demo-user-012",
+      "slot_index": 2,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-013",
+      "lawyer_id": "demo-lawyer-003",
+      "user_id": "demo-user-013",
+      "slot_index": 4,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-014",
+      "lawyer_id": "demo-lawyer-003",
+      "user_id": "demo-user-014",
+      "slot_index": 6,
+      "modality": "presencial",
+      "status": "pending",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-015",
+      "lawyer_id": "demo-lawyer-003",
+      "user_id": "demo-user-015",
+      "slot_index": 8,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-016",
+      "lawyer_id": "demo-lawyer-004",
+      "user_id": "demo-user-016",
+      "slot_index": 0,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-017",
+      "lawyer_id": "demo-lawyer-004",
+      "user_id": "demo-user-017",
+      "slot_index": 2,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-018",
+      "lawyer_id": "demo-lawyer-004",
+      "user_id": "demo-user-018",
+      "slot_index": 4,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-019",
+      "lawyer_id": "demo-lawyer-004",
+      "user_id": "demo-user-019",
+      "slot_index": 6,
+      "modality": "online",
+      "status": "pending",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-020",
+      "lawyer_id": "demo-lawyer-004",
+      "user_id": "demo-user-020",
+      "slot_index": 8,
+      "modality": "online",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-021",
+      "lawyer_id": "demo-lawyer-005",
+      "user_id": "demo-user-021",
+      "slot_index": 0,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-022",
+      "lawyer_id": "demo-lawyer-005",
+      "user_id": "demo-user-022",
+      "slot_index": 2,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-023",
+      "lawyer_id": "demo-lawyer-005",
+      "user_id": "demo-user-023",
+      "slot_index": 4,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-024",
+      "lawyer_id": "demo-lawyer-005",
+      "user_id": "demo-user-024",
+      "slot_index": 6,
+      "modality": "presencial",
+      "status": "pending",
+      "synthetic": true
+    },
+    {
+      "id": "demo-appointment-025",
+      "lawyer_id": "demo-lawyer-005",
+      "user_id": "demo-user-025",
+      "slot_index": 8,
+      "modality": "presencial",
+      "status": "confirmed",
+      "synthetic": true
+    }
+  ]
+}
