@@ -27,7 +27,6 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const focusedBooking=bookings.find(a=>a.id===focused);
   const bookedCount=bookings.filter(a=>dates.includes(a.date)).length;
   const isBooked=(date:string,hour:string)=>bookings.find(a=>a.date===date&&a.hour===hour);
-  const isManualBlock=(date:string,hour:string)=>store.blocked.some(b=>b.lawyerId===lawyerId&&b.date===date&&b.hour===hour);
   const hasLeave=(date:string)=>{
     const recurring=latestRule(store.recurringDays.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekdayUtc(date)),date);
     return store.leaves.some(l=>l.lawyerId===lawyerId&&l.date===date)
@@ -105,8 +104,6 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
             </button>
             {dates.map(date=>{
               const existing=isBooked(date,hour);
-              const blocked=isManualBlock(date,hour);
-              const off=hasLeave(date)||(store.daysOff[lawyerId]??[]).includes(weekdayUtc(date));
               const working=store.isWorkingSlot(lawyerId,date,hour);
               const editable=canEdit(date);
               const state=existing?"booked":!editable?"past":working?"available":"blocked";
