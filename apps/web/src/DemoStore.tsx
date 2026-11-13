@@ -64,7 +64,7 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const book=(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>{
     const lawyer=demoLawyers.find(l=>l.id===lawyerId);
     if(!lawyer||!userId||!profiles[lawyerId]?.modes.includes(modality)
-      ||!makeDemoSlots(lawyer).some(s=>s.date===date&&s.hour===hour) && !isWorkingSlot(lawyerId,date,hour)
+      ||!isWorkingSlot(lawyerId,date,hour)
       ||isUnavailable(lawyerId,date,hour))return false;
     setAppointments(prev=>[...prev,{id:"demo-new-"+(prev.length+1),lawyer_id:lawyerId,user_id:userId,date,hour,modality,status:"pending",synthetic:true}]);
     return true;
