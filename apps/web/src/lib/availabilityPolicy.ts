@@ -32,15 +32,13 @@ export function slotEnabled(input:AvailabilityPolicy):boolean {
   const weekday=new Date(date+"T12:00:00Z").getUTCDay();
   const hourRule=latestRule(recurringHours.filter(rule=>rule.lawyerId===lawyerId&&rule.hour===hourNumber),date);
   const dayRule=latestRule(recurringDays.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekday),date);
-  const openDay=profile.weekdays.includes(weekday)
-    &&!(dayRule?.off??false)
+  // POC: all future slots are free by default, regardless of conventional office hours.
+  // A closed weekday or date remains closed until explicitly changed.
+  const openDay=!(dayRule?.off??false)
     &&!(daysOff[lawyerId]??[]).includes(weekday)
     &&!leaves.some(leave=>leave.lawyerId===lawyerId&&leave.date===date);
-  // A recurring explicit "open" row may offer a time outside the standard hours,
-  // but must never override a previously closed day.
   const openHour=hourRule?.blocked===false || (
-    hourNumber>=profile.startHour&&hourNumber<profile.endHour
-    &&!(weeklyBlockedHours[lawyerId]??[]).includes(hourNumber)
+    !(weeklyBlockedHours[lawyerId]??[]).includes(hourNumber)
   );
   return openDay && openHour && hourRule?.blocked!==true;
 }
