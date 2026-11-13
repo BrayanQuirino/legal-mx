@@ -77,7 +77,6 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     dragOrigin.current=cell;
     dragPointerId.current=event.pointerId;
     movedDuringDrag.current=false;
-    event.currentTarget.setPointerCapture(event.pointerId);
   };
   const handleGridPointerMove=(event:ReactPointerEvent<HTMLDivElement>)=>{
     if(dragPointerId.current!==event.pointerId||!dragOrigin.current)return;
@@ -85,14 +84,21 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     const cell=findCell(target);
     if(!cell)return;
     if(cell.day!==dragOrigin.current.day||cell.hour!==dragOrigin.current.hour){
-      movedDuringDrag.current=true;
+      if(!movedDuringDrag.current){
+        movedDuringDrag.current=true;
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }
       setDragCells(rectangle(dragOrigin.current,cell));
     }
   };
   const handleGridPointerUp=(event:ReactPointerEvent<HTMLDivElement>)=>{
     if(dragPointerId.current!==event.pointerId)return;
     // After a drag, swallow the synthetic click rather than toggle its ending cell.
-    if(movedDuringDrag.current)suppressNextClick.current=true;
+    if(movedDuringDrag.current){
+      suppressNextClick.current=true;
+      // The synthetic click caused by pointer release must not toggle a slot.
+      window.setTimeout(()=>{suppressNextClick.current=false;},0);
+    }
     dragOrigin.current=null;
     dragPointerId.current=null;
     if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);
