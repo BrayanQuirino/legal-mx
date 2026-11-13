@@ -91,3 +91,16 @@
 .weekly-panel button:focus-visible,.settings-panel button:focus-visible,.settings-panel select:focus-visible{outline:3px solid #bd9460;outline-offset:2px}
 @media(max-width:800px){.settings-grid{grid-template-columns:1fr}.poc-grid-wide .poc-alert{max-width:none}.weekly-panel,.settings-panel,.appointments-full-panel{padding:16px}.lawyer-main-tabs button{padding:11px 13px;font-size:11px}}
 @media(max-width:520px){.poc-grid-wide .poc-roles{width:100%}.poc-grid-wide .poc-role{flex:1;justify-content:center}.poc-grid-wide .poc-role strong{font-size:11px}.poc-grid-wide .poc-alert{font-size:10px}.weekly-topbar h3{font-size:19px}.weekly-nav{width:100%;justify-content:space-between}.weekly-kpis{gap:9px}.lawyer-main-tabs{width:100%;justify-content:center}.lawyer-main-tabs button{font-size:10px;flex:1;justify-content:center;padding:10px 5px;gap:4px}.lawyer-main-tabs button svg{width:14px}.weekly-scroll{max-height:580px}.settings-card{padding:18px}.settings-choice-grid{gap:5px}.settings-choice-grid button{font-size:10px;padding:12px 3px}}
+
+/* Every future slot is interactive, including those initially outside the workday.
+   A one-off open slot overrides default hours but never reopens an occupied booking. */
+.weekly-cell.closed{background:#f0f4f6;color:#57798b;cursor:pointer}
+.weekly-cell.closed:hover{background:#e0edf3;color:#235b75}
+.weekly-cell.blocked,.weekly-cell.rest{cursor:pointer}
+.weekly-cell.blocked:hover,.weekly-cell.rest:hover{background:#ead0bc}
+.weekly-cell.past{background:#f7f8f9;color:#aebcc5;cursor:not-allowed}
+.weekly-cell.past:disabled{opacity:.75}
+.weekly-cell:disabled:not(.booked){cursor:not-allowed}
+.weekly-cell.available{cursor:pointer}
+.weekly-cell>span{font-size:11px;white-space:nowrap}
+@media(max-width:600px){.weekly-cell>span{font-size:10px}}
