@@ -1,55 +1,48 @@
 import { useMemo, useState } from "react";
 import { CalendarDays, CheckCircle2, Clock3, ShieldAlert, Video, Building2, X } from "lucide-react";
-import lawyers from "../../../data/fixtures/lawyers.synthetic.json";
+import users from "../../../data/fixtures/users.synthetic.json";
+import { useDemoStore, type Mode } from "./DemoStore";
+import { makeDemoSlots, type DemoLawyer } from "./lib/scheduling";
 import "./booking-demo.css";
 
-export type DemoLawyer = (typeof lawyers.records)[number];
-type Slot = { date: string; day: string; hour: string; key: string };
+export { makeDemoSlots };
+export type { DemoLawyer };
 
-const fmt = new Intl.DateTimeFormat("es-MX", { timeZone:"America/Mexico_City", year:"numeric",month:"2-digit",day:"2-digit" });
-const dayFmt = new Intl.DateTimeFormat("es-MX", { timeZone:"UTC",weekday:"short",day:"numeric",month:"short" });
-const parts = fmt.formatToParts(new Date());
-const today = [parts.find(x=>x.type==="year")?.value,parts.find(x=>x.type==="month")?.value,parts.find(x=>x.type==="day")?.value].join("-");
-/** Fixed future dates relative to Mexico City, never a real availability API. */
-export function makeDemoSlots(lawyer: DemoLawyer): Slot[] {
-  const schedule = lawyer.demo_schedule;
-  if (!schedule || !lawyer.demo_booking_enabled) return [];
-  const base = new Date(today + "T12:00:00Z");
-  const slots: Slot[] = [];
-  for(let offset=1;offset<=12;offset++){
-    const day=new Date(base.getTime()+offset*86400000);
-    if(!schedule.weekdays.includes(day.getUTCDay()))continue;
-    const date=day.toISOString().slice(0,10);
-    const label=dayFmt.format(day);
-    for(let hour=schedule.start_hour;hour<schedule.end_hour;hour+=2){
-      const hourText=String(hour).padStart(2,"0")+":00";
-      slots.push({date, day:label, hour:hourText, key:date+"|"+hourText});
-    }
-  }
-  return slots;
-}
-
-export function BookingDemo({lawyer, onClose}:{lawyer:DemoLawyer,onClose:()=>void}){
+export function BookingDemo({lawyer,onClose,initialUserId="demo-user-026"}:{lawyer:DemoLawyer;onClose:()=>void;initialUserId?:string}){
+  const store=useDemoStore();
+  const profile=store.profiles[lawyer.id];
   const slots=useMemo(()=>makeDemoSlots(lawyer),[lawyer]);
-  const [modality,setModality]=useState<"online"|"presencial">(lawyer.consultation_modes[0] as "online"|"presencial");
+  const [modality,setModality]=useState<Mode>(profile.modes[0]);
+  const [userId,setUserId]=useState(initialUserId);
   const [slot,setSlot]=useState("");
   const [confirmed,setConfirmed]=useState(false);
+  const [error,setError]=useState("");
   const selected=slots.find(s=>s.key===slot);
+  const available=slots.filter(s=>!store.isUnavailable(lawyer.id,s.date,s.hour));
+  const submit=()=>{
+    if(!selected || !store.book(lawyer.id,userId,selected.date,selected.hour,modality)){
+      setError("El horario ya no está disponible. Selecciona otro.");setSlot("");return;
+    }
+    setConfirmed(true);setError("");
+  };
   return <div className="demo-book-backdrop" onMouseDown={e=>{if(e.target===e.currentTarget)onClose();}}>
     <section className="demo-book-modal" role="dialog" aria-modal="true" aria-labelledby="book-title">
       <button type="button" className="demo-book-close" aria-label="Cerrar agenda" onClick={onClose}><X size={19}/></button>
-      <span className="demo-book-kicker">AGENDA DE DEMOSTRACIÓN · SIN RESERVAS REALES</span>
-      <h2 id="book-title">Primera consulta con {lawyer.display_name}</h2>
-      <p className="demo-book-muted">Selecciona modalidad y horario para ver cómo funcionará una reserva. No se solicitarán datos personales ni se enviará ninguna confirmación.</p>
-      <div className="demo-book-warning"><ShieldAlert size={18}/> Aprobado únicamente en una simulación. No se verificó ninguna cédula ante la SEP. Horarios y precios son ficticios.</div>
-      {confirmed ? <div className="demo-book-success" role="status"><CheckCircle2 size={31}/><h3>¡Flujo de agenda completado!</h3><p>Solicitud ilustrativa: {selected?.day} a las {selected?.hour}, modalidad {modality==="online"?"videollamada":"presencial"}. No existe una cita real ni un enlace de videollamada.</p><button className="demo-book-primary" onClick={onClose}>Cerrar demostración</button></div> :
-      <><div className="demo-book-section"><strong>1. Tipo de consulta</strong><div className="demo-book-modes">
-      {lawyer.consultation_modes.map(m=><button type="button" key={m} aria-pressed={modality===m} className={modality===m?"active":""} onClick={()=>setModality(m as "online"|"presencial")}>{m==="online"?<Video size={17}/>:<Building2 size={17}/>} {m==="online"?"Videollamada":"Presencial"}</button>)}</div></div>
-      <div className="demo-book-section"><strong>2. Escoge un horario disponible (simulado)</strong><div className="demo-slot-grid">
-        {slots.slice(0,16).map(s=><button type="button" key={s.key} aria-pressed={slot===s.key} className={slot===s.key?"active":""} onClick={()=>setSlot(s.key)}><CalendarDays size={14}/>{s.day}<span><Clock3 size={13}/>{s.hour}</span></button>)}
-      </div></div>
-      <div className="demo-book-summary"><span>Costo ficticio de consulta</span><strong>${lawyer.consultation_price_mxn_demo.toLocaleString("es-MX")} MXN</strong></div>
-      <button type="button" className="demo-book-primary" disabled={!slot} onClick={()=>setConfirmed(true)}>Simular solicitud de cita</button>
+      <span className="demo-book-kicker">AGENDA POC · DATOS TOTALMENTE FICTICIOS</span>
+      <h2 id="book-title">Solicitar cita con {lawyer.display_name}</h2>
+      <p className="demo-book-muted">Esta reserva se reflejará en el panel del abogado durante la sesión de prueba. Se pierde al recargar la página.</p>
+      <div className="demo-book-warning"><ShieldAlert size={18}/> Abogado, clientes, disponibilidad y citas simulados. Sin SEP real, cobros, mensajes ni videollamadas.</div>
+      {confirmed ? <div className="demo-book-success" role="status"><CheckCircle2 size={31}/><h3>Solicitud demo registrada en esta sesión</h3><p>{selected?.day} a las {selected?.hour} · {modality==="online"?"videollamada":"presencial"}. Estado: pendiente de confirmación en panel de abogado. No es cita real.</p><button className="demo-book-primary" onClick={onClose}>Cerrar</button></div> :
+      <>
+      <div className="demo-book-section"><strong>1. Cliente ficticio</strong><label className="book-demo-label">Seleccionar una cuenta de prueba<select value={userId} onChange={e=>setUserId(e.target.value)}>{users.records.map(u=><option value={u.id} key={u.id}>{u.display_name}</option>)}</select></label></div>
+      <div className="demo-book-section"><strong>2. Modalidad</strong><div className="demo-book-modes">{profile.modes.map(m=><button key={m} type="button" aria-pressed={modality===m} className={modality===m?"active":""} onClick={()=>setModality(m)}>{m==="online"?<Video size={17}/>:<Building2 size={17}/>} {m==="online"?"Videollamada":"Presencial"}</button>)}</div></div>
+      <div className="demo-book-section"><strong>3. Horarios libres</strong><p className="demo-book-muted">Los horarios ya reservados, bloqueados o de descanso no se pueden seleccionar.</p>
+        <div className="demo-slot-grid">{available.slice(0,24).map(s=><button type="button" key={s.key} aria-pressed={slot===s.key} className={slot===s.key?"active":""} onClick={()=>setSlot(s.key)}><CalendarDays size={14}/>{s.day}<span><Clock3 size={13}/>{s.hour}</span></button>)}</div>
+        {available.length===0&&<p role="status">Este perfil no tiene horarios disponibles para los próximos días.</p>}
+      </div>
+      <div className="demo-book-summary"><span>Precio de prueba</span><strong>${profile.price.toLocaleString("es-MX")} MXN</strong></div>
+      {error&&<p role="alert">{error}</p>}
+      <button type="button" className="demo-book-primary" disabled={!slot} onClick={submit}>Solicitar cita ficticia</button>
       </>}
     </section>
   </div>;

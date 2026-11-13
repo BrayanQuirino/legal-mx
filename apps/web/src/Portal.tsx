@@ -1,45 +1,54 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Building2, CalendarDays, CheckCircle2, Gavel, LockKeyhole, ShieldAlert, ShieldCheck, UserRound, Users, Video } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Gavel, ShieldAlert, ShieldCheck, UserRound, Users, Video } from "lucide-react";
 import { VerificationFlow } from "./VerificationFlow";
-import { BookingDemo } from "./BookingDemo";
-import sample from "../../../data/fixtures/lawyers.synthetic.json";
+import { LawyerDashboard, ClientDashboard } from "./DemoDashboards";
+import { useDemoStore } from "./DemoStore";
+import { demoLawyers } from "./lib/scheduling";
 import "./portal.css";
 
-type Role = "client" | "lawyer" | "admin";
-type Mode = "video" | "office" | "both";
-const labels: Record<Role,string> = {client:"Usuarios",lawyer:"Abogados",admin:"Administración"};
-const roles: Role[] = ["client","lawyer","admin"];
-/** Demo-only navigation. This DOES NOT create a real session or provide authorization. */
-export function Portal({onBack}:{onBack:()=>void}) {
-  const [role,setRole]=useState<Role>("client");
-  const [step,setStep]=useState<"welcome"|"access"|"dashboard">("welcome");
-  const [register,setRegister]=useState(false);
-  const [mode,setMode]=useState<Mode>("video");
-  const [showVerification,setShowVerification]=useState(false);
-  const [consent,setConsent]=useState(false);
-  const [selectedDemoLawyer,setSelectedDemoLawyer]=useState("demo-lawyer-001");
-  const [showDemoCalendar,setShowDemoCalendar]=useState(false);
-  const approvedDemo=sample.records.filter(x=>x.demo_booking_enabled);
-  const demoProfessional=approvedDemo.find(x=>x.id===selectedDemoLawyer) ?? approvedDemo[0];
-  return <main className="poc"><div className="container">
-    <div className="poc-head"><button onClick={onBack} className="poc-back"><ArrowLeft size={17}/> Volver a Legal MX</button><span className="poc-tag">POC · SIN CUENTAS REALES</span></div>
-    <div className="poc-grid"><aside className="poc-sidebar"><span className="section-label">TRES EXPERIENCIAS</span><h1>Tu espacio <em>legal.</em></h1><p>Elige una vista para explorar cómo funcionará Legal MX.</p><div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep("welcome");setShowVerification(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<Gavel/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div><div className="poc-alert"><ShieldAlert size={21}/><span>Esta es una demostración. No hay sesiones, verificación real ni almacenamiento de datos personales. No ingreses información auténtica.</span></div></aside>
-    <section className="poc-paper" aria-label={"Portal "+labels[role]}>
-      {step==="welcome"&&<><span className="section-label">PORTAL DE {labels[role].toUpperCase()}</span><h2>{role==="client"?"Encuentra atención a tu manera":role==="lawyer"?"Tu práctica jurídica, sin fronteras":"Gestiona la confianza de la plataforma"}</h2><p>{role==="client"?"En el futuro podrás elegir una cita por video o presencial con un abogado verificado.":role==="lawyer"?"Configura videoconsultas, citas en despacho o ambas. El domicilio físico es opcional para la atención remota.":"Supervisa solicitudes, verificaciones, roles y auditorías, siempre desde un backend seguro."}</p><div className="poc-metrics"><span><Video/> Videollamadas</span><span><Building2/> Despachos</span><span><CalendarDays/> Agenda</span></div><button className="poc-primary" onClick={()=>{setStep("access");setRegister(false);}}>Iniciar sesión <ArrowRight size={17}/></button><button className="poc-outline" onClick={()=>{setStep("access");setRegister(true);}}>Registrarse</button>{role==="lawyer"&&<button className="poc-link" onClick={()=>{setStep("dashboard");setShowVerification(true);}}>Explorar verificación simulada</button>}</>}
-      {step==="access"&&<><button className="poc-back" onClick={()=>setStep("welcome")}><ArrowLeft size={16}/> Regresar</button><span className="section-label">{register?"REGISTRO":"ACCESO"} · {labels[role].toUpperCase()}</span><h2>{register?"Crea tu cuenta":"Bienvenido de nuevo"}</h2><p>Prototipo funcional de interfaz. No crea cuentas ni comprueba credenciales.</p><button className="poc-google" type="button" disabled>Continuar con Google · Próximamente</button><form className="poc-form" onSubmit={e=>{e.preventDefault();if(consent)setStep("dashboard");}}>{register&&<label>Nombre de prueba<input placeholder="Persona Demo" maxLength={50} required autoComplete="off"/></label>}<label>Correo de prueba<input type="email" required pattern="[a-zA-Z0-9._%+-]+@example[.]test" title="Solo utiliza @example.test" placeholder="demo@example.test" autoComplete="off"/></label><label>Clave de demostración (no es una contraseña)<input type="text" required pattern="DEMO" placeholder="Escribe DEMO" autoComplete="off"/></label><label className="poc-check"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)}/> Entiendo que este acceso es ficticio y no usaré datos reales.</label><button className="poc-primary" type="submit">Entrar a la vista de demostración <ArrowRight size={16}/></button></form><button className="poc-link" onClick={()=>setRegister(!register)}>{register?"Ya tengo cuenta":"Crear cuenta"}</button></>}
-      {step==="dashboard"&&<><span className="section-label">PANEL {labels[role].toUpperCase()} · DEMO</span><h2>{role==="client"?"Mis consultas":role==="lawyer"?"Mi despacho digital":"Control de la plataforma"}</h2><p>Vista ilustrativa sin datos reales, sesiones seguras ni cambios persistentes.</p><div className="poc-metrics"><span><Users/> {role==="admin"?"3 expedientes ficticios":"0 solicitudes"}</span><span><CalendarDays/> 0 citas reales</span><span><LockKeyhole/> Sin sesión real</span></div>
-      {role!=="admin"&&<div className="poc-panel"><h3>{role==="client"?"¿Cómo quieres ser atendido?":"Modalidades de consulta"}</h3><div className="poc-modes">{([["video","Videollamada"],["office","Presencial"],["both","Ambas"]] as const).map(([value,label])=><button aria-pressed={mode===value} className={mode===value?"active":""} onClick={()=>setMode(value)} key={value}>{mode===value?<CheckCircle2 size={17}/>:value==="video"?<Video size={17}/>:<Building2 size={17}/>} {label}</button>)}</div>{role==="lawyer"&&<><label className="poc-field">Cobertura geográfica<select><option>Ciudad de México</option><option>Estado de México</option><option>Ambas</option></select></label>{mode!=="video"&&<label className="poc-field">Ubicación aproximada del despacho (dato ficticio)<input placeholder="Ej. Colonia Centro, CDMX" maxLength={80}/></label>}<p>Para atención solo por videollamada no se exige dirección pública del despacho en esta POC.</p></>}</div>}
-      {role==="admin"&&<div className="poc-panel"><h3>Expedientes de acreditación · POC</h3>
-        <p>5 aprobados solamente dentro de la simulación; 35 pendientes. Ninguno tiene verificación oficial.</p>
-        {approvedDemo.map(item=><div className="poc-request" key={item.id}><span>{item.display_name} · {item.demo_review.case_id}</span><span>APROBADO (DEMO)</span></div>)}
-        <p>El sistema real requerirá revisión humana, bitácora y control de acceso del servidor.</p></div>}
-      {role==="lawyer"&&<div className="poc-panel"><h3>Mi agenda · Demostración</h3>
-        <p>Selecciona uno de los cinco perfiles sintéticos para explorar la disponibilidad ilustrativa.</p>
-        <label className="poc-field">Profesional demo<select value={selectedDemoLawyer} onChange={e=>setSelectedDemoLawyer(e.target.value)}>{approvedDemo.map(item=><option value={item.id} key={item.id}>{item.display_name}</option>)}</select></label>
-        <div className="poc-request"><span>Estado de expediente</span><span>APROBADO SOLO EN POC</span></div>
-        <div className="poc-request"><span>Duración estimada</span><span>{demoProfessional.demo_schedule?.duration_minutes} min</span></div>
-        <button type="button" className="poc-primary" onClick={()=>setShowDemoCalendar(true)}>Probar agenda <CalendarDays size={16}/></button></div>}
-      {role!=="client"&&<><button className="poc-primary" onClick={()=>setShowVerification(!showVerification)}>{showVerification?"Cerrar simulación":"Abrir validación de credenciales"} <ArrowRight size={16}/></button>{showVerification&&<VerificationFlow/>}</>}
-      <button className="poc-link" onClick={()=>{setStep("welcome");setShowVerification(false);}}>Salir de la demostración</button></>}
-    </section></div></div>{showDemoCalendar&&<BookingDemo lawyer={demoProfessional} onClose={()=>setShowDemoCalendar(false)}/>}</main>;
+type Role="client"|"lawyer"|"admin";
+const labels:Record<Role,string>={client:"Usuarios",lawyer:"Abogados",admin:"Administración"};
+const roles:Role[]=["client","lawyer","admin"];
+
+export function Portal({onBack}:{onBack:()=>void}){
+ const [role,setRole]=useState<Role>("client");
+ const [step,setStep]=useState<"welcome"|"access"|"dashboard">("welcome");
+ const [register,setRegister]=useState(false);
+ const [consent,setConsent]=useState(false);
+ const [verify,setVerify]=useState(false);
+ const store=useDemoStore();
+ return <main className="poc"><div className="container">
+  <div className="poc-head"><button onClick={onBack} className="poc-back"><ArrowLeft size={17}/> Volver a Legal MX</button><span className="poc-tag">POC · SIN CUENTAS REALES</span></div>
+  <div className="poc-grid"><aside className="poc-sidebar"><span className="section-label">TRES EXPERIENCIAS</span><h1>Tu espacio <em>legal.</em></h1><p>Elige una vista para explorar cómo funcionará Legal MX.</p>
+   <div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep("welcome");setVerify(false);setConsent(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<Gavel/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div>
+   <div className="poc-alert"><ShieldAlert size={21}/><span>Acceso únicamente simulado, sin sesiones ni autorización real. Los perfiles, clientes y citas son inventados; los cambios se pierden al recargar.</span></div>
+  </aside>
+  <section className="poc-paper" aria-label={"Portal "+labels[role]}>
+   {step==="welcome"&&<><span className="section-label">PORTAL DE {labels[role].toUpperCase()}</span><h2>{role==="client"?"Tus citas, a tu manera":role==="lawyer"?"Gestiona tu práctica jurídica":"Supervisa los expedientes"}</h2><p>{role==="client"?"Consulta citas ficticias y solicita nuevas citas con alguno de los cinco perfiles de prueba.":role==="lawyer"?"Revisa 5 clientes ficticios por perfil, bloquea horarios, fija descansos y modifica el precio o la modalidad.":"Consulta el estado simulado de expedientes y la operación de prueba."}</p>
+    <div className="poc-metrics"><span><Video/> Videollamadas</span><span><Users/> Usuarios ficticios</span><span><CalendarDays/> Agenda interactiva</span></div>
+    <button className="poc-primary" onClick={()=>{setStep("access");setRegister(false);}}>Iniciar sesión <ArrowRight size={17}/></button>
+    <button className="poc-outline" onClick={()=>{setStep("access");setRegister(true);}}>Registrarse</button>
+   </>}
+   {step==="access"&&<><button className="poc-back" onClick={()=>setStep("welcome")}><ArrowLeft size={16}/> Regresar</button><span className="section-label">{register?"REGISTRO":"ACCESO"} · {labels[role].toUpperCase()}</span><h2>{register?"Crear cuenta demo":"Bienvenido de nuevo"}</h2><p>Acceso solo de prueba; no se crean cuentas ni se comprueba la identidad.</p>
+    <button className="poc-google" disabled type="button">Continuar con Google · Próximamente</button>
+    <form className="poc-form" onSubmit={e=>{e.preventDefault();if(consent)setStep("dashboard");}}>
+     {register&&<label>Nombre ficticio<input placeholder="Persona Demo" maxLength={50} required autoComplete="off"/></label>}
+     <label>Correo ficticio<input type="email" required pattern="[a-zA-Z0-9._%+-]+@example[.]test" title="Utiliza @example.test" placeholder="demo@example.test" autoComplete="off"/></label>
+     <label>Clave de demostración (no contraseña)<input type="text" required pattern="DEMO" placeholder="DEMO" autoComplete="off"/></label>
+     <label className="poc-check"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} required/> Entiendo que esto es una simulación y no introduciré datos reales.</label>
+     <button className="poc-primary" type="submit">Entrar al panel demo <ArrowRight size={16}/></button>
+    </form><button className="poc-link" onClick={()=>setRegister(!register)}>{register?"Ya tengo cuenta demo":"Crear cuenta demo"}</button>
+   </>}
+   {step==="dashboard"&&<><span className="section-label">PANEL {labels[role].toUpperCase()} · DEMO</span><h2>{role==="client"?"Mi espacio de cliente":role==="lawyer"?"Mi despacho digital":"Administración de Legal MX"}</h2>
+    <p>Todos los resultados son ficticios y los cambios permanecen únicamente durante esta sesión de navegación.</p>
+    {role==="client"&&<ClientDashboard/>}
+    {role==="lawyer"&&<LawyerDashboard/>}
+    {role==="admin"&&<div className="poc-panel"><h3>Operación y revisión · Demostración</h3><div className="poc-metrics"><span><Users/> 100 clientes demo</span><span><Gavel/> 40 abogados demo</span><span><CalendarDays/> {store.appointments.filter(a=>a.status!=="cancelled").length} citas demo</span></div><p>Cinco expedientes aprobados solo en simulación, 35 pendientes. Ningún profesionista fue comprobado ante la SEP.</p>
+     {demoLawyers.map(l=><div className="poc-request" key={l.id}><span>{l.display_name} · {l.demo_review.case_id}</span><span>{store.appointments.filter(a=>a.lawyer_id===l.id&&a.status!=="cancelled").length} citas</span></div>)}
+     <button className="poc-outline" type="button" onClick={()=>setVerify(!verify)}>{verify?"Cerrar verificación de prueba":"Explorar verificación de prueba"}</button>{verify&&<VerificationFlow/>}
+    </div>}
+    {role==="lawyer"&&<><button className="poc-outline" onClick={()=>setVerify(!verify)}>{verify?"Cerrar verificación":"Explorar verificación POC"}</button>{verify&&<VerificationFlow/>}</>}
+    <button className="poc-link" onClick={()=>{setStep("welcome");setVerify(false);}}>Salir del panel demo</button>
+   </>}
+  </section></div></div></main>;
 }
