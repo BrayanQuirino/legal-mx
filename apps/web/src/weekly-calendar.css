@@ -104,3 +104,21 @@
 .weekly-cell.available{cursor:pointer}
 .weekly-cell>span{font-size:11px;white-space:nowrap}
 @media(max-width:600px){.weekly-cell>span{font-size:10px}}
+
+/* Confirmation of one-off vs future recurring weekly availability changes. */
+.weekly-scope-overlay{position:fixed;inset:0;background:rgba(15,36,51,.58);z-index:150;display:grid;place-items:center;padding:18px}
+.weekly-scope-dialog{background:white;border-radius:16px;padding:28px;box-shadow:0 25px 65px #152d4140;max-width:515px;width:100%;color:#284b60}
+.weekly-scope-dialog h4{font-size:22px;line-height:1.25;margin:12px 0}
+.weekly-scope-dialog>p{font-size:12px;line-height:1.7;color:#6b8391}
+.weekly-scope-options{display:grid;gap:11px;margin:18px 0}
+.weekly-scope-options label{display:grid;grid-template-columns:20px minmax(0,1fr);gap:4px 10px;align-items:center;padding:16px;border:1px solid #dae5ea;border-radius:10px;cursor:pointer;background:#f9fbfc}
+.weekly-scope-options label.selected{border-color:#b5935f;background:#fff9ed}
+.weekly-scope-options input{grid-row:1/3;accent-color:#24546e;align-self:start;margin-top:2px}
+.weekly-scope-options strong{font-size:13px;color:#294d61}
+.weekly-scope-options small{font-size:11px;color:#7c909d;line-height:1.5}
+.weekly-scope-dialog .weekly-scope-disclaimer{font-size:10px;color:#967044;background:#fff5e5;padding:11px 13px;border-radius:8px}
+.weekly-scope-actions{display:flex;justify-content:end;gap:10px;margin-top:19px}
+.weekly-scope-actions button{font-size:12px;font-weight:800;border-radius:8px;border:1px solid #d3e0e7;padding:12px 17px;color:#4d7184;background:white;cursor:pointer}
+.weekly-scope-actions button:last-child{background:#234e65;color:white;border-color:#234e65}
+.weekly-day-off:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:600px){.weekly-scope-dialog{padding:20px}.weekly-scope-actions button{flex:1}}
