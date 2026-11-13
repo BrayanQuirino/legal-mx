@@ -24,3 +24,42 @@
 @media(max-width:550px){.demo-book-modal{padding:22px}.demo-slot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-book-modal h2{font-size:21px}}
 
 .book-demo-label{display:grid;gap:7px;margin-top:12px;font-size:11px;color:#60798a}.book-demo-label select{padding:12px;border:1px solid #d9e6eb;border-radius:8px;background:white;color:#304f62}
+
+/* Client booking: seven fixed day columns; rows are hourly, not appointment cards. */
+.demo-book-modal-weekly{width:min(1080px,100%);padding:28px 32px;max-height:94vh}
+.demo-book-fields{display:flex;gap:22px;align-items:end;justify-content:space-between;flex-wrap:wrap;margin:16px 0 22px}
+.demo-book-fields>.book-demo-label{flex:1;min-width:220px;margin:0}
+.demo-book-fields select{width:100%;max-width:370px}
+.demo-book-modality{display:grid;gap:7px}
+.demo-book-modality>strong{font-size:11px;color:#567689}
+.demo-book-modality .demo-book-modes{margin:0}
+.demo-book-week-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:15px 0 10px}
+.demo-book-week-nav>div:first-child{display:grid;gap:4px}
+.demo-book-week-nav strong{font-size:15px;color:#264b60}
+.demo-book-week-nav small{font-size:11px;color:#748c9b}
+.demo-book-week-actions{display:flex;align-items:center;gap:10px;padding:4px;border-radius:10px;background:#f2f6f8}
+.demo-book-week-actions>span{font-size:12px;font-weight:800;color:#3c6478;min-width:110px;text-align:center}
+.demo-book-week-actions button{background:white;border:1px solid #dae5eb;width:35px;height:34px;display:grid;place-items:center;border-radius:8px;color:#305c72;cursor:pointer}
+.demo-book-week-actions button:disabled{opacity:.35;cursor:not-allowed}
+.demo-book-calendar-scroll{max-height:510px;overflow:auto;border:1px solid #dce6ec;border-radius:12px;scrollbar-color:#bbced8 #eef4f7}
+.demo-book-calendar{display:grid;grid-template-columns:82px repeat(7,minmax(112px,1fr));min-width:866px}
+.demo-book-calendar-corner,.demo-book-day-head{position:sticky;top:0;z-index:3;background:#eaf1f5;color:#365e75;font-size:11px;font-weight:800;min-height:64px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;border-right:1px solid #dce6ec;border-bottom:1px solid #dce6ec}
+.demo-book-calendar-corner{left:0;z-index:5}
+.demo-book-day-head strong{font-size:19px}
+.demo-book-day-head.weekend{background:#f1f4f5}
+.demo-book-hour-row{display:contents}
+.demo-book-hour-label{position:sticky;left:0;z-index:2;background:#f6f9fa;color:#4c7287;display:flex;gap:5px;align-items:center;justify-content:center;font-weight:800;font-size:12px;min-height:56px;border-right:1px solid #e2eaf0;border-bottom:1px solid #e2eaf0}
+.demo-book-hour-cell{min-height:56px;padding:7px 3px;border:0;border-right:1px solid #e8eef1;border-bottom:1px solid #e8eef1;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;font-weight:750;transition:background .16s ease,box-shadow .16s ease}
+.demo-book-hour-cell.free{background:#e4f4eb;color:#23694f;cursor:pointer}
+.demo-book-hour-cell.free:hover{background:#d0ecdd;box-shadow:inset 0 0 0 2px #6bb596}
+.demo-book-hour-cell.selected{background:#244e63;color:white;cursor:pointer;box-shadow:inset 0 0 0 2px #c4a174}
+.demo-book-hour-cell.unavailable{background:#f5f7f8;color:#b5c1c7;cursor:not-allowed}
+.demo-book-hour-cell:focus-visible{outline:3px solid #b58b52;outline-offset:-3px;z-index:1}
+.demo-book-selected{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;background:#f2f7f8;padding:13px 16px;border-radius:10px;margin:14px 0}
+.demo-book-selected>div{display:flex;gap:8px;align-items:center;color:#42677c;font-size:12px}
+.demo-book-selected>div:last-child{display:grid;gap:3px;text-align:right}
+.demo-book-selected strong{color:#173e53;font-size:15px}
+.demo-book-selected small{color:#778d9b;font-size:10px}
+.demo-book-empty{font-size:12px;color:#876634;background:#fff5e5;padding:12px;border-radius:8px}
+.demo-book-error{font-size:12px;color:#a13e38}
+@media(max-width:650px){.demo-book-modal-weekly{padding:19px 15px}.demo-book-calendar-scroll{max-height:420px}.demo-book-calendar{grid-template-columns:70px repeat(7,minmax(100px,1fr));min-width:770px}.demo-book-week-nav{align-items:start}.demo-book-hour-cell{font-size:10px}.demo-book-day-head{min-height:54px}.demo-book-hour-label{min-height:49px}.demo-book-hour-cell{min-height:49px}}
