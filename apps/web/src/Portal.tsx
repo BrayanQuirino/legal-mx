@@ -19,7 +19,7 @@ export function Portal({onBack}:{onBack:()=>void}){
  const store=useDemoStore();
  return <main className="poc"><div className="container">
   <div className="poc-head"><button onClick={onBack} className="poc-back"><ArrowLeft size={17}/> Volver a Legal MX</button><span className="poc-tag">POC · SIN CUENTAS REALES</span></div>
-  <div className="poc-grid"><aside className="poc-sidebar"><span className="section-label">TRES EXPERIENCIAS</span><h1>Tu espacio <em>legal.</em></h1><p>Elige una vista para explorar cómo funcionará Legal MX.</p>
+  <div className={step==="dashboard"&&role==="lawyer"?"poc-grid poc-grid-wide":"poc-grid"}><aside className="poc-sidebar"><span className="section-label">TRES EXPERIENCIAS</span><h1>Tu espacio <em>legal.</em></h1><p>Elige una vista para explorar cómo funcionará Legal MX.</p>
    <div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep("welcome");setVerify(false);setConsent(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<Gavel/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div>
    <div className="poc-alert"><ShieldAlert size={21}/><span>Acceso únicamente simulado, sin sesiones ni autorización real. Los perfiles, clientes y citas son inventados; los cambios se pierden al recargar.</span></div>
   </aside>
