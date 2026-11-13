@@ -39,6 +39,15 @@ describe("synthetic Legal MX fixtures", () => {
     )).toBe(true);
   });
 
+  it("approves exactly five synthetic profiles for demo only, never for legal practice", () => {
+    const approved = lawyers.records.filter(lawyer => lawyer.demo_booking_enabled);
+    expect(approved).toHaveLength(5);
+    expect(approved.every(lawyer => lawyer.demo_review.state === "approved_simulation")).toBe(true);
+    expect(approved.every(lawyer => lawyer.demo_review.source_verification_real === false)).toBe(true);
+    expect(approved.every(lawyer => lawyer.demo_schedule !== null && lawyer.demo_schedule.duration_minutes === 45)).toBe(true);
+    expect(lawyers.records.filter(lawyer => !lawyer.demo_booking_enabled).every(lawyer => lawyer.demo_review.state === "not_reviewed")).toBe(true);
+    expect(lawyers.records.every(lawyer => lawyer.verification_status === "synthetic_unverified" && lawyer.license_verified_at === null)).toBe(true);
+  });
   it("covers two jurisdictions and six specialties", () => {
     const jurisdictions = new Set(lawyers.records.flatMap((lawyer) => lawyer.jurisdictions));
     const specialties = new Set(lawyers.records.flatMap((lawyer) => lawyer.specialties));

@@ -42,6 +42,31 @@
         "display_label": "Zona ilustrativa · Cuauhtémoc",
         "address": null,
         "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-LEGAL-001"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 45,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 17,
+        "booking_mode": "simulation_only"
       }
     },
     {
@@ -78,6 +103,30 @@
         "display_label": "Zona ilustrativa · Gustavo A. Madero",
         "address": null,
         "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-LEGAL-002"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 45,
+        "weekdays": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "start_hour": 11,
+        "end_hour": 19,
+        "booking_mode": "simulation_only"
       }
     },
     {
@@ -115,6 +164,31 @@
         "display_label": "Zona ilustrativa · Metepec",
         "address": null,
         "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-LEGAL-003"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 45,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 17,
+        "booking_mode": "simulation_only"
       }
     },
     {
@@ -151,6 +225,30 @@
         "display_label": "Zona ilustrativa · Álvaro Obregón",
         "address": null,
         "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-LEGAL-004"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 45,
+        "weekdays": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "start_hour": 11,
+        "end_hour": 19,
+        "booking_mode": "simulation_only"
       }
     },
     {
@@ -188,6 +286,31 @@
         "display_label": "Zona ilustrativa · Toluca",
         "address": null,
         "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-LEGAL-005"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 45,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 17,
+        "booking_mode": "simulation_only"
       }
     },
     {
@@ -225,7 +348,13 @@
         "display_label": "Zona ilustrativa · Miguel Hidalgo",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-007",
@@ -261,7 +390,13 @@
         "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-008",
@@ -297,7 +432,13 @@
         "display_label": "Zona ilustrativa · Benito Juárez",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-009",
@@ -335,7 +476,13 @@
         "display_label": "Zona ilustrativa · Naucalpan de Juárez",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-010",
@@ -371,7 +518,13 @@
         "display_label": "Zona ilustrativa · Huixquilucan",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-011",
@@ -407,7 +560,13 @@
         "display_label": "Zona ilustrativa · Tlalpan",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-012",
@@ -444,7 +603,13 @@
         "display_label": "Zona ilustrativa · Nezahualcóyotl",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-013",
@@ -481,7 +646,13 @@
         "display_label": "Zona ilustrativa · Iztapalapa",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-014",
@@ -517,7 +688,13 @@
         "display_label": "Zona ilustrativa · Ecatepec de Morelos",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-015",
@@ -554,7 +731,13 @@
         "display_label": "Zona ilustrativa · Coyoacán",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-016",
@@ -590,7 +773,13 @@
         "display_label": "Zona ilustrativa · Tlalnepantla de Baz",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-017",
@@ -627,7 +816,13 @@
         "display_label": "Zona ilustrativa · Cuauhtémoc",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-018",
@@ -664,7 +859,13 @@
         "display_label": "Zona ilustrativa · Gustavo A. Madero",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-019",
@@ -700,7 +901,13 @@
         "display_label": "Zona ilustrativa · Metepec",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-020",
@@ -736,7 +943,13 @@
         "display_label": "Zona ilustrativa · Álvaro Obregón",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-021",
@@ -774,7 +987,13 @@
         "display_label": "Zona ilustrativa · Toluca",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-022",
@@ -810,7 +1029,13 @@
         "display_label": "Zona ilustrativa · Miguel Hidalgo",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-023",
@@ -846,7 +1071,13 @@
         "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-024",
@@ -883,7 +1114,13 @@
         "display_label": "Zona ilustrativa · Benito Juárez",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-025",
@@ -920,7 +1157,13 @@
         "display_label": "Zona ilustrativa · Naucalpan de Juárez",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-026",
@@ -956,7 +1199,13 @@
         "display_label": "Zona ilustrativa · Huixquilucan",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-027",
@@ -993,7 +1242,13 @@
         "display_label": "Zona ilustrativa · Tlalpan",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-028",
@@ -1029,7 +1284,13 @@
         "display_label": "Zona ilustrativa · Nezahualcóyotl",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-029",
@@ -1066,7 +1327,13 @@
         "display_label": "Zona ilustrativa · Iztapalapa",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-030",
@@ -1103,7 +1370,13 @@
         "display_label": "Zona ilustrativa · Ecatepec de Morelos",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-031",
@@ -1139,7 +1412,13 @@
         "display_label": "Zona ilustrativa · Coyoacán",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-032",
@@ -1175,7 +1454,13 @@
         "display_label": "Zona ilustrativa · Tlalnepantla de Baz",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-033",
@@ -1213,7 +1498,13 @@
         "display_label": "Zona ilustrativa · Cuauhtémoc",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-034",
@@ -1249,7 +1540,13 @@
         "display_label": "Zona ilustrativa · Gustavo A. Madero",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-035",
@@ -1285,7 +1582,13 @@
         "display_label": "Zona ilustrativa · Metepec",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-036",
@@ -1322,7 +1625,13 @@
         "display_label": "Zona ilustrativa · Álvaro Obregón",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-037",
@@ -1359,7 +1668,13 @@
         "display_label": "Zona ilustrativa · Toluca",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-038",
@@ -1395,7 +1710,13 @@
         "display_label": "Zona ilustrativa · Miguel Hidalgo",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-039",
@@ -1432,7 +1753,13 @@
         "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     },
     {
       "id": "demo-lawyer-040",
@@ -1468,9 +1795,17 @@
         "display_label": "Zona ilustrativa · Benito Juárez",
         "address": null,
         "precision": "municipality_demo"
-      }
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null
     }
   ],
   "geo_schema_version": 1,
-  "geo_disclaimer": "Todos los puntos son georreferencias ficticias aproximadas por zona; no son domicilios, oficinas o ubicaciones de abogados reales."
+  "geo_disclaimer": "Todos los puntos son georreferencias ficticias aproximadas por zona; no son domicilios, oficinas o ubicaciones de abogados reales.",
+  "demo_approved_count": 5,
+  "demo_verification_note": "Cinco perfiles tienen validación completada exclusivamente en una simulación de expediente, sin consulta a SEP, INE ni organismos oficiales; jamás se deben mostrar como abogados reales verificados."
 }
