@@ -30,12 +30,11 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
   const [error, setError] = useState("");
   const days = useMemo(() => weekDates(week), [week]);
 
-  // Display only hours the professional has explicitly enabled in their settings.
-  const workingHours = DAY_HOURS.filter(hour => {
-    const h = Number(hour.slice(0, 2));
-    return h >= profile.startHour && h < profile.endHour
-      && !(store.weeklyBlockedHours[lawyer.id] ?? []).includes(h);
-  });
+  // Show all explicitly enabled hours, including one-off exceptions outside
+  // the normal timetable. Other days remain disabled, never bookable.
+  const workingHours = DAY_HOURS.filter(hour =>
+    days.some(date => store.isWorkingSlot(lawyer.id, date, hour))
+  );
   const hasFree = (date: string, hour: string) => !store.isUnavailable(lawyer.id, date, hour);
   const availableCount = days.reduce((n, date) =>
     n + workingHours.filter(hour => hasFree(date, hour)).length, 0);
