@@ -2,6 +2,7 @@ import { useMemo, useRef, useState, useEffect, type PointerEvent as ReactPointer
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Lock, Unlock, Users, CheckSquare, Square, X } from "lucide-react";
 import users from "../../../data/fixtures/users.synthetic.json";
 import { latestRule } from "./lib/availabilityPolicy";
+import { rectangularSelection, type GridSelectionPoint } from "./lib/calendarSelection";
 import { useDemoStore } from "./DemoStore";
 import { DAY_HOURS, nextFutureWeekStart, weekDates, weekdayUtc, getMexicoToday } from "./lib/scheduling";
 
@@ -17,7 +18,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const [selectedHours,setSelectedHours]=useState<number[]>([]);
   const [selectedDates,setSelectedDates]=useState<string[]>([]);
   const [dragCells,setDragCells]=useState<{date:string;hour:string}[]>([]);
-  const dragOrigin=useRef<{kind:"cell"|"row"|"column";day:number;hour:number}|null>(null);
+  const dragOrigin=useRef<GridSelectionPoint|null>(null);
   const dragPointerId=useRef<number|null>(null);
   const movedDuringDrag=useRef(false);
   const suppressNextClick=useRef(false);
@@ -66,20 +67,9 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     if(!selectedHours.length&&!selectedDates.length)return;
     showBulk({kind:"multi",hours:selectedHours,dates:selectedDates,blocked});
   };
-  const rectangle=(first:{kind:"cell"|"row"|"column";day:number;hour:number},last:{kind:"cell"|"row"|"column";day:number;hour:number})=>{
-    const minHour=first.kind==="column"?0:Math.min(first.hour,last.hour);
-    const maxHour=first.kind==="column"?23:Math.max(first.hour,last.hour);
-    const minDay=first.kind==="row"?0:Math.min(first.day,last.day);
-    const maxDay=first.kind==="row"?6:Math.max(first.day,last.day);
-    const result:{date:string;hour:string}[]=[];
-    for(let row=minHour;row<=maxHour;row++){
-      for(let col=minDay;col<=maxDay;col++){
-        const date=dates[col];
-        if(date&&canEdit(date))result.push({date,hour:DAY_HOURS[row]});
-      }
-    }
-    return result;
-  };
+  const rectangle=(first:GridSelectionPoint,last:GridSelectionPoint)=>
+    rectangularSelection(first,last).filter(cell=>canEdit(dates[cell.day]))
+      .map(cell=>({date:dates[cell.day],hour:DAY_HOURS[cell.hour]}));
   const findGridPosition=(target:EventTarget|null)=>{
     if(!(target instanceof Element))return null;
     const slot=target.closest<HTMLElement>("[data-drag-day][data-drag-hour]");
@@ -209,7 +199,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
         onPointerDown={handleGridPointerDown} onPointerMove={handleGridPointerMove}
         onPointerUp={handleGridPointerUp} onPointerCancel={handleGridPointerUp}>
         <div className="weekly-corner" role="columnheader" onClick={cancelDragSelection} title="Click para limpiar la selección">Hora <small>{selectMode?"Seleccionar filas":"Bloquear fila"}</small></div>
-        {dates.map((date,dayIndex)=><div className="weekly-day-head" role="columnheader" key={date} data-drag-column={dayIndex}
+        {dates.map((date,dayIndex)=><div className={"weekly-day-head"+(dragCells.some(cell=>cell.date===date)?" excel-header-selected":"")} role="columnheader" key={date} data-drag-column={dayIndex}
           onClick={event=>{if(event.target===event.currentTarget)setDragCells([]);}}>
           <span>{labels[weekdayUtc(date)]} <strong>{dateLabel(date)}</strong></span>
           {selectMode&&<label className="weekly-header-check" title={"Seleccionar "+date}><input type="checkbox" checked={selectedDates.includes(date)} disabled={!canEdit(date)} onChange={()=>toggleDateSelection(date)}/> Seleccionar</label>}
@@ -219,7 +209,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
           const h=Number(hour.slice(0,2));
           const allBlocked=isHourRecurringBlocked(h) || dates.filter(canEdit).every(date=>store.blocked.some(b=>b.lawyerId===lawyerId&&b.hour===hour&&b.date===date));
           return <div className="weekly-hour-row" role="row" key={hour}>
-            <button type="button" data-drag-row={h} className={(allBlocked?"weekly-hour-label all-blocked":"weekly-hour-label")+(selectedHours.includes(h)?" selected-hour":"")} title={(allBlocked?"Desbloquear":"Bloquear")+" esta hora todos los días de la semana"} onClick={()=>{if(suppressNextClick.current){suppressNextClick.current=false;return;}if(dragCells.length){setDragCells([]);return;}selectMode?toggleHourSelection(h):showBulk({kind:"hour",hour:h,blocked:!allBlocked});}}>
+            <button type="button" data-drag-row={h} className={(allBlocked?"weekly-hour-label all-blocked":"weekly-hour-label")+(selectedHours.includes(h)?" selected-hour":"")+(dragCells.some(cell=>cell.hour===hour)?" excel-header-selected":"")} title={(allBlocked?"Desbloquear":"Bloquear")+" esta hora todos los días de la semana"} onClick={()=>{if(suppressNextClick.current){suppressNextClick.current=false;return;}if(dragCells.length){setDragCells([]);return;}selectMode?toggleHourSelection(h):showBulk({kind:"hour",hour:h,blocked:!allBlocked});}}>
               <strong>{hour}</strong><small>{selectMode?(selectedHours.includes(h)?"Seleccionada":"Seleccionar fila"):(allBlocked?"Fila bloqueada":"Bloquear fila")}</small>{selectMode?(selectedHours.includes(h)?<CheckSquare size={14}/>:<Square size={14}/>):allBlocked?<Lock size={12}/>:<Unlock size={12}/>}
             </button>
             {dates.map(date=>{
