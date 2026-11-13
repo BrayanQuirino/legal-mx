@@ -50,3 +50,13 @@ export function calendarCandidates(horizonDays=21):Slot[]{
  }
  return result;
 }
+
+/** The professional agenda opens on the first full upcoming Monday–Sunday week,
+ * rather than showing past dates in its default view. Previous weeks remain browseable.
+ */
+export function nextFutureWeekStart(reference=getMexicoToday()):string {
+  const monday=upcomingWeekStart(reference);
+  const date=new Date(monday+"T12:00:00Z");
+  date.setUTCDate(date.getUTCDate()+7);
+  return date.toISOString().slice(0,10);
+}
