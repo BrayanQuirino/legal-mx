@@ -2,3 +2,30 @@
 
 /* Map view: inline Leaflet map is loaded only after user selects Mapa. */
 .directory-view-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.directory-switch{display:flex;gap:3px;padding:3px;border-radius:9px;border:1px solid #d8e4e9;background:#fff}.directory-switch button{display:inline-flex;align-items:center;gap:7px;padding:9px 12px;border:0;border-radius:6px;background:transparent;color:#58798b;font-size:11px;font-weight:800;cursor:pointer}.directory-switch button.active{background:#21495d;color:#fff}.lawyer-map-wrap{width:100%;min-width:0;background:white;border:1px solid #e1e8ed;border-radius:13px;overflow:hidden}.lawyer-map-caution{padding:14px 17px;background:#fff5e5;color:#805b2e;border-bottom:1px solid #ecd9bb;font-size:11px;line-height:1.65;font-weight:700}.lawyer-leaflet-map{height:560px;min-height:350px;width:100%;z-index:0}.lawyer-map-footnote{padding:10px 17px;margin:0;font-size:10px;color:#627889;line-height:1.6}.lawyer-map-popup{min-width:175px;font-family:'DM Sans',sans-serif}.lawyer-map-popup strong{font-size:13px;color:#21475a}.lawyer-map-popup p{font-size:11px;color:#496979;line-height:1.5}.lawyer-map-popup small{display:block;color:#8c6b3e;font-size:9px;font-weight:800}.lawyer-map-popup button{margin-top:10px;width:100%;background:#21495d;color:white;border:0;border-radius:6px;padding:9px;font-size:11px;font-weight:700;cursor:pointer}.leaflet-container{font-family:'DM Sans',sans-serif}.leaflet-control-attribution{font-size:10px!important}@media(max-width:650px){.directory-view-tools{width:100%;justify-content:space-between}.lawyer-leaflet-map{height:440px}.directory-switch button{padding:9px}}
+
+/* Search radius sidebar: controls and map remain responsive on mobile. */
+.lawyer-map-grid{display:grid;grid-template-columns:210px minmax(0,1fr);min-width:0}
+.lawyer-map-sidebar{padding:18px 14px 20px;background:#f9fbfc;border-right:1px solid #dfe8ed;display:flex;flex-direction:column;gap:14px;min-width:0}
+.map-sidebar-title{display:flex;align-items:center;gap:8px;color:#234f68;font-size:13px}
+.map-radius-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#526c7e;font-size:11px;font-weight:700}
+.map-radius-heading strong{color:#1b4a66;font-size:20px;white-space:nowrap}
+.map-radius-slider{width:100%;accent-color:#1f6887;cursor:pointer;min-height:26px}
+.map-range-labels{display:flex;justify-content:space-between;color:#7d929f;margin-top:-13px}
+.map-radius-presets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.map-radius-presets button{border:1px solid #d3e0e7;background:white;border-radius:7px;padding:9px 4px;color:#38657d;font-size:11px;font-weight:700;cursor:pointer}
+.map-radius-presets button.active{background:#234f68;color:white;border-color:#234f68}
+.map-sidebar-divider{height:1px;background:#e0e8ed;margin:3px 0}
+.map-center-label{display:flex;align-items:center;gap:8px;color:#3a6279;font-size:11px;font-weight:800}
+.map-center-select{width:100%;border:1px solid #d5e1e8;border-radius:7px;background:white;color:#355669;font-size:11px;padding:11px 6px}
+.map-center-help{display:flex;gap:7px;align-items:flex-start;font-size:10px;line-height:1.6;color:#8396a2;margin:0}
+.map-center-help svg{flex-shrink:0}
+.map-result-stat{background:#eaf4f7;border:1px solid #d8e9ed;border-radius:10px;padding:15px;color:#24546d;display:flex;flex-direction:column;gap:5px}
+.map-result-stat strong{font-size:29px;line-height:1}
+.map-result-stat span{font-size:11px;line-height:1.5}
+.map-filter-explanation{font-size:10px;line-height:1.6;color:#81929d;margin:0}
+.map-reset{background:none;border:1px solid #d2dfe5;border-radius:7px;color:#476c80;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 6px;cursor:pointer}
+.lawyer-map-main{min-width:0}
+.lawyer-map-main .lawyer-leaflet-map{height:580px}
+.map-radius-presets button:focus-visible,.map-reset:focus-visible,.map-center-select:focus-visible,.map-radius-slider:focus-visible{outline:3px solid #b78c54;outline-offset:2px}
+@media(max-width:1150px){.lawyer-map-grid{grid-template-columns:1fr}.lawyer-map-sidebar{border-right:0;border-bottom:1px solid #dfe8ed;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}.map-sidebar-title,.map-center-help,.map-result-stat,.map-filter-explanation{grid-column:1/-1}.map-sidebar-divider{display:none}.map-radius-presets{grid-template-columns:repeat(4,minmax(0,1fr))}.lawyer-map-main .lawyer-leaflet-map{height:520px}}
+@media(max-width:650px){.lawyer-map-sidebar{grid-template-columns:1fr}.map-radius-heading{margin-top:0}.map-radius-presets{grid-template-columns:repeat(4,minmax(0,1fr))}.lawyer-map-main .lawyer-leaflet-map{height:410px}}
