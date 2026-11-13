@@ -13,7 +13,6 @@ export function LawyerDashboard(){
  const store=useDemoStore();
  const [lawyerId,setLawyerId]=useState(demoLawyers[0].id);
  const [tab,setTab]=useState<"weekly"|"appointments"|"settings">("weekly");
- const lawyer=demoLawyers.find(l=>l.id===lawyerId)??demoLawyers[0];
  const appointments=store.appointments.filter(a=>a.lawyer_id===lawyerId).sort((a,b)=>(a.date+a.hour).localeCompare(b.date+b.hour));
  return <div className="legal-dashboard lawyer-workspace">
    <div className="dash-heading"><div><span className="section-label">CENTRO DE TRABAJO · DEMOSTRACIÓN</span><h3>{tab==="weekly"?"Agenda semanal":tab==="appointments"?"Mis citas":"Configuración del despacho"}</h3><p>Una sección por tarea: agenda visual, citas o ajustes rápidos del perfil.</p></div><span className="dash-notice">POC · Sin sesiones reales</span></div>
