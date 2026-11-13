@@ -22,12 +22,14 @@ type Store = {
   appointments:Appointment[];
   profiles:Record<string,Profile>;
   blocked:Block[];
+  enabledSlots:Block[];
   leaves:Leave[];
   daysOff:Record<string,number[]>;
   weeklyBlockedHours:Record<string,number[]>;
   book:(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>boolean;
   updateStatus:(appointmentId:string,status:"confirmed"|"cancelled")=>void;
   toggleBlock:(lawyerId:string,date:string,hour:string)=>void;
+  toggleSlot:(lawyerId:string,date:string,hour:string)=>void;
   toggleLeave:(lawyerId:string,date:string)=>void;
   toggleWeekdayOff:(lawyerId:string,weekday:number)=>void;
   toggleWeeklyHour:(lawyerId:string,hour:number)=>void;
@@ -44,22 +46,37 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const [appointments,setAppointments]=useState<Appointment[]>(initialAppointments);
   const [profiles,setProfiles]=useState<Record<string,Profile>>(initialProfiles);
   const [blocked,setBlocked]=useState<Block[]>([]);
+  const [enabledSlots,setEnabledSlots]=useState<Block[]>([]);
   const [leaves,setLeaves]=useState<Leave[]>([]);
   const [daysOff,setDaysOff]=useState<Record<string,number[]>>({});
   const [weeklyBlockedHours,setWeeklyBlockedHours]=useState<Record<string,number[]>>({});
   const isWorkingSlot=(lawyerId:string,date:string,hour:string)=>{
     const profile=profiles[lawyerId];
     if(!profile || date <= getMexicoToday())return false;
+    const matches=(entry:Block)=>entry.lawyerId===lawyerId&&entry.date===date&&entry.hour===hour;
+    // Explicit one-off decisions take precedence over weekly defaults and bulk blocks.
+    if(blocked.some(matches))return false;
+    if(enabledSlots.some(matches))return true;
     const time=Number(hour.slice(0,2));
-    return time>=profile.startHour && time<profile.endHour && profile.weekdays.includes(weekdayUtc(date)) && !(weeklyBlockedHours[lawyerId]??[]).includes(time);
+    return time>=profile.startHour && time<profile.endHour
+      && profile.weekdays.includes(weekdayUtc(date))
+      && !(weeklyBlockedHours[lawyerId]??[]).includes(time)
+      && !(daysOff[lawyerId]??[]).includes(weekdayUtc(date))
+      && !leaves.some(leave=>leave.lawyerId===lawyerId&&leave.date===date);
   };
-  const isUnavailable=(lawyerId:string,date:string,hour:string)=>{
-    const day=weekdayUtc(date);
-    return !isWorkingSlot(lawyerId,date,hour)
-      ||appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hour&&a.status!=="cancelled")
-      ||blocked.some(b=>b.lawyerId===lawyerId&&b.date===date&&b.hour===hour)
-      ||leaves.some(l=>l.lawyerId===lawyerId&&l.date===date)
-      ||(daysOff[lawyerId]??[]).includes(day);
+  const isUnavailable=(lawyerId:string,date:string,hour:string)=>
+    !isWorkingSlot(lawyerId,date,hour)
+    ||appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hour&&a.status!=="cancelled");
+  const toggleSlot=(lawyerId:string,date:string,hour:string)=>{
+    if(date<=getMexicoToday() || appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hour&&a.status!=="cancelled"))return;
+    const same=(entry:Block)=>entry.lawyerId===lawyerId&&entry.date===date&&entry.hour===hour;
+    if(isWorkingSlot(lawyerId,date,hour)){
+      setEnabledSlots(prev=>prev.filter(entry=>!same(entry)));
+      setBlocked(prev=>prev.some(same)?prev:[...prev,{lawyerId,date,hour}]);
+    }else{
+      setBlocked(prev=>prev.filter(entry=>!same(entry)));
+      setEnabledSlots(prev=>prev.some(same)?prev:[...prev,{lawyerId,date,hour}]);
+    }
   };
   const book=(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>{
     const lawyer=demoLawyers.find(l=>l.id===lawyerId);
@@ -70,12 +87,12 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
     return true;
   };
   const updateStatus=(id:string,status:"confirmed"|"cancelled")=>setAppointments(prev=>prev.map(a=>a.id===id?{...a,status}:a));
-  const toggleBlock=(lawyerId:string,date:string,hour:string)=>setBlocked(prev=>prev.some(b=>b.lawyerId===lawyerId&&b.date===date&&b.hour===hour)?prev.filter(b=>!(b.lawyerId===lawyerId&&b.date===date&&b.hour===hour)):[...prev,{lawyerId,date,hour}]);
+  const toggleBlock=toggleSlot;
   const toggleLeave=(lawyerId:string,date:string)=>setLeaves(prev=>prev.some(l=>l.lawyerId===lawyerId&&l.date===date)?prev.filter(l=>!(l.lawyerId===lawyerId&&l.date===date)):[...prev,{lawyerId,date}]);
   const toggleWeeklyHour=(lawyerId:string,hour:number)=>setWeeklyBlockedHours(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(hour)?prev[lawyerId].filter(h=>h!==hour):[...(prev[lawyerId]??[]),hour]}));
   const toggleWeekdayOff=(lawyerId:string,weekday:number)=>setDaysOff(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(weekday)?prev[lawyerId].filter(d=>d!==weekday):[...(prev[lawyerId]??[]),weekday]}));
   const updateProfile=(id:string,changes:Partial<Profile>)=>setProfiles(prev=>({...prev,[id]:{...prev[id],...changes}}));
-  const store=useMemo(()=>({appointments,profiles,blocked,leaves,daysOff,weeklyBlockedHours,book,updateStatus,toggleBlock,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,leaves,daysOff,weeklyBlockedHours]);
+  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,book,updateStatus,toggleBlock,toggleSlot,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours]);
   return <Context.Provider value={store}>{children}</Context.Provider>;
 }
 export function useDemoStore(){
