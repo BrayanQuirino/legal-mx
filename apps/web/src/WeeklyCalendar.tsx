@@ -17,18 +17,33 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const [selectedHours,setSelectedHours]=useState<number[]>([]);
   const [selectedDates,setSelectedDates]=useState<string[]>([]);
   const [dragCells,setDragCells]=useState<{date:string;hour:string}[]>([]);
-  const dragOrigin=useRef<{day:number;hour:number}|null>(null);
+  const dragOrigin=useRef<{kind:"cell"|"row"|"column";day:number;hour:number}|null>(null);
   const dragPointerId=useRef<number|null>(null);
   const movedDuringDrag=useRef(false);
   const suppressNextClick=useRef(false);
   const [bulkScope,setBulkScope]=useState<"once"|"future">("once");
   const scrollRef=useRef<HTMLDivElement|null>(null);
+  const gridRef=useRef<HTMLDivElement|null>(null);
+  const toolbarRef=useRef<HTMLDivElement|null>(null);
   const dates=useMemo(()=>weekDates(week),[week]);
   const bookings=store.appointments.filter(a=>a.lawyer_id===lawyerId&&a.status!=="cancelled");
   const profile=store.profiles[lawyerId];
   const [focused,setFocused]=useState<string|null>(null);
   useEffect(()=>{if(scrollRef.current)scrollRef.current.scrollTop=7*53;},[lawyerId]);
   useEffect(()=>{setSelectedHours([]);setSelectedDates([]);setDragCells([]);setSelectMode(false);dragOrigin.current=null;},[lawyerId,week]);
+  useEffect(()=>{
+    const onKey=(event:KeyboardEvent)=>{
+      if(event.key==="Escape"){setDragCells([]);dragOrigin.current=null;}
+    };
+    const onOutside=(event:PointerEvent)=>{
+      const target=event.target;
+      if(!(target instanceof Node))return;
+      if(!gridRef.current?.contains(target)&&!toolbarRef.current?.contains(target))setDragCells([]);
+    };
+    document.addEventListener("keydown",onKey);
+    document.addEventListener("pointerdown",onOutside);
+    return ()=>{document.removeEventListener("keydown",onKey);document.removeEventListener("pointerdown",onOutside);};
+  },[]);
   const focusedBooking=bookings.find(a=>a.id===focused);
   const bookedCount=bookings.filter(a=>dates.includes(a.date)).length;
   const isBooked=(date:string,hour:string)=>bookings.find(a=>a.date===date&&a.hour===hour);
@@ -51,44 +66,70 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     if(!selectedHours.length&&!selectedDates.length)return;
     showBulk({kind:"multi",hours:selectedHours,dates:selectedDates,blocked});
   };
-  const rectangle=(first:{day:number;hour:number},last:{day:number;hour:number})=>{
+  const rectangle=(first:{kind:"cell"|"row"|"column";day:number;hour:number},last:{kind:"cell"|"row"|"column";day:number;hour:number})=>{
+    const minHour=first.kind==="column"?0:Math.min(first.hour,last.hour);
+    const maxHour=first.kind==="column"?23:Math.max(first.hour,last.hour);
+    const minDay=first.kind==="row"?0:Math.min(first.day,last.day);
+    const maxDay=first.kind==="row"?6:Math.max(first.day,last.day);
     const result:{date:string;hour:string}[]=[];
-    for(let row=Math.min(first.hour,last.hour);row<=Math.max(first.hour,last.hour);row++){
-      for(let col=Math.min(first.day,last.day);col<=Math.max(first.day,last.day);col++){
+    for(let row=minHour;row<=maxHour;row++){
+      for(let col=minDay;col<=maxDay;col++){
         const date=dates[col];
         if(date&&canEdit(date))result.push({date,hour:DAY_HOURS[row]});
       }
     }
     return result;
   };
-  const findCell=(target:EventTarget|null)=>{
+  const findGridPosition=(target:EventTarget|null)=>{
     if(!(target instanceof Element))return null;
-    const cell=target.closest<HTMLElement>("[data-drag-day][data-drag-hour]");
-    if(!cell)return null;
-    const day=Number(cell.dataset.dragDay),hour=Number(cell.dataset.dragHour);
-    return Number.isInteger(day)&&day>=0&&day<7&&Number.isInteger(hour)&&hour>=0&&hour<24?{day,hour}:null;
+    const slot=target.closest<HTMLElement>("[data-drag-day][data-drag-hour]");
+    if(slot){
+      const day=Number(slot.dataset.dragDay),hour=Number(slot.dataset.dragHour);
+      return Number.isInteger(day)&&day>=0&&day<7&&Number.isInteger(hour)&&hour>=0&&hour<24
+        ? {kind:"cell" as const,day,hour}:null;
+    }
+    const row=target.closest<HTMLElement>("[data-drag-row]");
+    if(row){
+      const hour=Number(row.dataset.dragRow);
+      return Number.isInteger(hour)&&hour>=0&&hour<24?{kind:"row" as const,day:0,hour}:null;
+    }
+    const column=target.closest<HTMLElement>("[data-drag-column]");
+    if(column){
+      const day=Number(column.dataset.dragColumn);
+      return Number.isInteger(day)&&day>=0&&day<7?{kind:"column" as const,day,hour:0}:null;
+    }
+    return null;
   };
   const handleGridPointerDown=(event:ReactPointerEvent<HTMLDivElement>)=>{
     if(event.button!==0||pendingBulk||focused)return;
     const target=event.target;
-    if(target instanceof Element && target.closest(".weekly-repeat-chip"))return;
-    const cell=findCell(target);
-    if(!cell||!canEdit(dates[cell.day])||isBooked(dates[cell.day],DAY_HOURS[cell.hour]))return;
-    dragOrigin.current=cell;
+    if(target instanceof Element && target.closest(".weekly-repeat-chip,.weekly-day-off,.weekly-header-check"))return;
+    const position=findGridPosition(target);
+    if(!position){
+      if(target instanceof Element && target.closest(".weekly-corner"))setDragCells([]);
+      return;
+    }
+    if(position.kind!=="row"&&!canEdit(dates[position.day]))return;
+    if(position.kind==="cell"&&isBooked(dates[position.day],DAY_HOURS[position.hour]))return;
+    dragOrigin.current=position;
     dragPointerId.current=event.pointerId;
     movedDuringDrag.current=false;
   };
   const handleGridPointerMove=(event:ReactPointerEvent<HTMLDivElement>)=>{
     if(dragPointerId.current!==event.pointerId||!dragOrigin.current)return;
     const target=document.elementFromPoint(event.clientX,event.clientY);
-    const cell=findCell(target);
-    if(!cell)return;
-    if(cell.day!==dragOrigin.current.day||cell.hour!==dragOrigin.current.hour){
+    const position=findGridPosition(target);
+    if(!position)return;
+    const origin=dragOrigin.current;
+    const changed=origin.kind==="row"?position.hour!==origin.hour
+      :origin.kind==="column"?position.day!==origin.day
+      :position.day!==origin.day||position.hour!==origin.hour;
+    if(changed){
       if(!movedDuringDrag.current){
         movedDuringDrag.current=true;
         event.currentTarget.setPointerCapture(event.pointerId);
       }
-      setDragCells(rectangle(dragOrigin.current,cell));
+      setDragCells(rectangle(origin,position));
     }
   };
   const handleGridPointerUp=(event:ReactPointerEvent<HTMLDivElement>)=>{
@@ -105,10 +146,11 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   };
   const handleCellClick=(date:string,hour:string,appointmentId?:string)=>{
     if(suppressNextClick.current){suppressNextClick.current=false;return;}
-    if(dragCells.length>1)return; // selection actions belong to the toolbar
+    if(dragCells.length>0){setDragCells([]);return;} // click another cell to deselect
     if(appointmentId)setFocused(appointmentId);
     else store.toggleSlot(lawyerId,date,hour);
   };
+  const cancelDragSelection=()=>{setDragCells([]);dragOrigin.current=null;suppressNextClick.current=false;};
   const applyDrag=(block:boolean)=>{
     if(!dragCells.length)return;
     store.setCellsAvailability(lawyerId,dragCells,block);
@@ -142,7 +184,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   return <section className="weekly-panel" aria-label="Agenda semanal con siete días">
     <div className="weekly-topbar"><div><span className="section-label">AGENDA SEMANAL · 7 DÍAS</span><h3>Tu semana de un vistazo</h3><p>Todas las horas futuras comienzan libres. Bloquea con un clic y utiliza Repetir para aplicar el bloqueo cada semana.</p></div><div className="weekly-nav"><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,-1))} aria-label="Semana anterior"><ArrowLeft size={17}/></button><span>{dates[0].slice(5)} — {dates[6].slice(5)}<small>CDMX</small></span><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,1))} aria-label="Semana siguiente"><ArrowRight size={17}/></button><button type="button" className="weekly-today" onClick={()=>setWeek(nextFutureWeekStart())}>Próxima semana</button></div></div>
     <div className="weekly-kpis"><span><CalendarDays size={15}/> {bookedCount} citas esta semana</span><span className="weekly-kpi-free"><span/> Horario disponible</span><span className="weekly-kpi-booked"><span/> Reservado</span><span className="weekly-kpi-closed"><span/> Bloqueado</span></div>
-    <div className="weekly-multi-toolbar">
+    <div className="weekly-multi-toolbar" ref={toolbarRef}>
       <button className={selectMode?"weekly-select-toggle active":"weekly-select-toggle"} type="button" aria-pressed={selectMode} onClick={()=>{setSelectMode(v=>!v);setSelectedHours([]);setSelectedDates([]);}}>
         {selectMode?<CheckSquare size={17}/>:<Square size={17}/>} Selección múltiple
       </button>
@@ -150,7 +192,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
         <span className="weekly-selection-count">{dragCells.length} celdas seleccionadas</span>
         <button type="button" className="weekly-bulk-open" onClick={()=>applyDrag(false)}>Liberar rango</button>
         <button type="button" className="weekly-bulk-close" onClick={()=>applyDrag(true)}>Bloquear rango</button>
-        <button type="button" className="weekly-select-clear" onClick={()=>setDragCells([])}><X size={13}/> Deseleccionar</button>
+        <button type="button" className="weekly-select-clear" onClick={cancelDragSelection}><X size={13}/> Deseleccionar</button>
       </div>}
       {selectMode&&<>
         <span className="weekly-selection-count">{selectedHours.length} filas · {selectedDates.length} días</span>
@@ -161,13 +203,14 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
         <button type="button" className="weekly-bulk-close" disabled={!selectedHours.length&&!selectedDates.length} onClick={()=>openMultiDialog(true)}>Bloquear selección</button>
       </>}
     </div>
-    <p className="weekly-selection-help">{dragCells.length>1?"Arrastraste un rango: elige Bloquear rango o Liberar rango. Las citas reservadas se respetan.":selectMode?"Marca las horas en la primera columna y los días en la cabecera. Confirma todo con un solo formulario.":"Mantén presionado y arrastra sobre las celdas, como en Excel, para seleccionar varias horas y días."}</p>
+    <p className="weekly-selection-help">{dragCells.length>1?"Arrastraste un rango: elige Bloquear rango o Liberar rango. Las citas reservadas se respetan.":selectMode?"Marca las horas en la primera columna y los días en la cabecera. Confirma todo con un solo formulario.":"Arrastra sobre las celdas o directamente sobre los títulos de días y horas. Esc o clic fuera para deseleccionar."}</p>
     <div className="weekly-scroll" ref={scrollRef}>
-      <div className="weekly-grid" role="grid" aria-label="Disponibilidad del abogado de lunes a domingo"
+      <div className="weekly-grid" ref={gridRef} role="grid" aria-label="Disponibilidad del abogado de lunes a domingo"
         onPointerDown={handleGridPointerDown} onPointerMove={handleGridPointerMove}
         onPointerUp={handleGridPointerUp} onPointerCancel={handleGridPointerUp}>
-        <div className="weekly-corner" role="columnheader">Hora <small>{selectMode?"Seleccionar filas":"Bloquear fila"}</small></div>
-        {dates.map(date=><div className="weekly-day-head" role="columnheader" key={date}>
+        <div className="weekly-corner" role="columnheader" onClick={cancelDragSelection} title="Click para limpiar la selección">Hora <small>{selectMode?"Seleccionar filas":"Bloquear fila"}</small></div>
+        {dates.map((date,dayIndex)=><div className="weekly-day-head" role="columnheader" key={date} data-drag-column={dayIndex}
+          onClick={event=>{if(event.target===event.currentTarget)setDragCells([]);}}>
           <span>{labels[weekdayUtc(date)]} <strong>{dateLabel(date)}</strong></span>
           {selectMode&&<label className="weekly-header-check" title={"Seleccionar "+date}><input type="checkbox" checked={selectedDates.includes(date)} disabled={!canEdit(date)} onChange={()=>toggleDateSelection(date)}/> Seleccionar</label>}
           <button type="button" title="Activar o quitar descanso completo" aria-label={(hasLeave(date)?"Quitar descanso ":"Marcar descanso ")+date} className={hasLeave(date)?"weekly-day-off active":"weekly-day-off"} disabled={!canEdit(date)} onClick={()=>selectMode?toggleDateSelection(date):showBulk({kind:"day",date,blocked:!hasLeave(date)})}>{hasLeave(date)?<Lock size={12}/>:<Unlock size={12}/>} <span>{hasLeave(date)?"Descanso":"Descansar"}</span></button>
@@ -176,7 +219,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
           const h=Number(hour.slice(0,2));
           const allBlocked=isHourRecurringBlocked(h) || dates.filter(canEdit).every(date=>store.blocked.some(b=>b.lawyerId===lawyerId&&b.hour===hour&&b.date===date));
           return <div className="weekly-hour-row" role="row" key={hour}>
-            <button type="button" className={(allBlocked?"weekly-hour-label all-blocked":"weekly-hour-label")+(selectedHours.includes(h)?" selected-hour":"")} title={(allBlocked?"Desbloquear":"Bloquear")+" esta hora todos los días de la semana"} onClick={()=>selectMode?toggleHourSelection(h):showBulk({kind:"hour",hour:h,blocked:!allBlocked})}>
+            <button type="button" data-drag-row={h} className={(allBlocked?"weekly-hour-label all-blocked":"weekly-hour-label")+(selectedHours.includes(h)?" selected-hour":"")} title={(allBlocked?"Desbloquear":"Bloquear")+" esta hora todos los días de la semana"} onClick={()=>{if(suppressNextClick.current){suppressNextClick.current=false;return;}if(dragCells.length){setDragCells([]);return;}selectMode?toggleHourSelection(h):showBulk({kind:"hour",hour:h,blocked:!allBlocked});}}>
               <strong>{hour}</strong><small>{selectMode?(selectedHours.includes(h)?"Seleccionada":"Seleccionar fila"):(allBlocked?"Fila bloqueada":"Bloquear fila")}</small>{selectMode?(selectedHours.includes(h)?<CheckSquare size={14}/>:<Square size={14}/>):allBlocked?<Lock size={12}/>:<Unlock size={12}/>}
             </button>
             {dates.map(date=>{
