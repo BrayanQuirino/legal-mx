@@ -7,15 +7,15 @@ const baseline:AvailabilityPolicy={
 };
 const override=(hour:string,date="2026-11-16")=>({lawyerId:baseline.lawyerId,date,hour});
 describe("individual lawyer calendar cells",()=>{
-  it("shows configured work hours by default",()=>{
+  it("shows all future hours free by default",()=>{
     expect(slotEnabled(baseline)).toBe(true);
-    expect(slotEnabled({...baseline,hour:"03:00"})).toBe(false);
+    expect(slotEnabled({...baseline,hour:"03:00"})).toBe(true);
   });
-  it("lets a lawyer open one grey 3 AM cell without opening others",()=>{
+  it("keeps a one-off hour override scoped to one cell",()=>{
     const edit={...baseline,enabledSlots:[override("03:00")]};
     expect(slotEnabled({...edit,hour:"03:00"})).toBe(true);
-    expect(slotEnabled({...edit,hour:"04:00"})).toBe(false);
-    expect(slotEnabled({...edit,date:"2026-11-17",hour:"03:00"})).toBe(false);
+    expect(slotEnabled({...edit,hour:"04:00"})).toBe(true);
+    expect(slotEnabled({...edit,date:"2026-11-17",hour:"03:00"})).toBe(true);
   });
   it("individually closes an otherwise open cell, then restores it",()=>{
     const edit={...baseline,blocked:[override("10:00")]};
@@ -64,6 +64,19 @@ describe("individual lawyer calendar cells",()=>{
     ]};
     expect(slotEnabled(off)).toBe(false);
     expect(slotEnabled({...off,date:"2026-11-17"})).toBe(true);
+  });
+  it("recurring cell block repeats only at the same weekday and time",()=>{
+    const rule={lawyerId:baseline.lawyerId,weekday:1,hour:10,fromDate:"2026-11-16",blocked:true};
+    const sample={...baseline,recurringCells:[rule]};
+    expect(slotEnabled(sample)).toBe(false);
+    expect(slotEnabled({...sample,date:"2026-11-23"})).toBe(false);
+    expect(slotEnabled({...sample,date:"2026-11-17"})).toBe(true);
+    expect(slotEnabled({...sample,hour:"11:00"})).toBe(true);
+  });
+  it("future cells are free unless an explicit block or day-off exists",()=>{
+    expect(slotEnabled({...baseline,hour:"00:00"})).toBe(true);
+    expect(slotEnabled({...baseline,hour:"23:00"})).toBe(true);
+    expect(slotEnabled({...baseline,leaves:[{lawyerId:baseline.lawyerId,date:baseline.date}]})).toBe(false);
   });
   it("never allows reopening a past or current-day slot",()=>{
     expect(slotEnabled({...baseline,date:"2026-11-12",enabledSlots:[override("10:00","2026-11-12")]})).toBe(false);
