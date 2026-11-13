@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { CalendarDays, CheckCircle2, Clock3, ShieldAlert, Video, Building2, X } from "lucide-react";
 import users from "../../../data/fixtures/users.synthetic.json";
 import { useDemoStore, type Mode } from "./DemoStore";
-import { makeDemoSlots, type DemoLawyer } from "./lib/scheduling";
+import { makeDemoSlots, calendarCandidates, type DemoLawyer } from "./lib/scheduling";
 import "./booking-demo.css";
 
 export { makeDemoSlots };
@@ -11,7 +11,7 @@ export type { DemoLawyer };
 export function BookingDemo({lawyer,onClose,initialUserId="demo-user-026"}:{lawyer:DemoLawyer;onClose:()=>void;initialUserId?:string}){
   const store=useDemoStore();
   const profile=store.profiles[lawyer.id];
-  const slots=useMemo(()=>makeDemoSlots(lawyer),[lawyer]);
+  const slots=useMemo(()=>calendarCandidates(),[]);
   const [modality,setModality]=useState<Mode>(profile.modes[0]);
   const [userId,setUserId]=useState(initialUserId);
   const [slot,setSlot]=useState("");
@@ -36,7 +36,7 @@ export function BookingDemo({lawyer,onClose,initialUserId="demo-user-026"}:{lawy
       <>
       <div className="demo-book-section"><strong>1. Cliente ficticio</strong><label className="book-demo-label">Seleccionar una cuenta de prueba<select value={userId} onChange={e=>setUserId(e.target.value)}>{users.records.map(u=><option value={u.id} key={u.id}>{u.display_name}</option>)}</select></label></div>
       <div className="demo-book-section"><strong>2. Modalidad</strong><div className="demo-book-modes">{profile.modes.map(m=><button key={m} type="button" aria-pressed={modality===m} className={modality===m?"active":""} onClick={()=>setModality(m)}>{m==="online"?<Video size={17}/>:<Building2 size={17}/>} {m==="online"?"Videollamada":"Presencial"}</button>)}</div></div>
-      <div className="demo-book-section"><strong>3. Horarios libres</strong><p className="demo-book-muted">Los horarios ya reservados, bloqueados o de descanso no se pueden seleccionar.</p>
+      <div className="demo-book-section"><strong>3. Horarios disponibles</strong><p className="demo-book-muted">Solo aparecen días y horas que el abogado habilitó; las citas, descansos y bloqueos se ocultan automáticamente.</p>
         <div className="demo-slot-grid">{available.slice(0,24).map(s=><button type="button" key={s.key} aria-pressed={slot===s.key} className={slot===s.key?"active":""} onClick={()=>setSlot(s.key)}><CalendarDays size={14}/>{s.day}<span><Clock3 size={13}/>{s.hour}</span></button>)}</div>
         {available.length===0&&<p role="status">Este perfil no tiene horarios disponibles para los próximos días.</p>}
       </div>
