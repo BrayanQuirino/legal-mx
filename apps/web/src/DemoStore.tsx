@@ -1,6 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import fixture from "../../../data/fixtures/appointments.synthetic.json";
-import { demoLawyers, makeDemoSlots, weekdayUtc, getMexicoToday } from "./lib/scheduling";
+import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
+import { slotEnabled } from "./lib/availabilityPolicy";
 
 export type Mode = "online"|"presencial";
 export type Appointment = { id:string;lawyer_id:string;user_id:string;date:string;hour:string;modality:Mode;status:"confirmed"|"pending"|"cancelled";synthetic:true };
@@ -50,20 +51,10 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const [leaves,setLeaves]=useState<Leave[]>([]);
   const [daysOff,setDaysOff]=useState<Record<string,number[]>>({});
   const [weeklyBlockedHours,setWeeklyBlockedHours]=useState<Record<string,number[]>>({});
-  const isWorkingSlot=(lawyerId:string,date:string,hour:string)=>{
-    const profile=profiles[lawyerId];
-    if(!profile || date <= getMexicoToday())return false;
-    const matches=(entry:Block)=>entry.lawyerId===lawyerId&&entry.date===date&&entry.hour===hour;
-    // Explicit one-off decisions take precedence over weekly defaults and bulk blocks.
-    if(blocked.some(matches))return false;
-    if(enabledSlots.some(matches))return true;
-    const time=Number(hour.slice(0,2));
-    return time>=profile.startHour && time<profile.endHour
-      && profile.weekdays.includes(weekdayUtc(date))
-      && !(weeklyBlockedHours[lawyerId]??[]).includes(time)
-      && !(daysOff[lawyerId]??[]).includes(weekdayUtc(date))
-      && !leaves.some(leave=>leave.lawyerId===lawyerId&&leave.date===date);
-  };
+  const isWorkingSlot=(lawyerId:string,date:string,hour:string)=>slotEnabled({
+    lawyerId,date,hour,today:getMexicoToday(),profile:profiles[lawyerId],
+    blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours
+  });
   const isUnavailable=(lawyerId:string,date:string,hour:string)=>
     !isWorkingSlot(lawyerId,date,hour)
     ||appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hour&&a.status!=="cancelled");
