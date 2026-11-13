@@ -25,9 +25,9 @@ export function App() {
           <nav className={menuOpen ? "nav-links open" : "nav-links"} aria-label="Navegación principal">
             <a href="#especialidades" onClick={() => {setPortalOpen(false);setDirectoryOpen(false);setMenuOpen(false);}}>Especialidades</a><button type="button" className="directory-nav-link" onClick={()=>{setDirectoryOpen(true);setPortalOpen(false);setMenuOpen(false);}}>Directorio de abogados</button>
             <a href="#como-funciona" onClick={() => {setPortalOpen(false);setMenuOpen(false);}}>Cómo funciona</a>
-            <a href="#asistente" onClick={() => {setPortalOpen(false);setMenuOpen(false);}}>Asistente legal <span className="new-tag">Próximamente</span></a><button type="button" className="mobile-access" onClick={() => {setPortalOpen(true);setDirectoryOpen(false);setMenuOpen(false);}}>Explorar portales</button>
+            <a href="#asistente" onClick={() => {setPortalOpen(false);setMenuOpen(false);}}>Asistente legal <span className="new-tag">Próximamente</span></a><button type="button" className="mobile-access" onClick={() => {setPortalOpen(v=>!v);setDirectoryOpen(false);setMenuOpen(false);}}>{portalOpen?"Cerrar sesión":"Iniciar sesión"}</button>
           </nav>
-          <button className="nav-cta" type="button" onClick={() => {setPortalOpen(true);setMenuOpen(false);}}>Explorar portales <ArrowRight size={16}/></button>
+          <button className="nav-cta" type="button" onClick={() => {setPortalOpen(v=>!v);setDirectoryOpen(false);setMenuOpen(false);}}>{portalOpen?"Cerrar sesión":"Iniciar sesión"} <ArrowRight size={16}/></button>
           <button className="mobile-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}>{menuOpen ? <X/> : <Menu/>}</button>
         </div>
       </header>
