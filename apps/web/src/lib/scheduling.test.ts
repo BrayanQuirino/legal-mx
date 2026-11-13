@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import lawyers from "../../../../data/fixtures/lawyers.synthetic.json";
 import users from "../../../../data/fixtures/users.synthetic.json";
 import appointments from "../../../../data/fixtures/appointments.synthetic.json";
-import {demoLawyers,makeDemoSlots,calendarCandidates,DAY_HOURS,upcomingWeekStart,weekDates,weekdayUtc} from "./scheduling";
+import {demoLawyers,makeDemoSlots,calendarCandidates,DAY_HOURS,upcomingWeekStart,nextFutureWeekStart,weekDates,weekdayUtc} from "./scheduling";
 
 describe("connected synthetic booking fixtures",()=>{
  it("preloads exactly five distinct clients for each of five demo lawyers",()=>{
@@ -28,6 +28,12 @@ describe("connected synthetic booking fixtures",()=>{
    const candidates=calendarCandidates(7);
    expect(candidates).toHaveLength(7*24);
    expect(new Set(candidates.map(c=>c.key)).size).toBe(168);
+ });
+ it("starts agenda with a full upcoming future week, even on a Sunday",()=>{
+   expect(nextFutureWeekStart("2026-11-13")).toBe("2026-11-16");
+   expect(nextFutureWeekStart("2026-11-15")).toBe("2026-11-16");
+   expect(nextFutureWeekStart("2026-11-16")).toBe("2026-11-23");
+   expect(weekDates(nextFutureWeekStart("2026-11-13"))[0]).toBe("2026-11-16");
  });
  it("does not imply verification or real appointments",()=>{
   expect(appointments.synthetic).toBe(true);
