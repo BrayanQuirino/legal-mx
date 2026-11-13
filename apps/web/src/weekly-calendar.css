@@ -167,3 +167,15 @@
 .weekly-appointment-data p{font-size:13px;margin:8px 0;color:#46687b}
 .weekly-scope-actions .weekly-cancel-appointment{background:#9b554b;border-color:#9b554b;color:#fff}
 @media(max-width:600px){.weekly-slot-wrap .weekly-repeat-chip{font-size:8px;padding:3px 4px}}
+
+/* Spreadsheet-style drag selection. Selection is a translucent navy overlay,
+   never a mutation of booking or blocked status until a bulk action is chosen. */
+.weekly-slot-wrap{user-select:none;-webkit-user-select:none;touch-action:none}
+.weekly-slot-wrap.excel-selected{outline:2px solid #246c94;outline-offset:-2px;z-index:1;background:#c9e4f2;box-shadow:inset 0 0 0 1px #6da4c7}
+.weekly-slot-wrap.excel-selected .weekly-cell{color:#174f6e}
+.weekly-slot-wrap.excel-selected.booked{background:#f4e3c6;outline-color:#b79157}
+.weekly-drag-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
+.weekly-multi-toolbar .weekly-drag-actions .weekly-bulk-open{background:#276b50;color:white;border-color:#276b50}
+.weekly-multi-toolbar .weekly-drag-actions .weekly-bulk-close{background:#976b3e;color:white;border-color:#976b3e}
+.weekly-slot-wrap .weekly-cell{user-select:none;-webkit-user-select:none}
+@media(max-width:750px){.weekly-drag-actions{margin-left:0;width:100%}}
