@@ -179,3 +179,10 @@
 .weekly-multi-toolbar .weekly-drag-actions .weekly-bulk-close{background:#976b3e;color:white;border-color:#976b3e}
 .weekly-slot-wrap .weekly-cell{user-select:none;-webkit-user-select:none}
 @media(max-width:750px){.weekly-drag-actions{margin-left:0;width:100%}}
+
+/* Excel-like range selection on day and hour titles as well as ordinary cells. */
+.weekly-day-head[data-drag-column],.weekly-hour-label[data-drag-row]{user-select:none;-webkit-user-select:none;touch-action:none}
+.weekly-day-head.excel-header-selected{background:#d8eaf4;box-shadow:inset 0 0 0 2px #5799bd}
+.weekly-hour-label.excel-header-selected{background:#d8eaf4;color:#174f6e;box-shadow:inset 0 0 0 2px #5799bd}
+.weekly-day-head>span{cursor:crosshair}
+.weekly-hour-label{cursor:crosshair}
