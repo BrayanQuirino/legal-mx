@@ -2,7 +2,7 @@ import { useMemo, useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Lock, Unlock, Users } from "lucide-react";
 import users from "../../../data/fixtures/users.synthetic.json";
 import { useDemoStore } from "./DemoStore";
-import { DAY_HOURS, upcomingWeekStart, weekDates, getMexicoToday, weekdayUtc } from "./lib/scheduling";
+import { DAY_HOURS, upcomingWeekStart, weekDates, weekdayUtc } from "./lib/scheduling";
 
 const labels=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
 const dateLabel=(date:string)=>new Date(date+"T12:00:00Z").getUTCDate();
