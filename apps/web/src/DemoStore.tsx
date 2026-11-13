@@ -35,6 +35,7 @@ type Store = {
   updateStatus:(appointmentId:string,status:"confirmed"|"cancelled")=>void;
   toggleBlock:(lawyerId:string,date:string,hour:string)=>void;
   toggleSlot:(lawyerId:string,date:string,hour:string)=>void;
+  setCellsAvailability:(lawyerId:string,cells:{date:string;hour:string}[],block:boolean)=>void;
   toggleLeave:(lawyerId:string,date:string)=>void;
   toggleWeekdayOff:(lawyerId:string,weekday:number)=>void;
   toggleWeeklyHour:(lawyerId:string,hour:number)=>void;
@@ -103,6 +104,32 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
       setEnabledSlots(prev=>prev.some(same)?prev:[...prev,{lawyerId,date,hour}]);
     }
   };
+  /** One atomic update for a dragged rectangular selection.
+   * Never alters already booked appointments or past dates.
+   * Rest days are respected when opening a selected rectangle.
+   */
+  const setCellsAvailability=(lawyerId:string,cells:{date:string;hour:string}[],shouldBlock:boolean)=>{
+    const isClosedDay=(date:string)=>{
+      const day=new Date(date+"T12:00:00Z").getUTCDay();
+      const recurring=latestRule(recurringDays.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===day),date);
+      return leaves.some(l=>l.lawyerId===lawyerId&&l.date===date)
+        ||(daysOff[lawyerId]??[]).includes(day)
+        ||Boolean(recurring?.off);
+    };
+    const valid=cells.filter(cell=>cell.date>getMexicoToday()
+      &&(shouldBlock||!isClosedDay(cell.date))
+      &&!appointments.some(a=>a.lawyer_id===lawyerId&&a.date===cell.date&&a.hour===cell.hour&&a.status!=="cancelled"));
+    const keys=new Set(valid.map(cell=>cell.date+"|"+cell.hour));
+    const belongs=(entry:Block)=>entry.lawyerId===lawyerId&&keys.has(entry.date+"|"+entry.hour);
+    const additions=valid.map(cell=>({lawyerId,...cell}));
+    if(shouldBlock){
+      setEnabledSlots(prev=>prev.filter(entry=>!belongs(entry)));
+      setBlocked(prev=>[...prev.filter(entry=>!belongs(entry)),...additions]);
+    }else{
+      setBlocked(prev=>prev.filter(entry=>!belongs(entry)));
+      setEnabledSlots(prev=>[...prev.filter(entry=>!belongs(entry)),...additions]);
+    }
+  };
   const toggleBlock=toggleSlot;
   const toggleLeave=(lawyerId:string,date:string)=>setLeaves(prev=>prev.some(l=>l.lawyerId===lawyerId&&l.date===date)?prev.filter(l=>!(l.lawyerId===lawyerId&&l.date===date)):[...prev,{lawyerId,date}]);
   const toggleWeeklyHour=(lawyerId:string,hour:number)=>setWeeklyBlockedHours(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(hour)?prev[lawyerId].filter(h=>h!==hour):[...(prev[lawyerId]??[]),hour]}));
@@ -167,7 +194,7 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   };
   const toggleWeekdayOff=(lawyerId:string,weekday:number)=>setDaysOff(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(weekday)?prev[lawyerId].filter(d=>d!==weekday):[...(prev[lawyerId]??[]),weekday]}));
   const updateProfile=(id:string,changes:Partial<Profile>)=>setProfiles(prev=>({...prev,[id]:{...prev[id],...changes}}));
-  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells,setCellRepeat,book,updateStatus,toggleBlock,toggleSlot,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,setRowScope,setDayScope,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells]);
+  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells,setCellRepeat,book,updateStatus,toggleBlock,toggleSlot,setCellsAvailability,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,setRowScope,setDayScope,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells]);
   return <Context.Provider value={store}>{children}</Context.Provider>;
 }
 export function useDemoStore(){

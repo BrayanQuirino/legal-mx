@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect, type PointerEvent as ReactPointerEvent } from "react";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Lock, Unlock, Users, CheckSquare, Square, X } from "lucide-react";
 import users from "../../../data/fixtures/users.synthetic.json";
 import { latestRule } from "./lib/availabilityPolicy";
@@ -16,6 +16,11 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const [selectMode,setSelectMode]=useState(false);
   const [selectedHours,setSelectedHours]=useState<number[]>([]);
   const [selectedDates,setSelectedDates]=useState<string[]>([]);
+  const [dragCells,setDragCells]=useState<{date:string;hour:string}[]>([]);
+  const dragOrigin=useRef<{day:number;hour:number}|null>(null);
+  const dragPointerId=useRef<number|null>(null);
+  const movedDuringDrag=useRef(false);
+  const suppressNextClick=useRef(false);
   const [bulkScope,setBulkScope]=useState<"once"|"future">("once");
   const scrollRef=useRef<HTMLDivElement|null>(null);
   const dates=useMemo(()=>weekDates(week),[week]);
@@ -23,7 +28,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const profile=store.profiles[lawyerId];
   const [focused,setFocused]=useState<string|null>(null);
   useEffect(()=>{if(scrollRef.current)scrollRef.current.scrollTop=7*53;},[lawyerId]);
-  useEffect(()=>{setSelectedHours([]);setSelectedDates([]);setSelectMode(false);},[lawyerId,week]);
+  useEffect(()=>{setSelectedHours([]);setSelectedDates([]);setDragCells([]);setSelectMode(false);dragOrigin.current=null;},[lawyerId,week]);
   const focusedBooking=bookings.find(a=>a.id===focused);
   const bookedCount=bookings.filter(a=>dates.includes(a.date)).length;
   const isBooked=(date:string,hour:string)=>bookings.find(a=>a.date===date&&a.hour===hour);
@@ -45,6 +50,70 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const openMultiDialog=(blocked:boolean)=>{
     if(!selectedHours.length&&!selectedDates.length)return;
     showBulk({kind:"multi",hours:selectedHours,dates:selectedDates,blocked});
+  };
+  const rectangle=(first:{day:number;hour:number},last:{day:number;hour:number})=>{
+    const result:{date:string;hour:string}[]=[];
+    for(let row=Math.min(first.hour,last.hour);row<=Math.max(first.hour,last.hour);row++){
+      for(let col=Math.min(first.day,last.day);col<=Math.max(first.day,last.day);col++){
+        const date=dates[col];
+        if(date&&canEdit(date))result.push({date,hour:DAY_HOURS[row]});
+      }
+    }
+    return result;
+  };
+  const findCell=(target:EventTarget|null)=>{
+    if(!(target instanceof Element))return null;
+    const cell=target.closest<HTMLElement>("[data-drag-day][data-drag-hour]");
+    if(!cell)return null;
+    const day=Number(cell.dataset.dragDay),hour=Number(cell.dataset.dragHour);
+    return Number.isInteger(day)&&day>=0&&day<7&&Number.isInteger(hour)&&hour>=0&&hour<24?{day,hour}:null;
+  };
+  const handleGridPointerDown=(event:ReactPointerEvent<HTMLDivElement>)=>{
+    if(event.button!==0||pendingBulk||focused)return;
+    const target=event.target;
+    if(target instanceof Element && target.closest(".weekly-repeat-chip"))return;
+    const cell=findCell(target);
+    if(!cell||!canEdit(dates[cell.day])||isBooked(dates[cell.day],DAY_HOURS[cell.hour]))return;
+    dragOrigin.current=cell;
+    dragPointerId.current=event.pointerId;
+    movedDuringDrag.current=false;
+  };
+  const handleGridPointerMove=(event:ReactPointerEvent<HTMLDivElement>)=>{
+    if(dragPointerId.current!==event.pointerId||!dragOrigin.current)return;
+    const target=document.elementFromPoint(event.clientX,event.clientY);
+    const cell=findCell(target);
+    if(!cell)return;
+    if(cell.day!==dragOrigin.current.day||cell.hour!==dragOrigin.current.hour){
+      if(!movedDuringDrag.current){
+        movedDuringDrag.current=true;
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }
+      setDragCells(rectangle(dragOrigin.current,cell));
+    }
+  };
+  const handleGridPointerUp=(event:ReactPointerEvent<HTMLDivElement>)=>{
+    if(dragPointerId.current!==event.pointerId)return;
+    // After a drag, swallow the synthetic click rather than toggle its ending cell.
+    if(movedDuringDrag.current){
+      suppressNextClick.current=true;
+      // The synthetic click caused by pointer release must not toggle a slot.
+      window.setTimeout(()=>{suppressNextClick.current=false;},0);
+    }
+    dragOrigin.current=null;
+    dragPointerId.current=null;
+    if(event.currentTarget.hasPointerCapture(event.pointerId))event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+  const handleCellClick=(date:string,hour:string,appointmentId?:string)=>{
+    if(suppressNextClick.current){suppressNextClick.current=false;return;}
+    if(dragCells.length>1)return; // selection actions belong to the toolbar
+    if(appointmentId)setFocused(appointmentId);
+    else store.toggleSlot(lawyerId,date,hour);
+  };
+  const applyDrag=(block:boolean)=>{
+    if(!dragCells.length)return;
+    store.setCellsAvailability(lawyerId,dragCells,block);
+    setDragCells([]);
+    suppressNextClick.current=false;
   };
   const applyBulk=()=>{
     if(!pendingBulk)return;
@@ -77,6 +146,12 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
       <button className={selectMode?"weekly-select-toggle active":"weekly-select-toggle"} type="button" aria-pressed={selectMode} onClick={()=>{setSelectMode(v=>!v);setSelectedHours([]);setSelectedDates([]);}}>
         {selectMode?<CheckSquare size={17}/>:<Square size={17}/>} Selección múltiple
       </button>
+      {dragCells.length>1&&<div className="weekly-drag-actions" role="status">
+        <span className="weekly-selection-count">{dragCells.length} celdas seleccionadas</span>
+        <button type="button" className="weekly-bulk-open" onClick={()=>applyDrag(false)}>Liberar rango</button>
+        <button type="button" className="weekly-bulk-close" onClick={()=>applyDrag(true)}>Bloquear rango</button>
+        <button type="button" className="weekly-select-clear" onClick={()=>setDragCells([])}><X size={13}/> Deseleccionar</button>
+      </div>}
       {selectMode&&<>
         <span className="weekly-selection-count">{selectedHours.length} filas · {selectedDates.length} días</span>
         <button type="button" className="weekly-select-all" onClick={()=>setSelectedHours(DAY_HOURS.map(h=>Number(h.slice(0,2))))}>Todas las horas</button>
@@ -86,9 +161,11 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
         <button type="button" className="weekly-bulk-close" disabled={!selectedHours.length&&!selectedDates.length} onClick={()=>openMultiDialog(true)}>Bloquear selección</button>
       </>}
     </div>
-    <p className="weekly-selection-help">{selectMode?"Marca las horas en la primera columna y los días en la cabecera. Confirma todo con un solo formulario.":"Activa Selección múltiple para editar varios días y horarios de una vez."}</p>
+    <p className="weekly-selection-help">{dragCells.length>1?"Arrastraste un rango: elige Bloquear rango o Liberar rango. Las citas reservadas se respetan.":selectMode?"Marca las horas en la primera columna y los días en la cabecera. Confirma todo con un solo formulario.":"Mantén presionado y arrastra sobre las celdas, como en Excel, para seleccionar varias horas y días."}</p>
     <div className="weekly-scroll" ref={scrollRef}>
-      <div className="weekly-grid" role="grid" aria-label="Disponibilidad del abogado de lunes a domingo">
+      <div className="weekly-grid" role="grid" aria-label="Disponibilidad del abogado de lunes a domingo"
+        onPointerDown={handleGridPointerDown} onPointerMove={handleGridPointerMove}
+        onPointerUp={handleGridPointerUp} onPointerCancel={handleGridPointerUp}>
         <div className="weekly-corner" role="columnheader">Hora <small>{selectMode?"Seleccionar filas":"Bloquear fila"}</small></div>
         {dates.map(date=><div className="weekly-day-head" role="columnheader" key={date}>
           <span>{labels[weekdayUtc(date)]} <strong>{dateLabel(date)}</strong></span>
@@ -109,12 +186,13 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
               const state=existing?"booked":!editable?"past":working?"available":"blocked";
               const label=existing?"Cita":!editable?"Pasado":working?"Libre":"Bloqueado";
               const repeating=latestRule(store.recurringCells.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekdayUtc(date)&&rule.hour===h),date)?.blocked===true;
-              return <div role="gridcell" key={date+hour} className={"weekly-slot-wrap "+state+(selectedHours.includes(h)||selectedDates.includes(date)?" multi-highlight":"")}>
+              return <div role="gridcell" key={date+hour} data-drag-day={dates.indexOf(date)} data-drag-hour={h}
+                className={"weekly-slot-wrap "+state+(selectedHours.includes(h)||selectedDates.includes(date)?" multi-highlight":"")+(dragCells.some(cell=>cell.date===date&&cell.hour===hour)?" excel-selected":"")}>
                 <button type="button"
                   disabled={!existing&&!editable}
                   aria-label={date+" "+hour+" "+label}
                   className={"weekly-cell "+state}
-                  onClick={()=>existing?setFocused(existing.id):store.toggleSlot(lawyerId,date,hour)}>
+                  onClick={()=>handleCellClick(date,hour,existing?.id)}>
                   {existing?<><Users size={12}/><span>Cita</span></>:<span>{!editable?"—":working?"Libre":"✕"}</span>}
                 </button>
                 {!existing&&editable&&!working&&<button type="button" className="weekly-repeat-chip"
