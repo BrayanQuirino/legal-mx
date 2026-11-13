@@ -38,3 +38,12 @@
 .legal-mx-pin-container.outside-search svg{opacity:.86}
 .legal-mx-pin-container.inside-search svg{filter:drop-shadow(0 3px 4px rgba(22,52,69,.42))}
 .map-result-stat small{font-size:10px;line-height:1.5;color:#55788c}
+
+/* Five profiles completed a fictional case review. They are never real verified professionals. */
+.directory-demo-ready{display:flex;align-items:start;gap:9px;font-size:11px;color:#45687b;font-weight:700;line-height:1.5;margin:18px 0;padding:12px;background:#f3f8f9;border-radius:9px}
+.directory-demo-ready input{accent-color:#28677f;margin-top:2px}
+.directory-small-tag.demo-approved-tag{color:#2b7261;background:#e8f5ee;padding:6px 8px;border-radius:5px;display:inline-block}
+.directory-card-buttons{display:flex;gap:8px;flex-direction:column;align-items:stretch}
+.directory-card-buttons button{justify-content:center}
+.directory-card-buttons .directory-book-button{background:#b28b57;color:#fff}
+.directory-modal-secondary{background:#ecf1f4;color:#3f6276;margin-top:10px}
