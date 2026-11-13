@@ -9,19 +9,21 @@ import "./portal.css";
 type Role="client"|"lawyer"|"admin";
 const labels:Record<Role,string>={client:"Usuarios",lawyer:"Abogados",admin:"Administración"};
 const roles:Role[]=["client","lawyer","admin"];
+// GitHub Pages testing mode: the interface is public and synthetic; never treat this as RBAC.
+const OPEN_POC_VIEWS=true;
 
 export function Portal({onBack}:{onBack:()=>void}){
  const [role,setRole]=useState<Role>("client");
- const [step,setStep]=useState<"welcome"|"access"|"dashboard">("welcome");
+ const [step,setStep]=useState<"welcome"|"access"|"dashboard">(OPEN_POC_VIEWS?"dashboard":"welcome");
  const [register,setRegister]=useState(false);
  const [consent,setConsent]=useState(false);
  const [verify,setVerify]=useState(false);
  const store=useDemoStore();
  return <main className="poc"><div className="container">
-  <div className="poc-head"><button onClick={onBack} className="poc-back"><ArrowLeft size={17}/> Volver a Legal MX</button><span className="poc-tag">POC · SIN CUENTAS REALES</span></div>
+  <div className="poc-head"><button onClick={onBack} className="poc-back"><ArrowLeft size={17}/> Volver a Legal MX</button><span className="poc-tag">VISTAS DE PRUEBA · ACCESO DIRECTO</span></div>
   <div className={step==="dashboard"&&role==="lawyer"?"poc-grid poc-grid-wide":"poc-grid"}><aside className="poc-sidebar"><span className="section-label">TRES EXPERIENCIAS</span><h1>Tu espacio <em>legal.</em></h1><p>Elige una vista para explorar cómo funcionará Legal MX.</p>
-   <div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep("welcome");setVerify(false);setConsent(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<Gavel/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div>
-   <div className="poc-alert"><ShieldAlert size={21}/><span>Acceso únicamente simulado, sin sesiones ni autorización real. Los perfiles, clientes y citas son inventados; los cambios se pierden al recargar.</span></div>
+   <div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep(OPEN_POC_VIEWS?"dashboard":"welcome");setVerify(false);setConsent(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<Gavel/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div>
+   <div className="poc-alert"><ShieldAlert size={21}/><span>Modo de prueba: las vistas son públicas y los datos son ficticios. Falta conectar autenticación, permisos, SEP y almacenamiento seguro.</span></div>
   </aside>
   <section className="poc-paper" aria-label={"Portal "+labels[role]}>
    {step==="welcome"&&<><span className="section-label">PORTAL DE {labels[role].toUpperCase()}</span><h2>{role==="client"?"Tus citas, a tu manera":role==="lawyer"?"Gestiona tu práctica jurídica":"Supervisa los expedientes"}</h2><p>{role==="client"?"Consulta citas ficticias y solicita nuevas citas con alguno de los cinco perfiles de prueba.":role==="lawyer"?"Revisa 5 clientes ficticios por perfil, bloquea horarios, fija descansos y modifica el precio o la modalidad.":"Consulta el estado simulado de expedientes y la operación de prueba."}</p>
@@ -48,7 +50,7 @@ export function Portal({onBack}:{onBack:()=>void}){
      <button className="poc-outline" type="button" onClick={()=>setVerify(!verify)}>{verify?"Cerrar verificación de prueba":"Explorar verificación de prueba"}</button>{verify&&<VerificationFlow/>}
     </div>}
     {role==="lawyer"&&<><button className="poc-outline" onClick={()=>setVerify(!verify)}>{verify?"Cerrar verificación":"Explorar verificación POC"}</button>{verify&&<VerificationFlow/>}</>}
-    <button className="poc-link" onClick={()=>{setStep("welcome");setVerify(false);}}>Salir del panel demo</button>
+    <button className="poc-link" onClick={onBack}>Volver al inicio</button>
    </>}
   </section></div></div></main>;
 }

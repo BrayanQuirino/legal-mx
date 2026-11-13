@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import fixture from "../../../data/fixtures/appointments.synthetic.json";
 import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
-import { slotEnabled } from "./lib/availabilityPolicy";
+import { slotEnabled, type HourRule, type DayRule } from "./lib/availabilityPolicy";
 
 export type Mode = "online"|"presencial";
 export type Appointment = { id:string;lawyer_id:string;user_id:string;date:string;hour:string;modality:Mode;status:"confirmed"|"pending"|"cancelled";synthetic:true };
@@ -27,6 +27,8 @@ type Store = {
   leaves:Leave[];
   daysOff:Record<string,number[]>;
   weeklyBlockedHours:Record<string,number[]>;
+  recurringHours:HourRule[];
+  recurringDays:DayRule[];
   book:(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>boolean;
   updateStatus:(appointmentId:string,status:"confirmed"|"cancelled")=>void;
   toggleBlock:(lawyerId:string,date:string,hour:string)=>void;
@@ -34,6 +36,8 @@ type Store = {
   toggleLeave:(lawyerId:string,date:string)=>void;
   toggleWeekdayOff:(lawyerId:string,weekday:number)=>void;
   toggleWeeklyHour:(lawyerId:string,hour:number)=>void;
+  setRowScope:(lawyerId:string,hour:number,dates:string[],scope:"week"|"future",blocked:boolean)=>void;
+  setDayScope:(lawyerId:string,date:string,scope:"once"|"future",off:boolean)=>void;
   isWorkingSlot:(lawyerId:string,date:string,hour:string)=>boolean;
   updateProfile:(lawyerId:string,changes:Partial<Profile>)=>void;
   isUnavailable:(lawyerId:string,date:string,hour:string)=>boolean;
@@ -51,9 +55,11 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const [leaves,setLeaves]=useState<Leave[]>([]);
   const [daysOff,setDaysOff]=useState<Record<string,number[]>>({});
   const [weeklyBlockedHours,setWeeklyBlockedHours]=useState<Record<string,number[]>>({});
+  const [recurringHours,setRecurringHours]=useState<HourRule[]>([]);
+  const [recurringDays,setRecurringDays]=useState<DayRule[]>([]);
   const isWorkingSlot=(lawyerId:string,date:string,hour:string)=>slotEnabled({
     lawyerId,date,hour,today:getMexicoToday(),profile:profiles[lawyerId],
-    blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours
+    blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays
   });
   const isUnavailable=(lawyerId:string,date:string,hour:string)=>
     !isWorkingSlot(lawyerId,date,hour)
@@ -81,9 +87,40 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const toggleBlock=toggleSlot;
   const toggleLeave=(lawyerId:string,date:string)=>setLeaves(prev=>prev.some(l=>l.lawyerId===lawyerId&&l.date===date)?prev.filter(l=>!(l.lawyerId===lawyerId&&l.date===date)):[...prev,{lawyerId,date}]);
   const toggleWeeklyHour=(lawyerId:string,hour:number)=>setWeeklyBlockedHours(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(hour)?prev[lawyerId].filter(h=>h!==hour):[...(prev[lawyerId]??[]),hour]}));
+  /** Scope-sensitive bulk actions do not touch already booked appointments. */
+  const setRowScope=(lawyerId:string,hour:number,dates:string[],scope:"week"|"future",shouldBlock:boolean)=>{
+    const hh=String(hour).padStart(2,"0")+":00";
+    if(scope==="future"){
+      const fromDate=dates[0];
+      setRecurringHours(prev=>[...prev.filter(rule=>!(rule.lawyerId===lawyerId&&rule.hour===hour&&rule.fromDate===fromDate)),
+        {lawyerId,hour,fromDate,blocked:shouldBlock}]);
+      return;
+    }
+    const matches=(slot:Block)=>slot.lawyerId===lawyerId&&slot.hour===hh&&dates.includes(slot.date);
+    const valid=dates.filter(date=>date>getMexicoToday()&&!appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hh&&a.status!=="cancelled"));
+    if(shouldBlock){
+      setEnabledSlots(prev=>prev.filter(slot=>!matches(slot)));
+      setBlocked(prev=>[...prev.filter(slot=>!matches(slot)),...valid.map(date=>({lawyerId,date,hour:hh}))]);
+    }else{
+      setBlocked(prev=>prev.filter(slot=>!matches(slot)));
+      setEnabledSlots(prev=>[...prev.filter(slot=>!matches(slot)),...valid.map(date=>({lawyerId,date,hour:hh}))]);
+    }
+  };
+  const setDayScope=(lawyerId:string,date:string,scope:"once"|"future",off:boolean)=>{
+    if(scope==="future"){
+      const weekday=new Date(date+"T12:00:00Z").getUTCDay();
+      setRecurringDays(prev=>[...prev.filter(rule=>!(rule.lawyerId===lawyerId&&rule.weekday===weekday&&rule.fromDate===date)),
+        {lawyerId,weekday,fromDate:date,off}]);
+      return;
+    }
+    setLeaves(prev=>off?[...prev.filter(rule=>!(rule.lawyerId===lawyerId&&rule.date===date)),{lawyerId,date}]:
+      prev.filter(rule=>!(rule.lawyerId===lawyerId&&rule.date===date)));
+    // An explicitly reopened day can override the one-off leave with the original weekly rules;
+    // we deliberately do not erase bookings or disable recurring restrictions.
+  };
   const toggleWeekdayOff=(lawyerId:string,weekday:number)=>setDaysOff(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(weekday)?prev[lawyerId].filter(d=>d!==weekday):[...(prev[lawyerId]??[]),weekday]}));
   const updateProfile=(id:string,changes:Partial<Profile>)=>setProfiles(prev=>({...prev,[id]:{...prev[id],...changes}}));
-  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,book,updateStatus,toggleBlock,toggleSlot,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours]);
+  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,book,updateStatus,toggleBlock,toggleSlot,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,setRowScope,setDayScope,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays]);
   return <Context.Provider value={store}>{children}</Context.Provider>;
 }
 export function useDemoStore(){
