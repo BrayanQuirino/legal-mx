@@ -38,3 +38,15 @@ export function weekDates(monday:string):string[]{
   const start=new Date(monday+"T12:00:00Z");
   return Array.from({length:7},(_,i)=>new Date(start.getTime()+i*86400000).toISOString().slice(0,10));
 }
+
+/** Candidate slots; only the central store's availability rules decide what a client sees. */
+export function calendarCandidates(horizonDays=21):Slot[]{
+ const base=new Date(getMexicoToday()+"T12:00:00Z");
+ const result:Slot[]=[];
+ for(let offset=1;offset<=horizonDays;offset++){
+   const date=new Date(base.getTime()+offset*86400000);
+   const iso=date.toISOString().slice(0,10);
+   for(const hour of DAY_HOURS)result.push({date:iso,day:dayFmt.format(date),hour,key:iso+"|"+hour});
+ }
+ return result;
+}
