@@ -63,3 +63,11 @@
 .demo-book-empty{font-size:12px;color:#876634;background:#fff5e5;padding:12px;border-radius:8px}
 .demo-book-error{font-size:12px;color:#a13e38}
 @media(max-width:650px){.demo-book-modal-weekly{padding:19px 15px}.demo-book-calendar-scroll{max-height:420px}.demo-book-calendar{grid-template-columns:70px repeat(7,minmax(100px,1fr));min-width:770px}.demo-book-week-nav{align-items:start}.demo-book-hour-cell{font-size:10px}.demo-book-day-head{min-height:54px}.demo-book-hour-label{min-height:49px}.demo-book-hour-cell{min-height:49px}}
+
+/* Keep the hour inside every free/selected cell so horizontal scrolling
+   never hides the time the client is choosing. */
+.demo-book-hour-cell.free,.demo-book-hour-cell.selected{flex-direction:column;gap:3px;line-height:1.25}
+.demo-book-hour-cell .demo-book-cell-time{font-size:12px;font-weight:850;letter-spacing:.15px}
+.demo-book-hour-cell.free>span:last-child,.demo-book-hour-cell.selected>span:last-child{font-size:10px;font-weight:650}
+.demo-book-hour-cell.selected>svg{display:none}
+@media(max-width:650px){.demo-book-hour-cell .demo-book-cell-time{font-size:11px}.demo-book-hour-cell.free>span:last-child,.demo-book-hour-cell.selected>span:last-child{font-size:9px}}
