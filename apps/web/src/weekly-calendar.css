@@ -145,3 +145,25 @@
 .weekly-header-check input{accent-color:#246b8b}
 .weekly-day-head:has(.weekly-header-check){min-height:96px}
 @media(max-width:750px){.weekly-scroll{max-height:65vh}.weekly-multi-toolbar .weekly-bulk-open{margin-left:0}.weekly-multi-toolbar button{padding:9px 8px}}
+
+/* Two-state grid: free or blocked, with appointments as a separate reserved state. */
+.weekly-slot-wrap{min-height:53px;position:relative;border-right:1px solid #edf1f3;border-bottom:1px solid #edf1f3;display:flex;flex-direction:column;align-items:stretch;justify-content:center}
+.weekly-slot-wrap.available{background:#dff4e9}
+.weekly-slot-wrap.blocked{background:#f3e2d8}
+.weekly-slot-wrap.booked{background:#fae7c9}
+.weekly-slot-wrap.past{background:#f7f8f9}
+.weekly-slot-wrap .weekly-cell{min-height:0;height:100%;width:100%;flex:1;border:0;background:transparent;cursor:pointer;font-size:11px}
+.weekly-slot-wrap .weekly-cell.blocked{background:transparent}
+.weekly-slot-wrap .weekly-cell.booked{background:transparent}
+.weekly-slot-wrap .weekly-cell.past{cursor:not-allowed}
+.weekly-slot-wrap .weekly-repeat-chip{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);border:0;border-radius:5px;background:#fff7eb;color:#8b663b;font-size:9px;font-weight:800;padding:3px 6px;line-height:1.1;white-space:nowrap;cursor:pointer}
+.weekly-slot-wrap.blocked .weekly-cell{padding-bottom:19px}
+.weekly-slot-wrap .weekly-repeat-chip:hover{background:#e8caa1}
+.weekly-slot-wrap .weekly-repeat-chip:focus-visible{outline:2px solid #8b663b}
+.weekly-slot-wrap.multi-highlight:not(.booked){box-shadow:inset 0 0 0 2px #83b0c5}
+.weekly-appointment-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.weekly-appointment-x{background:#f1f5f7;border:0;width:33px;height:33px;display:grid;place-items:center;border-radius:50%;cursor:pointer;color:#446579}
+.weekly-appointment-data{background:#f5f8fa;border-radius:10px;padding:14px 18px;margin:17px 0}
+.weekly-appointment-data p{font-size:13px;margin:8px 0;color:#46687b}
+.weekly-scope-actions .weekly-cancel-appointment{background:#9b554b;border-color:#9b554b;color:#fff}
+@media(max-width:600px){.weekly-slot-wrap .weekly-repeat-chip{font-size:8px;padding:3px 4px}}

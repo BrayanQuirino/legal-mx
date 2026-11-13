@@ -6,6 +6,7 @@ export type SlotOverride = {lawyerId:string;date:string;hour:string};
 export type LeaveOverride = {lawyerId:string;date:string};
 export type HourRule = {lawyerId:string;hour:number;fromDate:string;blocked:boolean};
 export type DayRule = {lawyerId:string;weekday:number;fromDate:string;off:boolean};
+export type CellRule = {lawyerId:string;weekday:number;hour:number;fromDate:string;blocked:boolean};
 export function latestRule<T extends {fromDate:string}>(rules:readonly T[],date:string):T|undefined {return [...rules].filter(rule=>rule.fromDate<=date).sort((a,b)=>b.fromDate.localeCompare(a.fromDate))[0];}
 export type WorkingSettings = {startHour:number;endHour:number;weekdays:number[]};
 export type AvailabilityPolicy = {
@@ -21,9 +22,10 @@ export type AvailabilityPolicy = {
   weeklyBlockedHours:Record<string,number[]>;
   recurringHours?:readonly HourRule[];
   recurringDays?:readonly DayRule[];
+  recurringCells?:readonly CellRule[];
 };
 export function slotEnabled(input:AvailabilityPolicy):boolean {
-  const {lawyerId,date,hour,today,profile,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours=[],recurringDays=[]}=input;
+  const {lawyerId,date,hour,today,profile,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours=[],recurringDays=[],recurringCells=[]}=input;
   if(!profile||date<=today)return false;
   const same=(slot:SlotOverride)=>slot.lawyerId===lawyerId&&slot.date===date&&slot.hour===hour;
   if(blocked.some(same))return false;
@@ -32,15 +34,14 @@ export function slotEnabled(input:AvailabilityPolicy):boolean {
   const weekday=new Date(date+"T12:00:00Z").getUTCDay();
   const hourRule=latestRule(recurringHours.filter(rule=>rule.lawyerId===lawyerId&&rule.hour===hourNumber),date);
   const dayRule=latestRule(recurringDays.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekday),date);
-  const openDay=profile.weekdays.includes(weekday)
-    &&!(dayRule?.off??false)
+  const cellRule=latestRule(recurringCells.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekday&&rule.hour===hourNumber),date);
+  // POC: all future slots are free by default, regardless of conventional office hours.
+  // A closed weekday or date remains closed until explicitly changed.
+  const openDay=!(dayRule?.off??false)
     &&!(daysOff[lawyerId]??[]).includes(weekday)
     &&!leaves.some(leave=>leave.lawyerId===lawyerId&&leave.date===date);
-  // A recurring explicit "open" row may offer a time outside the standard hours,
-  // but must never override a previously closed day.
   const openHour=hourRule?.blocked===false || (
-    hourNumber>=profile.startHour&&hourNumber<profile.endHour
-    &&!(weeklyBlockedHours[lawyerId]??[]).includes(hourNumber)
+    !(weeklyBlockedHours[lawyerId]??[]).includes(hourNumber)
   );
-  return openDay && openHour && hourRule?.blocked!==true;
+  return openDay && openHour && hourRule?.blocked!==true && cellRule?.blocked!==true;
 }

@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import fixture from "../../../data/fixtures/appointments.synthetic.json";
 import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
-import { slotEnabled, latestRule, type HourRule, type DayRule } from "./lib/availabilityPolicy";
+import { slotEnabled, latestRule, type HourRule, type DayRule, type CellRule } from "./lib/availabilityPolicy";
 
 export type Mode = "online"|"presencial";
 export type Appointment = { id:string;lawyer_id:string;user_id:string;date:string;hour:string;modality:Mode;status:"confirmed"|"pending"|"cancelled";synthetic:true };
@@ -29,6 +29,8 @@ type Store = {
   weeklyBlockedHours:Record<string,number[]>;
   recurringHours:HourRule[];
   recurringDays:DayRule[];
+  recurringCells:CellRule[];
+  setCellRepeat:(lawyerId:string,date:string,hour:string,blocked:boolean)=>void;
   book:(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>boolean;
   updateStatus:(appointmentId:string,status:"confirmed"|"cancelled")=>void;
   toggleBlock:(lawyerId:string,date:string,hour:string)=>void;
@@ -57,9 +59,10 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const [weeklyBlockedHours,setWeeklyBlockedHours]=useState<Record<string,number[]>>({});
   const [recurringHours,setRecurringHours]=useState<HourRule[]>([]);
   const [recurringDays,setRecurringDays]=useState<DayRule[]>([]);
+  const [recurringCells,setRecurringCells]=useState<CellRule[]>([]);
   const isWorkingSlot=(lawyerId:string,date:string,hour:string)=>slotEnabled({
     lawyerId,date,hour,today:getMexicoToday(),profile:profiles[lawyerId],
-    blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays
+    blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells
   });
   const isUnavailable=(lawyerId:string,date:string,hour:string)=>
     !isWorkingSlot(lawyerId,date,hour)
@@ -84,6 +87,22 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
     return true;
   };
   const updateStatus=(id:string,status:"confirmed"|"cancelled")=>setAppointments(prev=>prev.map(a=>a.id===id?{...a,status}:a));
+  const setCellRepeat=(lawyerId:string,date:string,hour:string,shouldBlock:boolean)=>{
+    if(date<=getMexicoToday())return;
+    const weekday=new Date(date+"T12:00:00Z").getUTCDay();
+    const hourNumber=Number(hour.slice(0,2));
+    setRecurringCells(prev=>[...prev.filter(r=>!(r.lawyerId===lawyerId&&r.weekday===weekday&&r.hour===hourNumber&&r.fromDate===date)),
+      {lawyerId,weekday,hour:hourNumber,fromDate:date,blocked:shouldBlock}]);
+    // Current selected cell and its recurrence both reflect the requested action.
+    const same=(s:Block)=>s.lawyerId===lawyerId&&s.date===date&&s.hour===hour;
+    if(shouldBlock){
+      setEnabledSlots(prev=>prev.filter(s=>!same(s)));
+      setBlocked(prev=>prev.some(same)?prev:[...prev,{lawyerId,date,hour}]);
+    }else{
+      setBlocked(prev=>prev.filter(s=>!same(s)));
+      setEnabledSlots(prev=>prev.some(same)?prev:[...prev,{lawyerId,date,hour}]);
+    }
+  };
   const toggleBlock=toggleSlot;
   const toggleLeave=(lawyerId:string,date:string)=>setLeaves(prev=>prev.some(l=>l.lawyerId===lawyerId&&l.date===date)?prev.filter(l=>!(l.lawyerId===lawyerId&&l.date===date)):[...prev,{lawyerId,date}]);
   const toggleWeeklyHour=(lawyerId:string,hour:number)=>setWeeklyBlockedHours(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(hour)?prev[lawyerId].filter(h=>h!==hour):[...(prev[lawyerId]??[]),hour]}));
@@ -148,7 +167,7 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   };
   const toggleWeekdayOff=(lawyerId:string,weekday:number)=>setDaysOff(prev=>({...prev,[lawyerId]:(prev[lawyerId]??[]).includes(weekday)?prev[lawyerId].filter(d=>d!==weekday):[...(prev[lawyerId]??[]),weekday]}));
   const updateProfile=(id:string,changes:Partial<Profile>)=>setProfiles(prev=>({...prev,[id]:{...prev[id],...changes}}));
-  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,book,updateStatus,toggleBlock,toggleSlot,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,setRowScope,setDayScope,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays]);
+  const store=useMemo(()=>({appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells,setCellRepeat,book,updateStatus,toggleBlock,toggleSlot,toggleLeave,toggleWeekdayOff,toggleWeeklyHour,setRowScope,setDayScope,updateProfile,isUnavailable,isWorkingSlot}),[appointments,profiles,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells]);
   return <Context.Provider value={store}>{children}</Context.Provider>;
 }
 export function useDemoStore(){
