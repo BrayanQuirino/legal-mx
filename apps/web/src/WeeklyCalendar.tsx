@@ -2,7 +2,7 @@ import { useMemo, useRef, useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Lock, Unlock, Users } from "lucide-react";
 import users from "../../../data/fixtures/users.synthetic.json";
 import { useDemoStore } from "./DemoStore";
-import { DAY_HOURS, upcomingWeekStart, weekDates, weekdayUtc } from "./lib/scheduling";
+import { DAY_HOURS, upcomingWeekStart, weekDates, weekdayUtc, getMexicoToday } from "./lib/scheduling";
 
 const labels=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
 const dateLabel=(date:string)=>new Date(date+"T12:00:00Z").getUTCDate();
@@ -22,7 +22,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   const isBooked=(date:string,hour:string)=>bookings.find(a=>a.date===date&&a.hour===hour);
   const isManualBlock=(date:string,hour:string)=>store.blocked.some(b=>b.lawyerId===lawyerId&&b.date===date&&b.hour===hour);
   const hasLeave=(date:string)=>store.leaves.some(l=>l.lawyerId===lawyerId&&l.date===date);
-  const canEdit=(date:string)=>date>new Date().toLocaleDateString("en-CA",{timeZone:"America/Mexico_City",year:"numeric",month:"2-digit",day:"2-digit"}).replace(/\\/g,"");
+  const canEdit=(date:string)=>date>getMexicoToday();
   return <section className="weekly-panel" aria-label="Agenda semanal con siete días">
     <div className="weekly-topbar"><div><span className="section-label">AGENDA SEMANAL · 7 DÍAS</span><h3>Tu semana de un vistazo</h3><p>Haz clic en cualquier celda para habilitar o bloquear una hora, incluso fuera de tu jornada habitual. También puedes bloquear filas completas.</p></div><div className="weekly-nav"><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,-1))} aria-label="Semana anterior"><ArrowLeft size={17}/></button><span>{dates[0].slice(5)} — {dates[6].slice(5)}<small>CDMX</small></span><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,1))} aria-label="Semana siguiente"><ArrowRight size={17}/></button><button type="button" className="weekly-today" onClick={()=>setWeek(upcomingWeekStart())}>Hoy</button></div></div>
     <div className="weekly-kpis"><span><CalendarDays size={15}/> {bookedCount} citas esta semana</span><span className="weekly-kpi-free"><span/> Horario disponible</span><span className="weekly-kpi-booked"><span/> Reservado</span><span className="weekly-kpi-closed"><span/> Fuera de horario / bloqueado</span></div>
