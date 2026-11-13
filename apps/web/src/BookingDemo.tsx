@@ -104,7 +104,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
                   aria-label={date + " a las " + hour + (free ? " disponible" : " no disponible")}
                   aria-pressed={active} className={"demo-book-hour-cell " + (active ? "selected" : free ? "free" : "unavailable")}
                   onClick={() => { setSelected({date, hour}); setError(""); }}>
-                  {active ? <><CheckCircle2 size={15}/><span>Elegido</span></> : free ? "Disponible" : "—"}
+                  {active ? <><CheckCircle2 size={15}/><span className="demo-book-cell-time">{hour}</span><span>Elegido</span></> : free ? <><span className="demo-book-cell-time">{hour}</span><span>Disponible</span></> : "—"}
                 </button>;
               })}
             </div>)}
