@@ -22,3 +22,5 @@
 .demo-book-success button{margin-top:14px}
 .demo-book-modal button:focus-visible{outline:3px solid #c9a36b;outline-offset:3px}
 @media(max-width:550px){.demo-book-modal{padding:22px}.demo-slot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-book-modal h2{font-size:21px}}
+
+.book-demo-label{display:grid;gap:7px;margin-top:12px;font-size:11px;color:#60798a}.book-demo-label select{padding:12px;border:1px solid #d9e6eb;border-radius:8px;background:white;color:#304f62}
