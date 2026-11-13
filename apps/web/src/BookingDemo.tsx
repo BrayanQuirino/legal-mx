@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Building2, CalendarDays, CheckCircle2, Clock3, ShieldAlert, Video, X } from "lucide-react";
 import users from "../../../data/fixtures/users.synthetic.json";
 import { useDemoStore, type Mode } from "./DemoStore";
-import { DAY_HOURS, getMexicoToday, makeDemoSlots, upcomingWeekStart, weekDates, weekdayUtc, type DemoLawyer } from "./lib/scheduling";
+import { DAY_HOURS, makeDemoSlots, upcomingWeekStart, weekDates, weekdayUtc, type DemoLawyer } from "./lib/scheduling";
 import "./booking-demo.css";
 
 export { makeDemoSlots };
@@ -29,7 +29,6 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState("");
   const days = useMemo(() => weekDates(week), [week]);
-  const today = getMexicoToday();
 
   // Display only hours the professional has explicitly enabled in their settings.
   const workingHours = DAY_HOURS.filter(hour => {
