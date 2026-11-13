@@ -54,6 +54,17 @@ describe("individual lawyer calendar cells",()=>{
     expect(slotEnabled({...policy,date:"2026-11-30"})).toBe(false);
     expect(slotEnabled({...policy,date:"2026-11-24"})).toBe(true);
   });
+  it("recurring opening a complete early-hour row never reopens a closed Monday",()=>{
+    const policy={...baseline,hour:"03:00",recurringHours:[
+      {lawyerId:baseline.lawyerId,hour:3,fromDate:"2026-11-16",blocked:false}
+    ]};
+    expect(slotEnabled(policy)).toBe(true);
+    const off={...policy,recurringDays:[
+      {lawyerId:baseline.lawyerId,weekday:1,fromDate:"2026-11-16",off:true}
+    ]};
+    expect(slotEnabled(off)).toBe(false);
+    expect(slotEnabled({...off,date:"2026-11-17"})).toBe(true);
+  });
   it("never allows reopening a past or current-day slot",()=>{
     expect(slotEnabled({...baseline,date:"2026-11-12",enabledSlots:[override("10:00","2026-11-12")]})).toBe(false);
     expect(slotEnabled({...baseline,date:"2026-11-13",enabledSlots:[override("10:00","2026-11-13")]})).toBe(false);

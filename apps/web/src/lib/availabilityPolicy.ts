@@ -32,11 +32,15 @@ export function slotEnabled(input:AvailabilityPolicy):boolean {
   const weekday=new Date(date+"T12:00:00Z").getUTCDay();
   const hourRule=latestRule(recurringHours.filter(rule=>rule.lawyerId===lawyerId&&rule.hour===hourNumber),date);
   const dayRule=latestRule(recurringDays.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekday),date);
-  return hourNumber>=profile.startHour&&hourNumber<profile.endHour
-    &&profile.weekdays.includes(weekday)
-    &&!(weeklyBlockedHours[lawyerId]??[]).includes(hourNumber)
-    &&!(hourRule?.blocked??false)
+  const openDay=profile.weekdays.includes(weekday)
     &&!(dayRule?.off??false)
     &&!(daysOff[lawyerId]??[]).includes(weekday)
     &&!leaves.some(leave=>leave.lawyerId===lawyerId&&leave.date===date);
+  // A recurring explicit "open" row may offer a time outside the standard hours,
+  // but must never override a previously closed day.
+  const openHour=hourRule?.blocked===false || (
+    hourNumber>=profile.startHour&&hourNumber<profile.endHour
+    &&!(weeklyBlockedHours[lawyerId]??[]).includes(hourNumber)
+  );
+  return openDay && openHour && hourRule?.blocked!==true;
 }

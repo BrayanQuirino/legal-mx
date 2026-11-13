@@ -122,3 +122,26 @@
 .weekly-scope-actions button:last-child{background:#234e65;color:white;border-color:#234e65}
 .weekly-day-off:disabled{opacity:.45;cursor:not-allowed}
 @media(max-width:600px){.weekly-scope-dialog{padding:20px}.weekly-scope-actions button{flex:1}}
+
+/* Excel-like frozen headers: the week headings stay pinned on vertical scroll,
+   the hour column stays pinned on horizontal scroll, and the top-left corner stays
+   above both. Each is a direct grid item in the same scroll container. */
+.weekly-scroll{position:relative;overflow:auto;max-height:min(72vh,760px);overscroll-behavior:contain;isolation:isolate}
+.weekly-grid{position:relative}
+.weekly-day-head{position:sticky;top:0;z-index:20;background:#edf3f6;box-shadow:0 2px 0 #cbdce5}
+.weekly-corner{position:sticky;top:0;left:0;z-index:40;background:#e9f0f4;box-shadow:2px 2px 0 #cbdce5}
+.weekly-hour-label{position:sticky;left:0;z-index:15;box-shadow:2px 0 0 #dbe6eb}
+.weekly-hour-label.selected-hour{background:#e5eef7;color:#204e69;box-shadow:inset 0 0 0 2px #85b1c5}
+.weekly-cell.multi-highlight:not(.booked){box-shadow:inset 0 0 0 2px #83b0c5}
+.weekly-multi-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 5px;background:#f3f7f9;border:1px solid #dfebef;border-radius:11px;padding:10px 12px}
+.weekly-multi-toolbar button{display:flex;align-items:center;gap:6px;border-radius:8px;padding:10px 12px;border:1px solid #d3e0e7;background:white;color:#42687d;font-size:11px;font-weight:800;cursor:pointer}
+.weekly-multi-toolbar .weekly-select-toggle.active{background:#234f67;border-color:#234f67;color:white}
+.weekly-multi-toolbar .weekly-bulk-open{background:#276b50;color:white;border-color:#276b50;margin-left:auto}
+.weekly-multi-toolbar .weekly-bulk-close{background:#976b3e;color:white;border-color:#976b3e}
+.weekly-multi-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+.weekly-selection-count{font-size:11px;color:#456b80;font-weight:800;white-space:nowrap}
+.weekly-selection-help{font-size:11px;color:#688395;margin:6px 0 12px}
+.weekly-header-check{display:flex;align-items:center;gap:4px;margin:5px 0 0;color:#376b84;font-size:10px;cursor:pointer}
+.weekly-header-check input{accent-color:#246b8b}
+.weekly-day-head:has(.weekly-header-check){min-height:96px}
+@media(max-width:750px){.weekly-scroll{max-height:65vh}.weekly-multi-toolbar .weekly-bulk-open{margin-left:0}.weekly-multi-toolbar button{padding:9px 8px}}
