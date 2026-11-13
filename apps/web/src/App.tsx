@@ -2,6 +2,7 @@ import { useMemo, useState, type FormEvent } from "react";
 import { ArrowRight, BookOpen, CalendarDays, CheckCircle2, ChevronDown, Gavel, MapPin, Menu, MessageCircle, Search, ShieldCheck, Sparkles, Users, X } from "lucide-react";
 import { matchSpecialties } from "./lib/matchSpecialties";
 import { Portal } from "./Portal";
+import { DemoStoreProvider } from "./DemoStore";
 import { DirectoryPreview } from "./DirectoryPreview";
 
 type Region = "Todas las ubicaciones" | "Ciudad de México" | "Estado de México";
@@ -17,7 +18,7 @@ export function App() {
   const matches = useMemo(() => matchSpecialties(query), [query]);
   const runSearch = (event: FormEvent) => { event.preventDefault(); setSearched(true); setDirectoryOpen(true); setPortalOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); };
   return (
-    <>
+    <DemoStoreProvider>
       <header className="site-header">
         <div className="container nav">
           <a className="brand" href="#inicio" onClick={() => {setPortalOpen(false);setDirectoryOpen(false);}} aria-label="Legal MX, inicio"><span className="brand-mark"><Gavel size={22}/></span><span>legal<span className="brand-accent">mx</span><small>JUSTICIA MÁS CERCA</small></span></a>
