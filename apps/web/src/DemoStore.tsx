@@ -100,7 +100,8 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
     const closedDay=(date:string)=>{
       const day=new Date(date+"T12:00:00Z").getUTCDay();
       const recurring=latestRule(recurringDays.filter(r=>r.lawyerId===lawyerId&&r.weekday===day),date);
-      return leaves.some(l=>l.lawyerId===lawyerId&&l.date===date)
+      return !profiles[lawyerId]?.weekdays.includes(day)
+        ||leaves.some(l=>l.lawyerId===lawyerId&&l.date===date)
         ||(daysOff[lawyerId]??[]).includes(day)
         ||Boolean(recurring?.off);
     };
@@ -125,6 +126,23 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
     }
     setLeaves(prev=>off?[...prev.filter(rule=>!(rule.lawyerId===lawyerId&&rule.date===date)),{lawyerId,date}]:
       prev.filter(rule=>!(rule.lawyerId===lawyerId&&rule.date===date)));
+    if(off){
+      // Closing a column also clears isolated open exceptions, not reservations.
+      setEnabledSlots(prev=>prev.filter(slot=>!(slot.lawyerId===lawyerId&&slot.date===date)));
+    }else{
+      // Explicitly reopening a day restores the usual configured working hours,
+      // including a day whose recurring day-off rule is still in force.
+      const profile=profiles[lawyerId];
+      if(profile){
+        const hours=Array.from({length:Math.max(0,profile.endHour-profile.startHour)},(_,i)=>String(profile.startHour+i).padStart(2,"0")+":00");
+        setEnabledSlots(prev=>{
+          const additional=hours.filter(hour=>!appointments.some(a=>a.lawyer_id===lawyerId&&a.date===date&&a.hour===hour&&a.status!=="cancelled")
+            &&!prev.some(slot=>slot.lawyerId===lawyerId&&slot.date===date&&slot.hour===hour))
+            .map(hour=>({lawyerId,date,hour}));
+          return [...prev,...additional];
+        });
+      }
+    }
     // An explicitly reopened day can override the one-off leave with the original weekly rules;
     // we deliberately do not erase bookings or disable recurring restrictions.
   };
