@@ -51,6 +51,8 @@ export function LawyerMap({ profiles, onSelect }: Props) {
     profile.geo?.synthetic && isWithinRadius(profile.geo, center, radiusKm)
   ), [profiles, center, radiusKm]);
 
+  const outsideCount = profiles.filter(profile => profile.geo?.synthetic).length - nearbyProfiles.length;
+
   useEffect(() => {
     const element = elementRef.current;
     if (!element || mapRef.current) return;
@@ -94,15 +96,17 @@ export function LawyerMap({ profiles, onSelect }: Props) {
       interactive: false
     }).addTo(layer);
 
-    nearbyProfiles.forEach(profile => {
+    // Markers outside the radius remain accessible whenever visible in the map viewport.
+    profiles.forEach(profile => {
+      if (!profile.geo?.synthetic) return;
       const position: L.LatLngExpression = [profile.geo.latitude, profile.geo.longitude];
       const remoteOnly = !profile.consultation_modes.includes("presencial");
-      const marker = L.circleMarker(position, {
-        radius: 9,
-        color: remoteOnly ? "#245e77" : "#9e773c",
-        fillColor: remoteOnly ? "#4b92ae" : "#d3a35d",
-        fillOpacity: .9,
-        weight: 2
+      const inRadius = isWithinRadius(profile.geo, center, radiusKm);
+      const marker = L.marker(position, {
+        icon: lawyerPin(remoteOnly, inRadius),
+        title: profile.display_name + (inRadius ? " · Dentro del radio" : " · Fuera del radio"),
+        alt: "Ubicación ficticia de " + profile.display_name,
+        riseOnHover: true, keyboard: true
       });
       const popup = document.createElement("div");
       popup.className = "lawyer-map-popup";
@@ -111,7 +115,7 @@ export function LawyerMap({ profiles, onSelect }: Props) {
       const distance = document.createElement("p");
       distance.textContent = `${distanceKm(profile.geo, center).toFixed(1)} km del centro · ${profile.municipality}`;
       const label = document.createElement("small");
-      label.textContent = remoteOnly ? "ZONA REMOTA FICTICIA" : "DESPACHO FICTICIO · SIN DIRECCIÓN REAL";
+      label.textContent = (inRadius ? "DENTRO DEL RADIO · " : "FUERA DEL RADIO · ") + (remoteOnly ? "ZONA REMOTA FICTICIA" : "DESPACHO FICTICIO");
       const button = document.createElement("button");
       button.type = "button";
       button.textContent = "Ver ficha de prueba";
@@ -124,7 +128,7 @@ export function LawyerMap({ profiles, onSelect }: Props) {
     // Widening the radius always expands the visible search area.
     map.invalidateSize();
     map.fitBounds(circle.getBounds(), { padding: [24, 24], animate: true, maxZoom: 14 });
-  }, [center, radiusKm, nearbyProfiles]);
+  }, [center, radiusKm, profiles]);
 
   const reset = () => { setCenter(DEFAULT_CENTER); setRadiusKm(DEFAULT_RADIUS_KM); };
   return <div className="lawyer-map-wrap">
@@ -152,14 +156,14 @@ export function LawyerMap({ profiles, onSelect }: Props) {
         <p className="map-center-help"><LocateFixed size={15}/> Haz clic sobre el mapa para mover el centro y buscar en otra zona.</p>
         <div className="map-sidebar-divider"/>
         <div className="map-result-stat" role="status" aria-live="polite">
-          <strong>{nearbyProfiles.length}</strong><span>abogados ficticios dentro de {radiusKm} km</span>
+          <strong>{nearbyProfiles.length}</strong><span>abogados ficticios dentro de {radiusKm} km</span><small>{outsideCount} fuera del radio (visibles al explorar el mapa)</small>
         </div>
-        <p className="map-filter-explanation">El radio se combina con los demás filtros: especialidad, modalidad, ubicación y precio.</p>
+        <p className="map-filter-explanation">El radio destaca profesionales cercanos, pero no oculta a los demás que aparezcan en el mapa. Los otros filtros siguen activos.</p>
         <button className="map-reset" type="button" onClick={reset}><RotateCcw size={15}/> Restablecer radio y centro</button>
       </aside>
       <div className="lawyer-map-main">
         <div ref={elementRef} className="lawyer-leaflet-map" role="region" aria-label="Mapa interactivo con radio y abogados ficticios"/>
-        <p className="lawyer-map-footnote">Azul: atención remota simulada · Dorado: zona presencial ficticia. © OpenStreetMap contributors. Sin GPS ni API key.</p>
+        <p className="lawyer-map-footnote">Pines azul marino: atención remota · Pines dorados: atención presencial. © OpenStreetMap contributors. Sin GPS ni API key.</p>
       </div>
     </div>
   </div>;
