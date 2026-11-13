@@ -29,3 +29,12 @@
 .map-radius-presets button:focus-visible,.map-reset:focus-visible,.map-center-select:focus-visible,.map-radius-slider:focus-visible{outline:3px solid #b78c54;outline-offset:2px}
 @media(max-width:1150px){.lawyer-map-grid{grid-template-columns:1fr}.lawyer-map-sidebar{border-right:0;border-bottom:1px solid #dfe8ed;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center}.map-sidebar-title,.map-center-help,.map-result-stat,.map-filter-explanation{grid-column:1/-1}.map-sidebar-divider{display:none}.map-radius-presets{grid-template-columns:repeat(4,minmax(0,1fr))}.lawyer-map-main .lawyer-leaflet-map{height:520px}}
 @media(max-width:650px){.lawyer-map-sidebar{grid-template-columns:1fr}.map-radius-heading{margin-top:0}.map-radius-presets{grid-template-columns:repeat(4,minmax(0,1fr))}.lawyer-map-main .lawyer-leaflet-map{height:410px}}
+
+/* Custom location pins: justice symbol, Legal MX navy and gold.
+   SVG silhouettes replace the previous circular lawyer markers. */
+.legal-mx-pin-container{background:none;border:0;overflow:visible}
+.legal-mx-pin-container svg{overflow:visible;filter:drop-shadow(0 3px 3px rgba(22,52,69,.30));transition:transform .16s ease,filter .16s ease;transform-origin:50% 95%}
+.legal-mx-pin-container:hover svg,.legal-mx-pin-container:focus svg{transform:translateY(-4px) scale(1.12);filter:drop-shadow(0 6px 5px rgba(22,52,69,.38))}
+.legal-mx-pin-container.outside-search svg{opacity:.86}
+.legal-mx-pin-container.inside-search svg{filter:drop-shadow(0 3px 4px rgba(22,52,69,.42))}
+.map-result-stat small{font-size:10px;line-height:1.5;color:#55788c}
