@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, CircleCheck, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star } from "lucide-react";
 import { Portal } from "./Portal";
 import { DemoStoreProvider } from "./DemoStore";
@@ -14,12 +14,21 @@ const services=[
 ];
 export function App(){
  const [portalOpen,setPortalOpen]=useState(false),[directoryOpen,setDirectoryOpen]=useState(false),[query,setQuery]=useState(""),[region,setRegion]=useState<Region>("Todas las ubicaciones"),[menuOpen,setMenuOpen]=useState(false);
- const home=()=>{setPortalOpen(false);setDirectoryOpen(false);setMenuOpen(false);};
- const directory=(term="")=>{setQuery(term);setDirectoryOpen(true);setPortalOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"smooth"});};
+ const [zooming,setZooming]=useState(false);
+ const zoomTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
+ useEffect(()=>()=>{if(zoomTimer.current!==null)clearTimeout(zoomTimer.current);},[]);
+ const home=()=>{if(zoomTimer.current!==null)clearTimeout(zoomTimer.current);setZooming(false);setPortalOpen(false);setDirectoryOpen(false);setMenuOpen(false);setQuery("");};
+ const directory=(term="")=>{
+   if(zooming)return;
+   const open=()=>{setQuery(term);setDirectoryOpen(true);setPortalOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"instant"});setZooming(false);};
+   if(portalOpen||directoryOpen||window.matchMedia("(prefers-reduced-motion: reduce)").matches){open();return;}
+   setZooming(true);
+   zoomTimer.current=setTimeout(open,520);
+ };
  const portal=()=>{setPortalOpen(x=>!x);setDirectoryOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"smooth"});};
  const search=(e:FormEvent)=>{e.preventDefault();directory(query);};
  return <DemoStoreProvider>
-  <header className="site-header"><div className="container nav">
+  <div className={zooming?"hv-shell hv-shell-zoom":"hv-shell"}><header className="site-header"><div className="container nav">
     <a className="brand" href="#inicio" onClick={home} aria-label="HuellaVet, inicio"><span className="brand-mark"><PawPrint size={23}/></span><span>Huella<span className="brand-accent">Vet</span></span></a>
     <nav className={menuOpen?"nav-links open":"nav-links"} aria-label="Navegación principal">
       <a href="#inicio" onClick={home}>Inicio</a><button className="directory-nav-link" type="button" onClick={()=>directory()}>Encontrar veterinarios</button>
@@ -29,6 +38,7 @@ export function App(){
     <button className="nav-cta" type="button" onClick={portal}>{portalOpen?"Cerrar sesión":"Iniciar sesión"} <ArrowRight size={16}/></button>
     <button className="mobile-menu" type="button" onClick={()=>setMenuOpen(v=>!v)} aria-label="Abrir o cerrar menú">{menuOpen?<X/>:<Menu/>}</button>
   </div></header>
+  {zooming&&<div className="hv-zoom-transition" aria-hidden="true"><div className="hv-zoom-transition-paw"><PawPrint size={52}/></div><span>Explorando su universo de cuidados</span></div>}
   {portalOpen?<Portal onBack={home}/> : directoryOpen?<DirectoryPreview initialQuery={query} initialRegion={region==="Ciudad de México"?"CDMX":region==="Estado de México"?"EDOMEX":""} onClose={home}/> :
   <main className="hv-home">
     <section id="inicio" className="hero"><div className="container hero-grid">
@@ -45,9 +55,9 @@ export function App(){
             <button type="button" onClick={()=>directory("conejo")}><Rabbit size={22}/><span>Otros</span><ArrowRight size={14}/></button>
           </div>
           <form className="hv-discovery-form" role="search" onSubmit={search}>
-            <label className="hv-discovery-input"><Search size={20}/><span className="sr-only">Qué necesita tu mascota</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="¿Qué necesita tu compañero?"/></label>
+            <label className="hv-discovery-input"><Search size={20}/><span className="sr-only">Qué necesita tu mascota</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Ej. vacunas, revisión, especialista..."/></label>
             <label className="hv-discovery-region"><MapPin size={18}/><span className="sr-only">Ubicación</span><select value={region} onChange={e=>setRegion(e.target.value as Region)}><option>Todas las ubicaciones</option><option>Ciudad de México</option><option>Estado de México</option></select><ChevronDown className="select-chevron" size={14}/></label>
-            <button type="submit" className="hv-discovery-submit"><ArrowRight size={20}/><span className="sr-only">Encontrar veterinarios</span></button>
+            <button type="submit" className="hv-discovery-submit" aria-label="Buscar veterinarios"><ArrowRight size={20}/><span className="sr-only">Encontrar veterinarios</span></button>
           </form>
         </div>
         <div className="example-searches"><span>Prueba con:</span>{["Vacunas","Mi gato tiene alergia","Revisión general"].map(x=><button type="button" key={x} onClick={()=>directory(x)}>{x}</button>)}</div>
