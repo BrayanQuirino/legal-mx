@@ -58,7 +58,7 @@ export function App(){
         <div className="hv-stage-grid"/>
         <div className="hv-stage-round"/>
         <div className="hv-stage-dog">
-          <img src={`${import.meta.env.BASE_URL}huellavet-husky-gato.png`} alt="Husky siberiano con lentes morados y gato naranja y blanco, juntos y felices" loading="eager" fetchPriority="high" width={900} height={507}/>
+          <img src="/legal-mx/huellavet-husky-gato.png" alt="Husky siberiano con lentes morados y gato naranja y blanco, juntos y felices" loading="eager" fetchPriority="high" width={900} height={507}/>
         </div>
         <div className="hv-stage-tag hv-stage-tag-upper"><span className="hv-stage-tag-icon"><Heart size={17} fill="currentColor"/></span><strong>Bienestar en cada etapa</strong></div>
         <div className="hv-pet-id-card"><div className="hv-pet-id-top"><span><PawPrint size={16}/> MI COMPAÑERO</span><span className="hv-pet-id-verified"><CircleCheck size={14}/> Perfil</span></div><div className="hv-pet-id-main"><div className="hv-pet-id-avatar"><Dog size={25}/></div><div><strong>Nuestros compañeros</strong><small>Su bienestar, nuestra alegría</small></div></div><div className="hv-pet-id-progress"><span/><span/><span/><span/></div></div>
