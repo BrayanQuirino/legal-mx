@@ -1,14 +1,19 @@
-import { useMemo, useState, type FormEvent } from "react";
-import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, CircleCheck, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star, UserRound } from "lucide-react";
-import { matchSpecialties } from "./lib/matchSpecialties";
+import { useState, type FormEvent } from "react";
+import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, CircleCheck, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star } from "lucide-react";
 import { Portal } from "./Portal";
 import { DemoStoreProvider } from "./DemoStore";
 import { DirectoryPreview } from "./DirectoryPreview";
 type Region="Todas las ubicaciones"|"Ciudad de México"|"Estado de México";
-const icons=[Stethoscope,HeartPulse,Syringe,Heart,Cat,Rabbit];
+const services=[
+ {id:"consultas",name:"Consulta veterinaria",description:"Atención profesional, cercana y con cariño.",search:"consulta",Icon:Stethoscope},
+ {id:"urgencias",name:"Emergencias",description:"Encuentra apoyo cuando más lo necesitan.",search:"urgencias",Icon:HeartPulse},
+ {id:"vacunas",name:"Vacunación",description:"Prevención para una vida llena de aventuras.",search:"vacuna",Icon:Syringe},
+ {id:"especialistas",name:"Especialistas",description:"Cuidados específicos para cada etapa.",search:"dermatologia",Icon:Heart},
+ {id:"online",name:"Consultas en línea",description:"Orientación veterinaria desde donde estés.",search:"consulta",Icon:Video},
+ {id:"bienestar",name:"Bienestar y prevención",description:"Hábitos y cuidados para vivir mejor.",search:"bienestar",Icon:Sparkles}
+];
 export function App(){
  const [portalOpen,setPortalOpen]=useState(false),[directoryOpen,setDirectoryOpen]=useState(false),[query,setQuery]=useState(""),[region,setRegion]=useState<Region>("Todas las ubicaciones"),[menuOpen,setMenuOpen]=useState(false);
- const matches=useMemo(()=>matchSpecialties(query),[query]);
  const home=()=>{setPortalOpen(false);setDirectoryOpen(false);setMenuOpen(false);};
  const directory=(term="")=>{setQuery(term);setDirectoryOpen(true);setPortalOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"smooth"});};
  const portal=()=>{setPortalOpen(x=>!x);setDirectoryOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"smooth"});};
@@ -68,10 +73,10 @@ export function App(){
     <section className="hv-explore" id="especialidades"><div className="container">
       <div className="hv-explore-intro"><div><span className="section-label">UN UNIVERSO DE CUIDADOS</span><h2>Todo su bienestar, <em>en un solo lugar.</em></h2><p>Descubre servicios para acompañarlos en cada momento, desde su primera vacuna hasta los cuidados de cada día.</p></div><button type="button" className="hv-view-all" onClick={()=>directory()}><span>Explorar todos los veterinarios</span><ArrowRight size={18}/></button></div>
       <div className="hv-service-bento">
-        {matches.map((item,i)=>{const Icon=icons[i%icons.length];return <button key={item.id} type="button" className={"hv-service-tile hv-service-"+i} onClick={()=>directory(item.name)}>
+        {services.map(({id,name,description,search:serviceQuery,Icon},i)=><button key={id} type="button" className={"hv-service-tile hv-service-"+i} onClick={()=>directory(serviceQuery)}>
           <span className="hv-service-tile-top"><span className="hv-service-icon"><Icon size={i===0?33:24} strokeWidth={1.8}/></span><span className="hv-service-index">0{i+1}</span></span>
-          <span className="hv-service-copy"><strong>{item.name}</strong><small>{item.description}</small></span><span className="hv-service-arrow"><ArrowRight size={19}/></span>
-        </button>})}
+          <span className="hv-service-copy"><strong>{name}</strong><small>{description}</small></span><span className="hv-service-arrow"><ArrowRight size={19}/></span>
+        </button>)}
       </div>
     </div></section>
     <section className="hv-people" id="profesionales"><div className="container"><div className="hv-people-heading"><span className="section-label">PERSONAS QUE AMAN LO QUE HACEN</span><h2>Grandes personas para <em>pequeños grandes amores.</em></h2><p>Conoce el tipo de profesionales y cuidados que podrás encontrar en HuellaVet.</p></div><div className="hv-people-grid">
