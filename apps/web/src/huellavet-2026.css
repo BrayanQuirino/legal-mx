@@ -94,3 +94,43 @@ footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
 @media(max-width:940px){.hv-home .hero-grid{grid-template-columns:1fr}.hv-people-grid{grid-template-columns:1fr 1fr}.hv-family-grid{grid-template-columns:1fr}.hv-family-photo{height:370px;border-radius:40px 40px 130px 40px}.hv-family-copy{padding:10px 35px 40px}.hv-vet-invite-inner{flex-wrap:wrap}}
 @media(max-width:650px){.container{width:min(100% - 34px,1270px)}.site-header{height:70px}.brand{font-size:23px}.brand-mark svg{width:29px;height:29px}.hv-home .hero h1{font-size:clamp(38px,10vw,53px);letter-spacing:-2.2px}.hv-hero-actions{gap:10px}.hv-primary-action,.hv-secondary-action{font-size:12px;padding:13px 16px}.hv-discovery-card{margin-top:23px}.hv-people{padding:66px 0}.hv-people-grid{grid-template-columns:1fr}.hv-people h2,.hv-family h2{letter-spacing:-1px}.hv-person-image{height:220px}.hv-family{padding-bottom:65px}.hv-family-photo{height:280px}.hv-family-grid{border-radius:28px}.hv-family-copy{padding:12px 24px 32px}.hv-vet-invite-inner{padding:29px 24px;border-radius:25px}.hv-vet-invite h2{font-size:23px}.hv-people-note{line-height:1.6}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Custom HuellaVet hero photography — transparent husky + cat, no rectangular crop. */
+.hv-home .hv-hero-stage{height:580px;isolation:isolate}
+.hv-home .hv-stage-glow{width:94%;max-width:620px;height:78%;left:50%;top:54%;transform:translate(-50%,-50%) rotate(-7deg);border-radius:48% 52% 43% 57% / 60% 38% 62% 40%;background:linear-gradient(145deg,#eee4ff 0%,#dccbff 52%,#f9ddeb 100%);box-shadow:none}
+.hv-home .hv-stage-grid{opacity:.23}
+.hv-home .hv-stage-round{display:none}
+.hv-home .hv-stage-dog{width:125%;height:auto;aspect-ratio:900/507;max-width:760px;left:51%;top:57%;transform:translate(-50%,-50%);background:none;border:0;border-radius:0;overflow:visible;box-shadow:none}
+.hv-home .hv-stage-dog:after{display:none}
+.hv-home .hv-stage-dog img{display:block;width:100%;height:auto;object-fit:contain;object-position:center;filter:drop-shadow(0 23px 22px #5b3d8226)}
+.hv-home .hv-stage-tag-upper{top:103px;left:-4px;z-index:5}
+.hv-home .hv-pet-id-card{right:-13px;bottom:35px;z-index:5}
+.hv-home .hv-stage-orbit-star.a{top:42px;right:5px;color:#7447eb}
+.hv-home .hv-stage-orbit-star.b{bottom:42px;left:4px;color:#e49fc9}
+.huellavet-pin-container svg{filter:drop-shadow(0 5px 8px #7447eb40)}
+.map-radius-slider{accent-color:#7447EB}
+.map-radius-presets button.active{background:#7447EB!important;color:#fff!important;border-color:#7447EB!important}
+.map-result-stat{background:#f1eaff;border-color:#e0d2ff;color:#5d3fb3}
+.lawyer-map-sidebar{background:#fbf8ff}
+.lawyer-map-popup button{background:#7447EB;color:#fff}
+@media(max-width:1180px){
+ .hv-home .hv-hero-stage{height:500px}
+ .hv-home .hv-stage-glow{height:77%}
+ .hv-home .hv-stage-dog{width:128%;max-width:none}
+ .hv-home .hv-pet-id-card{right:-10px;bottom:36px}
+}
+@media(max-width:940px){
+ .hv-home .hv-hero-stage{height:475px;max-width:620px}
+ .hv-home .hv-stage-dog{width:112%;top:55%}
+ .hv-home .hv-stage-glow{width:92%;height:81%}
+}
+@media(max-width:650px){
+ .hv-home .hv-hero-stage{height:310px;max-width:380px}
+ .hv-home .hv-stage-glow{height:78%;width:94%;top:53%}
+ .hv-home .hv-stage-dog{width:115%;top:56%;left:50%}
+ .hv-home .hv-stage-tag-upper{top:17px;left:-3px}
+ .hv-home .hv-pet-id-card{bottom:5px;right:-3px}
+ .hv-home .hv-stage-orbit-star.a{top:5px;right:5px}
+ .hv-home .hv-stage-orbit-star.b{bottom:8px}
+}
