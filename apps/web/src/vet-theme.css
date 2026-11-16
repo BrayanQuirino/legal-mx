@@ -1,0 +1,106 @@
+/* HuellaVet design system: warm, friendly, modern, accessible veterinary care. */
+:root{--vet-teal:#116c65;--vet-dark:#154943;--vet-leaf:#22867b;--vet-mint:#e2f5ed;--vet-peach:#ff9278;--vet-cream:#fffaf3;--vet-text:#264c4c;--vet-border:#deebe6;color:var(--vet-text);background:#fbfdfa}
+body{background:#fbfdfa}
+.site-header{background:#fffefa;border-color:var(--vet-border);box-shadow:0 2px 18px #2f776d0b}
+.brand{color:var(--vet-dark);letter-spacing:-1.4px}
+.brand-mark{background:linear-gradient(145deg,var(--vet-leaf),var(--vet-dark));border-radius:16px;box-shadow:0 5px 14px #14766b30}
+.brand-accent,.footer-brand span{color:#e9846d}
+.brand small{letter-spacing:1.5px;color:#789a92}
+.nav-cta,.poc-primary,.demo-book-primary,.dash-primary{background:var(--vet-teal);border-radius:12px;box-shadow:0 7px 22px #116c6523}
+.nav-cta:hover,.poc-primary:hover,.demo-book-primary:hover{background:#0b544e}
+.nav-links a:hover{color:var(--vet-leaf)}
+.nav-links,.directory-nav-link{color:#547771}
+.hero{background:radial-gradient(circle at 80% 20%,#d9f2e5 0%,transparent 35%),linear-gradient(115deg,#fffaf3,#f3fcf6 55%,#e8f7ed);position:relative}
+.hero-grid{min-height:620px;grid-template-columns:1.15fr .85fr;gap:28px}
+.eyebrow,.section-label{color:#c77f67;letter-spacing:1.8px}
+.eyebrow-dot{background:#fa967e}
+.hero h1{color:var(--vet-dark);font-size:clamp(41px,4.6vw,63px);letter-spacing:-2.8px;line-height:1.11}
+.hero h1 em,.section-intro h2 em{color:#df8068}
+.hero-description{color:#567b76;font-size:16px}
+.search-box{box-shadow:0 22px 60px #15584a16;border:1px solid #dce9e3;border-radius:16px;padding:9px}
+.search-box button{background:var(--vet-teal);border-radius:10px}
+.search-box button:hover{background:#135850}
+.search-field input{font-size:13px}
+.example-searches{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:18px}
+.example-searches>span{font-size:11px;color:#7d9993;font-weight:700}
+.example-searches button{border:1px solid #d4e8dc;border-radius:99px;padding:8px 13px;background:#fff;color:#297a70;font-size:11px;font-weight:750;cursor:pointer}
+.example-searches button:hover{background:#e6f6eb}
+.hero-footnote{color:#6e9186}
+.hero-footnote svg{color:#e88c77}
+.hero-art{height:490px}
+.orbit{border-color:#b2dccc}
+.orbit-one{width:420px}.orbit-two{width:330px;border-color:#a9d3c2}
+.hero-emblem{width:285px;height:325px;border-radius:48% 48% 35% 35%;transform:rotate(-6deg);background:linear-gradient(150deg,#2d9c89,#0e675e 78%);box-shadow:22px 28px 60px #14685938;color:#f8fff5}
+.pet-emblem-art{position:relative;width:230px;height:210px;display:flex;align-items:end;justify-content:center;gap:0}
+.pet-emblem-art>svg:nth-child(2){margin-left:-30px;margin-bottom:-4px;color:#ffeddf}
+.pet-heart{position:absolute;top:8px;right:30px;color:#ffb2a0;filter:drop-shadow(0 3px 5px #08514835)}
+.floating-card{border-radius:16px;box-shadow:0 16px 32px #336b5c1b;border-color:#e6f1e9}
+.floating-card.one{top:47px;left:-3px}.floating-card.two{right:0;bottom:49px}
+.card-icon.blue{background:#e0f6e9;color:#148376}.card-icon.gold{background:#fff0e6;color:#e88468}
+.art-star{color:#ec9278}
+.trust-strip{background:#fffefa;border-color:#e7f0e8}.trust-items svg{color:#228f7e}
+.specialties-section{background:#fffefa}
+.section-intro h2{color:var(--vet-dark)}
+.specialty-card{border:1px solid var(--vet-border);border-radius:22px;box-shadow:0 8px 32px #285b5010;transition:transform .2s,box-shadow .2s}
+.specialty-card:hover{box-shadow:0 20px 42px #1b76621c}
+.specialty-card:nth-child(3n+2){background:#fcfffb}
+.specialty-icon{border-radius:16px;background:var(--vet-mint);color:var(--vet-teal)}
+.specialty-number{color:#c6dcd5}
+.specialty-card h3{color:var(--vet-dark)}
+.directory-specialty-button{border:0;background:none;padding:0;display:flex;align-items:center;gap:7px;color:var(--vet-leaf);font-size:12px;font-weight:800;cursor:pointer;margin-top:20px}
+.how-section{background:#eff8f2}
+.steps svg{color:#16877a}
+.assistant-panel{background:linear-gradient(120deg,#104d46,#1a8375);border-radius:25px}
+.assistant-icon{color:#ffc5b1}
+footer{background:#123d38}
+.footer-brand{display:inline-flex;align-items:center;gap:7px;color:#fff}
+.vet-demo-disclosure{display:flex;align-items:center;gap:12px;margin-bottom:40px;background:#f6faf6;border:1px solid #d6e9df;color:#608579;border-radius:12px;padding:14px 19px;font-size:11px;line-height:1.6}
+.vet-demo-disclosure svg{flex-shrink:0;color:#6c9b86}
+/* Directory and cards */
+.directory-preview{background:#f8fcf9}
+.directory-intro h1,.poc-sidebar h1{color:var(--vet-dark)}
+.directory-card,.directory-filters,.directory-modal,.poc-paper,.dash-box,.weekly-panel,.settings-card{border-color:#dbeae4}
+.directory-card{border-radius:18px}
+.directory-avatar{background:linear-gradient(145deg,#dcf5e8,#f6fbf4);color:var(--vet-teal);border-radius:17px}
+.directory-book-button,.directory-card-buttons .directory-book-button,.directory-modal-done{background:var(--vet-teal)!important;color:white!important;border-radius:10px}
+.directory-tags span{background:#e8f6ed;color:#32766b;border:1px solid #d0e8db;border-radius:99px}
+.directory-demo-warning{border-radius:12px}
+.vet-species-line{display:flex;align-items:center;gap:6px;font-size:11px;color:#689184;margin:8px 0}
+.directory-card-top h3{color:var(--vet-dark)}
+.directory-card:hover{box-shadow:0 20px 45px #136b5315}
+.directory-small-tag.demo-approved-tag{background:#e3f5ea;color:#17684f}
+.directory-switch button.active{background:#176e63;color:white}
+.map-result-stat{background:#e4f5ed;border-color:#c6e7da;color:#246a5b}
+.map-radius-slider{accent-color:var(--vet-teal)}
+.lawyer-map-sidebar{background:#f7fbf8}
+.huellavet-pin-container svg{filter:drop-shadow(0 4px 6px #19554c40)}
+/* Portals */
+.poc{background:#f8fcf9}
+.poc-role.active,.lawyer-main-tabs button.active{background:var(--vet-dark);color:#fff;border-color:var(--vet-dark)}
+.poc-tag,.dash-notice{background:#e7f5ed;color:#27786d}
+.lawyer-workspace .dash-heading h3{color:var(--vet-dark)}
+.dash-appointment{border-color:#e3eee6}
+.dash-status.status-confirmed{background:#e4f5eb;color:#247254}
+.weekly-cell.available,.weekly-slot-wrap.available{background:#def4e5;color:#237254}
+.weekly-slot-wrap.blocked{background:#fce9df}
+.weekly-slot-wrap.excel-selected{background:#c8eee5;outline-color:#138a7b}
+.weekly-hour-label,.weekly-day-head{background:#eef7f1;color:#35786b}
+.weekly-corner{background:#e8f3ec}
+.weekly-multi-toolbar .weekly-select-toggle.active{background:var(--vet-teal);color:white}
+.weekly-scope-actions button:last-child{background:var(--vet-teal);border-color:var(--vet-teal)}
+.settings-choice-grid button.selected,.settings-preset-row button.selected,.settings-days button.selected{background:#e3f5ea;border-color:#7eb9a5;color:#196e5e}
+.settings-price strong{color:var(--vet-dark)}
+.vet-pet-collection{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:11px;margin-top:14px}
+.vet-pet-mini{display:flex;gap:10px;align-items:center;padding:14px;border-radius:12px;background:#eef9f2;border:1px solid #d5ede0}
+.vet-pet-mini>span{background:#fff;padding:9px;border-radius:11px;color:#248575}
+.vet-pet-mini strong,.vet-pet-mini small{display:block}
+.vet-pet-mini strong{font-size:13px;color:#235b50}
+.vet-pet-mini small{font-size:10px;color:#719489;margin-top:4px}
+.book-demo-label span{display:flex;gap:5px;align-items:center}
+.demo-book-fields{align-items:end}
+.demo-book-fields>.book-demo-label{min-width:175px;flex:1}
+.demo-book-week-nav strong,.demo-book-modal h2{color:var(--vet-dark)}
+.demo-book-hour-cell.free{background:#ddf4e6;color:#267658}
+.demo-book-hour-cell.selected{background:var(--vet-teal)}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr}.hero-art{display:none}}
+@media(max-width:650px){.hero h1{font-size:42px}.specialty-card{border-radius:16px}.example-searches{gap:6px}.example-searches button{font-size:10px}.vet-demo-disclosure{margin-bottom:24px}}
