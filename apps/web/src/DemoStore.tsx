@@ -1,10 +1,10 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
-import fixture from "../../../data/fixtures/appointments.synthetic.json";
+import fixture from "../../../data/fixtures/vet-appointments.synthetic.json";
 import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
 import { slotEnabled, latestRule, type HourRule, type DayRule, type CellRule } from "./lib/availabilityPolicy";
 
 export type Mode = "online"|"presencial";
-export type Appointment = { id:string;lawyer_id:string;user_id:string;date:string;hour:string;modality:Mode;status:"confirmed"|"pending"|"cancelled";synthetic:true };
+export type Appointment = { id:string;lawyer_id:string;user_id:string;pet_id:string;reason:string;date:string;hour:string;modality:Mode;status:"confirmed"|"pending"|"cancelled";synthetic:true };
 export type Profile = { modes:Mode[];price:number;location:string;startHour:number;endHour:number;weekdays:number[] };
 export type Block = { lawyerId:string;date:string;hour:string };
 export type Leave = { lawyerId:string;date:string };
@@ -13,7 +13,7 @@ const initialAppointments:Appointment[] = fixture.records.flatMap(row=>{
   const lawyer=demoLawyers.find(item=>item.id===row.lawyer_id);
   const slot=lawyer && makeDemoSlots(lawyer)[row.slot_index];
   if(!slot)return [];
-  return [{id:row.id,lawyer_id:row.lawyer_id,user_id:row.user_id,date:slot.date,hour:slot.hour,modality:row.modality as Mode,status:row.status as "confirmed"|"pending",synthetic:true}];
+  return [{id:row.id,lawyer_id:row.lawyer_id,user_id:row.user_id,pet_id:row.pet_id,reason:row.reason,date:slot.date,hour:slot.hour,modality:row.modality as Mode,status:row.status as "confirmed"|"pending",synthetic:true}];
 });
 const initialProfiles:Record<string,Profile> = Object.fromEntries(demoLawyers.map(l=>[l.id,{
   modes:l.consultation_modes as Mode[],price:l.consultation_price_mxn_demo,location:l.municipality,startHour:l.demo_schedule?.start_hour ?? 9,endHour:l.demo_schedule?.end_hour ?? 18,weekdays:l.demo_schedule?.weekdays ?? [1,2,3,4,5]
@@ -31,7 +31,7 @@ type Store = {
   recurringDays:DayRule[];
   recurringCells:CellRule[];
   setCellRepeat:(lawyerId:string,date:string,hour:string,blocked:boolean)=>void;
-  book:(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>boolean;
+  book:(lawyerId:string,userId:string,date:string,hour:string,modality:Mode,petId:string,reason:string)=>boolean;
   updateStatus:(appointmentId:string,status:"confirmed"|"cancelled")=>void;
   toggleBlock:(lawyerId:string,date:string,hour:string)=>void;
   toggleSlot:(lawyerId:string,date:string,hour:string)=>void;
@@ -79,12 +79,12 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
       setEnabledSlots(prev=>prev.some(same)?prev:[...prev,{lawyerId,date,hour}]);
     }
   };
-  const book=(lawyerId:string,userId:string,date:string,hour:string,modality:Mode)=>{
+  const book=(lawyerId:string,userId:string,date:string,hour:string,modality:Mode,petId:string,reason:string)=>{
     const lawyer=demoLawyers.find(l=>l.id===lawyerId);
-    if(!lawyer||!userId||!profiles[lawyerId]?.modes.includes(modality)
+    if(!lawyer||!userId||!petId||!reason.trim()||!profiles[lawyerId]?.modes.includes(modality)
       ||!isWorkingSlot(lawyerId,date,hour)
       ||isUnavailable(lawyerId,date,hour))return false;
-    setAppointments(prev=>[...prev,{id:"demo-new-"+(prev.length+1),lawyer_id:lawyerId,user_id:userId,date,hour,modality,status:"pending",synthetic:true}]);
+    setAppointments(prev=>[...prev,{id:"demo-new-"+(prev.length+1),lawyer_id:lawyerId,user_id:userId,pet_id:petId,reason,date,hour,modality,status:"pending",synthetic:true}]);
     return true;
   };
   const updateStatus=(id:string,status:"confirmed"|"cancelled")=>setAppointments(prev=>prev.map(a=>a.id===id?{...a,status}:a));
