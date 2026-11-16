@@ -134,3 +134,18 @@ footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
  .hv-home .hv-stage-orbit-star.a{top:5px;right:5px}
  .hv-home .hv-stage-orbit-star.b{bottom:8px}
 }
+
+/* Husky & cat hero — preserve both pets, transparent background over a soft violet composition */
+.hv-home .hero{background:linear-gradient(105deg,#fcfaff 10%,#faf6ff 62%,#f4e9ff 100%)}
+.hv-hero-stage{display:block!important;isolation:isolate}
+.hv-stage-glow{width:min(100%,590px);height:440px;border-radius:45% 55% 38% 62%;background:radial-gradient(circle at 48% 55%,#e8d7ff 0%,#dcc1fa 55%,#f3eaff 90%);box-shadow:none;transform:translate(-48%,-40%)}
+.hv-stage-round{border:0}
+.hv-stage-grid{opacity:.16}
+.hv-stage-dog{position:absolute;overflow:visible;border:0;box-shadow:none;border-radius:0;background:transparent;left:49%;top:47%;transform:translate(-47%,-45%);width:min(660px,118%);height:auto;aspect-ratio:1671/941}
+.hv-stage-dog:after{display:none}
+.hv-stage-dog img{width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 26px 17px #9d7cc226);display:block}
+.hv-stage-tag-upper{top:92px;left:-11px;z-index:4}
+.hv-pet-id-card{right:-10px;bottom:44px;z-index:4}
+@media(max-width:1180px){.hv-stage-dog{width:110%;height:auto}.hv-stage-glow{width:490px;height:410px}}
+@media(max-width:940px){.hv-hero-stage{height:440px;max-width:650px}.hv-stage-dog{width:100%;left:50%;top:46%;transform:translate(-50%,-45%)}.hv-stage-glow{width:80%;height:330px}}
+@media(max-width:650px){.hv-hero-stage{height:270px;max-width:390px}.hv-stage-dog{width:112%;top:47%}.hv-stage-glow{width:86%;height:215px}.hv-stage-tag-upper{top:10px;left:0}.hv-pet-id-card{bottom:0;right:0}}
