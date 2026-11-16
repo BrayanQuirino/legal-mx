@@ -68,15 +68,13 @@ export function App(){
         <div className="hv-stage-dog">
           <img src="/legal-mx/huellavet-husky-gato.png" alt="Husky siberiano con lentes morados y gato naranja y blanco, juntos y felices" loading="eager" fetchPriority="high" width={900} height={507}/>
         </div>
-        <div className="hv-stage-tag hv-stage-tag-upper"><span className="hv-stage-tag-icon"><Heart size={17} fill="currentColor"/></span><strong>Bienestar en cada etapa</strong></div>
-        <div className="hv-pet-id-card"><div className="hv-pet-id-top"><span><PawPrint size={16}/> MI COMPAÑERO</span><span className="hv-pet-id-verified"><CircleCheck size={14}/> Perfil</span></div><div className="hv-pet-id-main"><div className="hv-pet-id-avatar"><Dog size={25}/></div><div><strong>Nuestros compañeros</strong><small>Su bienestar, nuestra alegría</small></div></div><div className="hv-pet-id-progress"><span/><span/><span/><span/></div></div>
+        <div className="hv-stage-benefits" aria-label="Beneficios de HuellaVet">
+          <div className="hv-benefit-popup hv-benefit-care"><span className="hv-benefit-icon"><HeartPulse size={22}/></span><span className="hv-benefit-copy"><strong>Cuidar es amar</strong><small>Atención enfocada en su bienestar</small></span></div>
+          <div className="hv-benefit-popup hv-benefit-agenda"><span className="hv-benefit-icon"><CalendarDays size={22}/></span><span className="hv-benefit-copy"><strong>Agenda sin estrés</strong><small>Tu tiempo y el suyo importan</small></span></div>
+          <div className="hv-benefit-popup hv-benefit-all"><span className="hv-benefit-icon"><Activity size={22}/></span><span className="hv-benefit-copy"><strong>Todo en un lugar</strong><small>Sus visitas, más organizadas</small></span></div>
+        </div>
         <div className="hv-stage-orbit-star a">✦</div><div className="hv-stage-orbit-star b">✧</div>
       </div>
-    </div></section>
-    <section className="hv-product-strip"><div className="container hv-product-strip-inner">
-      <div><span className="hv-strip-icon"><HeartPulse size={22}/></span><strong>Cuidar es amar</strong><small>Atención enfocada en su bienestar</small></div>
-      <div><span className="hv-strip-icon"><CalendarDays size={22}/></span><strong>Agenda sin estrés</strong><small>Tu tiempo y el suyo importan</small></div>
-      <div><span className="hv-strip-icon"><Activity size={22}/></span><strong>Todo en un lugar</strong><small>Sus visitas, más organizadas</small></div>
     </div></section>
     <section className="hv-explore" id="especialidades"><div className="container">
       <div className="hv-explore-intro"><div><span className="section-label">UN UNIVERSO DE CUIDADOS</span><h2>Todo su bienestar, <em>en un solo lugar.</em></h2><p>Descubre servicios para acompañarlos en cada momento, desde su primera vacuna hasta los cuidados de cada día.</p></div><button type="button" className="hv-view-all" onClick={()=>directory()}><span>Explorar todos los veterinarios</span><ArrowRight size={18}/></button></div>
