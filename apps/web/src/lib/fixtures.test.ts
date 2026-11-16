@@ -1,57 +1,36 @@
-import { describe, expect, it } from "vitest";
-import lawyers from "../../../../data/fixtures/lawyers.synthetic.json";
-import users from "../../../../data/fixtures/users.synthetic.json";
-
-describe("synthetic Legal MX fixtures", () => {
-  it("contains the expected amount of sample records", () => {
-    expect(lawyers.records).toHaveLength(40);
-    expect(users.records).toHaveLength(100);
-  });
-
-  it("uses unique fixture identifiers", () => {
-    const ids = [...lawyers.records, ...users.records].map((record) => record.id);
-    expect(new Set(ids).size).toBe(ids.length);
-  });
-
-  it("does not impersonate verified lawyers or include real contact information", () => {
-    expect(lawyers.records.every((lawyer) =>
-      lawyer.is_synthetic &&
-      lawyer.public_profile_enabled === false &&
-      lawyer.professional_license === null &&
-      lawyer.license_verified_at === null &&
-      lawyer.verification_status === "synthetic_unverified" &&
-      lawyer.rating === null
-    )).toBe(true);
-    expect(users.records.every((user) =>
-      user.is_synthetic &&
-      user.email.endsWith("@example.test") &&
-      user.phone === null
-    )).toBe(true);
-  });
-
-  it("stores only bounded, synthetic, approximate positions", () => {
-    expect(lawyers.records.every(lawyer =>
-      lawyer.geo.synthetic === true && lawyer.geo.approximate === true &&
-      lawyer.geo.address === null &&
-      Number.isFinite(lawyer.geo.latitude) && lawyer.geo.latitude >= 18.8 && lawyer.geo.latitude <= 20 &&
-      Number.isFinite(lawyer.geo.longitude) && lawyer.geo.longitude >= -100.1 && lawyer.geo.longitude <= -98.6 &&
-      lawyer.geo.kind === (lawyer.consultation_modes.includes("presencial") ? "simulated_office_area" : "simulated_service_area")
-    )).toBe(true);
-  });
-
-  it("approves exactly five synthetic profiles for demo only, never for legal practice", () => {
-    const approved = lawyers.records.filter(lawyer => lawyer.demo_booking_enabled);
-    expect(approved).toHaveLength(5);
-    expect(approved.every(lawyer => lawyer.demo_review.state === "approved_simulation")).toBe(true);
-    expect(approved.every(lawyer => lawyer.demo_review.source_verification_real === false)).toBe(true);
-    expect(approved.every(lawyer => lawyer.demo_schedule !== null && lawyer.demo_schedule.duration_minutes === 45)).toBe(true);
-    expect(lawyers.records.filter(lawyer => !lawyer.demo_booking_enabled).every(lawyer => lawyer.demo_review.state === "not_reviewed")).toBe(true);
-    expect(lawyers.records.every(lawyer => lawyer.verification_status === "synthetic_unverified" && lawyer.license_verified_at === null)).toBe(true);
-  });
-  it("covers two jurisdictions and six specialties", () => {
-    const jurisdictions = new Set(lawyers.records.flatMap((lawyer) => lawyer.jurisdictions));
-    const specialties = new Set(lawyers.records.flatMap((lawyer) => lawyer.specialties));
-    expect([...jurisdictions].sort()).toEqual(["CDMX", "EDOMEX"]);
-    expect(specialties.size).toBe(6);
-  });
+import {describe,expect,it} from "vitest";
+import vets from "../../../../data/fixtures/veterinarians.synthetic.json";
+import guardians from "../../../../data/fixtures/guardians.synthetic.json";
+import pets from "../../../../data/fixtures/pets.synthetic.json";
+import appointments from "../../../../data/fixtures/vet-appointments.synthetic.json";
+describe("HuellaVet synthetic fixtures",()=>{
+ it("includes 40 veterinarians, 100 guardians, 100 pets and 25 appointments",()=>{
+  expect(vets.records).toHaveLength(40);
+  expect(guardians.records).toHaveLength(100);
+  expect(pets.records).toHaveLength(100);
+  expect(appointments.records).toHaveLength(25);
+ });
+ it("keeps IDs unique and linked by correct foreign keys",()=>{
+  const ids=[...vets.records,...guardians.records,...pets.records,...appointments.records].map(x=>x.id);
+  expect(new Set(ids).size).toBe(ids.length);
+  expect(pets.records.every(p=>guardians.records.some(g=>g.id===p.guardian_id))).toBe(true);
+  expect(appointments.records.every(a=>vets.records.some(v=>v.id===a.lawyer_id) && guardians.records.some(g=>g.id===a.user_id)
+   && pets.records.some(p=>p.id===a.pet_id&&p.guardian_id===a.user_id))).toBe(true);
+ });
+ it("contains no actual verified veterinarians, reviews, personal addresses or patient histories",()=>{
+  expect(vets.records.every(v=>v.is_synthetic&&v.professional_license===null&&v.license_verified_at===null&&v.verification_status==="synthetic_unverified"&&v.rating===null&&v.public_profile_enabled===false)).toBe(true);
+  expect(vets.records.every(v=>v.geo.synthetic&&v.geo.approximate&&v.geo.address===null)).toBe(true);
+  expect(guardians.records.every(g=>g.email.endsWith("@example.test")&&g.phone===null)).toBe(true);
+  expect(pets.records.every(p=>p.is_synthetic&&p.medical_history===null)).toBe(true);
+ });
+ it("only five have simulated booking enabled",()=>{
+  const five=vets.records.filter(v=>v.demo_booking_enabled);
+  expect(five).toHaveLength(5);
+  expect(five.every(v=>v.demo_review.state==="approved_simulation"&&v.demo_review.source_verification_real===false)).toBe(true);
+  expect(vets.records.filter(v=>!v.demo_booking_enabled).every(v=>v.demo_review.state==="not_reviewed")).toBe(true);
+ });
+ it("supports multiple species and six clinical specialties",()=>{
+  expect(new Set(vets.records.flatMap(v=>v.specialties)).size).toBe(6);
+  expect(new Set(vets.records.flatMap(v=>v.species_treated))).toEqual(new Set(["perros","gatos","aves","conejos"]));
+ });
 });

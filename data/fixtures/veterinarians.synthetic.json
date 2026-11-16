@@ -1,0 +1,2182 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_type": "veterinarians",
+  "synthetic": true,
+  "created_for": "HuellaVet veterinary POC",
+  "legal_notice": "Synthetic veterinarians, no actual credential verification, appointments or clinic addresses.",
+  "allow_public_profiles": false,
+  "record_count": 40,
+  "records": [
+    {
+      "id": "demo-vet-001",
+      "full_name": "Ana Rivera Cruz",
+      "display_name": "MVZ Ana Rivera",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general",
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Cuauhtémoc",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 2,
+      "consultation_price_mxn_demo": 350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.4266,
+        "longitude": -99.13905,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Cuauhtémoc",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo_only",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-VET-001"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 60,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 17,
+        "booking_mode": "simulation_only"
+      },
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-002",
+      "full_name": "Diego Morales Luna",
+      "display_name": "MVZ Diego Morales",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Gustavo A. Madero",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 5,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.48625,
+        "longitude": -99.11335,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Gustavo A. Madero",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo_only",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-VET-002"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 60,
+        "weekdays": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "start_hour": 11,
+        "end_hour": 19,
+        "booking_mode": "simulation_only"
+      },
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Centro Vida Animal"
+    },
+    {
+      "id": "demo-vet-003",
+      "full_name": "Lucía Navarro Aguirre",
+      "display_name": "MVZ Lucía Navarro",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Metepec",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 8,
+      "consultation_price_mxn_demo": 500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.2515,
+        "longitude": -99.6092,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Metepec",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo_only",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-VET-003"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 60,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 17,
+        "booking_mode": "simulation_only"
+      },
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Consultorio Patitas"
+    },
+    {
+      "id": "demo-vet-004",
+      "full_name": "Emilio Vega Medina",
+      "display_name": "MVZ Emilio Vega",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Álvaro Obregón",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 11,
+      "consultation_price_mxn_demo": 550,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.35975,
+        "longitude": -99.2287,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Álvaro Obregón",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo_only",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY",
+        "reviewed_at_demo": "2026-11-12",
+        "source_verification_real": false,
+        "case_id": "POC-VET-004"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 60,
+        "weekdays": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "start_hour": 11,
+        "end_hour": 19,
+        "booking_mode": "simulation_only"
+      },
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": "Centro Vida Animal"
+    },
+    {
+      "id": "demo-vet-005",
+      "full_name": "Valeria Paredes Paredes",
+      "display_name": "MVZ Valeria Paredes",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos",
+        "medicina_general"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Toluca",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 14,
+      "consultation_price_mxn_demo": 650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.291,
+        "longitude": -99.65955,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Toluca",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo_only",
+        "source_verification_real": false,
+        "case_id": "POC-VET-005",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY"
+      },
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 60,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 18,
+        "booking_mode": "simulation_only"
+      },
+      "species_treated": [
+        "perros",
+        "gatos",
+        "aves",
+        "conejos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Espacio Vet"
+    },
+    {
+      "id": "demo-vet-006",
+      "full_name": "Santiago Mejía Castillo",
+      "display_name": "MVZ Santiago Mejía",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Miguel Hidalgo",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 17,
+      "consultation_price_mxn_demo": 700,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.43225,
+        "longitude": -99.19405,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Miguel Hidalgo",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos",
+        "aves",
+        "conejos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Colitas"
+    },
+    {
+      "id": "demo-vet-007",
+      "full_name": "Renata Aguirre Navarro",
+      "display_name": "MVZ Renata Aguirre",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Atizapán de Zaragoza",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 20,
+      "consultation_price_mxn_demo": 800,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.55375,
+        "longitude": -99.2719,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-008",
+      "full_name": "Mateo Torres Mendoza",
+      "display_name": "MVZ Mateo Torres",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Benito Juárez",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 4,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.368,
+        "longitude": -99.1594,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Benito Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Consultorio Patitas"
+    },
+    {
+      "id": "demo-vet-009",
+      "full_name": "Camila Cruz Rivera",
+      "display_name": "MVZ Camila Cruz",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia",
+        "odontologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Naucalpan de Juárez",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 7,
+      "consultation_price_mxn_demo": 350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.47725,
+        "longitude": -99.24025,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Naucalpan de Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Huellas"
+    },
+    {
+      "id": "demo-vet-010",
+      "full_name": "Andrés Soto Soto",
+      "display_name": "MVZ Andrés Soto",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Huixquilucan",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 10,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.3625,
+        "longitude": -99.34775,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Huixquilucan",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-011",
+      "full_name": "Mariana Flores Campos",
+      "display_name": "MVZ Mariana Flores",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "odontologia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Tlalpan",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 13,
+      "consultation_price_mxn_demo": 500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.29175,
+        "longitude": -99.1706,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalpan",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Colitas"
+    },
+    {
+      "id": "demo-vet-012",
+      "full_name": "Rodrigo Mendoza Torres",
+      "display_name": "MVZ Rodrigo Mendoza",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Nezahualcóyotl",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 16,
+      "consultation_price_mxn_demo": 550,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.407,
+        "longitude": -99.0101,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Nezahualcóyotl",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Centro Vida Animal"
+    },
+    {
+      "id": "demo-vet-013",
+      "full_name": "Elena Salazar Ríos",
+      "display_name": "MVZ Elena Salazar",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general",
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Iztapalapa",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 19,
+      "consultation_price_mxn_demo": 650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.3535,
+        "longitude": -99.09395,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Iztapalapa",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-014",
+      "full_name": "Julián Castillo Mejía",
+      "display_name": "MVZ Julián Castillo",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Ecatepec de Morelos",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 3,
+      "consultation_price_mxn_demo": 700,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.60375,
+        "longitude": -99.04545,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Ecatepec de Morelos",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos",
+        "aves",
+        "conejos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Huellas"
+    },
+    {
+      "id": "demo-vet-015",
+      "full_name": "Isabella Ortega Ortega",
+      "display_name": "MVZ Isabella Ortega",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Coyoacán",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 6,
+      "consultation_price_mxn_demo": 800,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.35,
+        "longitude": -99.1633,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Coyoacán",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Espacio Vet"
+    },
+    {
+      "id": "demo-vet-016",
+      "full_name": "Daniel Medina Vega",
+      "display_name": "MVZ Daniel Medina",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Tlalnepantla de Baz",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 9,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.54225,
+        "longitude": -99.1908,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalnepantla de Baz",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-017",
+      "full_name": "Paula Ríos Salazar",
+      "display_name": "MVZ Paula Ríos",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "odontologia",
+        "medicina_general"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Cuauhtémoc",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 12,
+      "consultation_price_mxn_demo": 350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.4371,
+        "longitude": -99.13385,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Cuauhtémoc",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Centro Vida Animal"
+    },
+    {
+      "id": "demo-vet-018",
+      "full_name": "Gabriel Luna Morales",
+      "display_name": "MVZ Gabriel Luna",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Gustavo A. Madero",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 15,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.484,
+        "longitude": -99.10815,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Gustavo A. Madero",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Consultorio Patitas"
+    },
+    {
+      "id": "demo-vet-019",
+      "full_name": "Sofía Campos Flores",
+      "display_name": "MVZ Sofía Campos",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Metepec",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 18,
+      "consultation_price_mxn_demo": 500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.24925,
+        "longitude": -99.604,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Metepec",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-020",
+      "full_name": "Bruno Acosta Acosta",
+      "display_name": "MVZ Bruno Acosta",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Álvaro Obregón",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 2,
+      "consultation_price_mxn_demo": 550,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.3575,
+        "longitude": -99.23585,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Álvaro Obregón",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Espacio Vet"
+    },
+    {
+      "id": "demo-vet-021",
+      "full_name": "Ana Rivera Cruz",
+      "display_name": "MVZ Ana Rivera",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia",
+        "odontologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Toluca",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 5,
+      "consultation_price_mxn_demo": 650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.28875,
+        "longitude": -99.65435,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Toluca",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Colitas"
+    },
+    {
+      "id": "demo-vet-022",
+      "full_name": "Diego Morales Luna",
+      "display_name": "MVZ Diego Morales",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Miguel Hidalgo",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 8,
+      "consultation_price_mxn_demo": 700,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.43,
+        "longitude": -99.2012,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Miguel Hidalgo",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos",
+        "aves",
+        "conejos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-023",
+      "full_name": "Lucía Navarro Aguirre",
+      "display_name": "MVZ Lucía Navarro",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "odontologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Atizapán de Zaragoza",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 11,
+      "consultation_price_mxn_demo": 800,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.56425,
+        "longitude": -99.2667,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Consultorio Patitas"
+    },
+    {
+      "id": "demo-vet-024",
+      "full_name": "Emilio Vega Medina",
+      "display_name": "MVZ Emilio Vega",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Benito Juárez",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 14,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.36575,
+        "longitude": -99.16655,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Benito Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Huellas"
+    },
+    {
+      "id": "demo-vet-025",
+      "full_name": "Valeria Paredes Paredes",
+      "display_name": "MVZ Valeria Paredes",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general",
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Naucalpan de Juárez",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 17,
+      "consultation_price_mxn_demo": 350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.475,
+        "longitude": -99.23505,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Naucalpan de Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-026",
+      "full_name": "Santiago Mejía Castillo",
+      "display_name": "MVZ Santiago Mejía",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Huixquilucan",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 20,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.36025,
+        "longitude": -99.3549,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Huixquilucan",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Colitas"
+    },
+    {
+      "id": "demo-vet-027",
+      "full_name": "Renata Aguirre Navarro",
+      "display_name": "MVZ Renata Aguirre",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Tlalpan",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 4,
+      "consultation_price_mxn_demo": 500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.2895,
+        "longitude": -99.1654,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalpan",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Centro Vida Animal"
+    },
+    {
+      "id": "demo-vet-028",
+      "full_name": "Mateo Torres Mendoza",
+      "display_name": "MVZ Mateo Torres",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Nezahualcóyotl",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 7,
+      "consultation_price_mxn_demo": 550,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.40475,
+        "longitude": -99.01725,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Nezahualcóyotl",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-029",
+      "full_name": "Camila Cruz Rivera",
+      "display_name": "MVZ Camila Cruz",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "odontologia",
+        "medicina_general"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Iztapalapa",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 10,
+      "consultation_price_mxn_demo": 650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.364,
+        "longitude": -99.08875,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Iztapalapa",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Huellas"
+    },
+    {
+      "id": "demo-vet-030",
+      "full_name": "Andrés Soto Soto",
+      "display_name": "MVZ Andrés Soto",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Ecatepec de Morelos",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 13,
+      "consultation_price_mxn_demo": 700,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.6015,
+        "longitude": -99.0526,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Ecatepec de Morelos",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos",
+        "aves",
+        "conejos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Espacio Vet"
+    },
+    {
+      "id": "demo-vet-031",
+      "full_name": "Mariana Flores Campos",
+      "display_name": "MVZ Mariana Flores",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Coyoacán",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 16,
+      "consultation_price_mxn_demo": 800,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.34775,
+        "longitude": -99.1581,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Coyoacán",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-032",
+      "full_name": "Rodrigo Mendoza Torres",
+      "display_name": "MVZ Rodrigo Mendoza",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Tlalnepantla de Baz",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 19,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.54,
+        "longitude": -99.19795,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Tlalnepantla de Baz",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Centro Vida Animal"
+    },
+    {
+      "id": "demo-vet-033",
+      "full_name": "Elena Salazar Ríos",
+      "display_name": "MVZ Elena Salazar",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia",
+        "odontologia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Cuauhtémoc",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 3,
+      "consultation_price_mxn_demo": 350,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.43485,
+        "longitude": -99.12865,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Cuauhtémoc",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Consultorio Patitas"
+    },
+    {
+      "id": "demo-vet-034",
+      "full_name": "Julián Castillo Mejía",
+      "display_name": "MVZ Julián Castillo",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Gustavo A. Madero",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 6,
+      "consultation_price_mxn_demo": 450,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.4945,
+        "longitude": -99.1153,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Gustavo A. Madero",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-035",
+      "full_name": "Isabella Ortega Ortega",
+      "display_name": "MVZ Isabella Ortega",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "odontologia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Metepec",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 9,
+      "consultation_price_mxn_demo": 500,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.247,
+        "longitude": -99.5988,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Metepec",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Espacio Vet"
+    },
+    {
+      "id": "demo-vet-036",
+      "full_name": "Daniel Medina Vega",
+      "display_name": "MVZ Daniel Medina",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "animales_exoticos"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Álvaro Obregón",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 12,
+      "consultation_price_mxn_demo": 550,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.35525,
+        "longitude": -99.23065,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Álvaro Obregón",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Colitas"
+    },
+    {
+      "id": "demo-vet-037",
+      "full_name": "Paula Ríos Salazar",
+      "display_name": "MVZ Paula Ríos",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "medicina_general",
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Toluca",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 15,
+      "consultation_price_mxn_demo": 650,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.2865,
+        "longitude": -99.64915,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Toluca",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    },
+    {
+      "id": "demo-vet-038",
+      "full_name": "Gabriel Luna Morales",
+      "display_name": "MVZ Gabriel Luna",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "dermatologia"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Miguel Hidalgo",
+      "consultation_modes": [
+        "presencial"
+      ],
+      "years_experience_demo": 18,
+      "consultation_price_mxn_demo": 700,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.42775,
+        "longitude": -99.196,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Miguel Hidalgo",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos",
+        "aves",
+        "conejos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Consultorio Patitas"
+    },
+    {
+      "id": "demo-vet-039",
+      "full_name": "Sofía Campos Flores",
+      "display_name": "MVZ Sofía Campos",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "cirugia"
+      ],
+      "jurisdictions": [
+        "EDOMEX"
+      ],
+      "municipality": "Atizapán de Zaragoza",
+      "consultation_modes": [
+        "online",
+        "presencial"
+      ],
+      "years_experience_demo": 2,
+      "consultation_price_mxn_demo": 800,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.562,
+        "longitude": -99.27385,
+        "kind": "simulated_office_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Atizapán de Zaragoza",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Seguimiento clínico"
+      ],
+      "clinic_name": "Clínica Huellas"
+    },
+    {
+      "id": "demo-vet-040",
+      "full_name": "Bruno Acosta Acosta",
+      "display_name": "MVZ Bruno Acosta",
+      "professional_license": null,
+      "license_verified_at": null,
+      "verification_status": "synthetic_unverified",
+      "specialties": [
+        "urgencias"
+      ],
+      "jurisdictions": [
+        "CDMX"
+      ],
+      "municipality": "Benito Juárez",
+      "consultation_modes": [
+        "online"
+      ],
+      "years_experience_demo": 5,
+      "consultation_price_mxn_demo": 900,
+      "availability_status": "simulation_only",
+      "rating": null,
+      "review_count": 0,
+      "profile_image": null,
+      "public_profile_enabled": false,
+      "is_synthetic": true,
+      "geo": {
+        "latitude": 19.37625,
+        "longitude": -99.16135,
+        "kind": "simulated_service_area",
+        "approximate": true,
+        "synthetic": true,
+        "display_label": "Zona ilustrativa · Benito Juárez",
+        "address": null,
+        "precision": "municipality_demo"
+      },
+      "demo_review": {
+        "state": "not_reviewed",
+        "simulation_only": true
+      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
+      "species_treated": [
+        "perros",
+        "gatos"
+      ],
+      "services": [
+        "Consulta general",
+        "Vacunación y prevención"
+      ],
+      "clinic_name": null
+    }
+  ],
+  "geo_schema_version": 1,
+  "geo_disclaimer": "Approximate synthetic municipal coordinates only.",
+  "demo_approved_count": 5,
+  "demo_verification_note": "Five profiles reviewed ONLY in simulation; none verified with SEP."
+}
