@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, CircleCheck, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star } from "lucide-react";
+import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star } from "lucide-react";
 import { Portal } from "./Portal";
 import { DemoStoreProvider } from "./DemoStore";
 import { DirectoryPreview } from "./DirectoryPreview";
