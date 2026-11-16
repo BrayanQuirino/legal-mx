@@ -28,7 +28,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
   const [maxPrice, setMaxPrice] = useState(1800);
   const [selected, setSelected] = useState<Lawyer | null>(null);
   const [limit, setLimit] = useState(9);
-  const [display, setDisplay] = useState<"cards"|"map">("cards");
+  const [display, setDisplay] = useState<"cards"|"map">("map");
   const [demoReadyOnly,setDemoReadyOnly]=useState(false);
   const [booking,setBooking]=useState<Lawyer|null>(null);
 
@@ -63,7 +63,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
           <label className="directory-field">Precio máximo de consulta <strong>${maxPrice.toLocaleString("es-MX")} MXN</strong><input type="range" min="450" max="1800" step="150" value={maxPrice} onChange={e=>{setMaxPrice(Number(e.target.value));setLimit(9);}}/></label>
         </aside>
         <section className="directory-results hv-vet-results" aria-label="Médicos veterinarios ficticios">
-          <div className="directory-result-header"><div><strong>{filtered.length} perfiles de prueba</strong><p>Coincidencias según los filtros seleccionados</p></div><div className="directory-view-tools"><span className="directory-tag"><Filter size={15}/> Datos de prueba</span><div className="directory-switch" role="group" aria-label="Visualización de resultados"><button type="button" aria-pressed={display==="cards"} className={display==="cards"?"active":""} onClick={()=>setDisplay("cards")}><LayoutGrid size={16}/> Lista</button><button type="button" aria-pressed={display==="map"} className={display==="map"?"active":""} onClick={()=>setDisplay("map")}><MapIcon size={16}/> Mapa</button></div></div></div>
+          <div className="directory-result-header"><div><strong>{filtered.length} perfiles de prueba</strong><p>Coincidencias según los filtros seleccionados</p></div><div className="directory-view-tools"><span className="directory-tag"><Filter size={15}/> Datos de prueba</span><div className="directory-switch" role="group" aria-label="Visualización de resultados"><button type="button" aria-pressed={display==="cards"} className={display==="cards"?"active":""} onClick={()=>setDisplay("map")}><MapIcon size={16}/> Mapa</button><button type="button" aria-pressed={display==="cards"} className={display==="cards"?"active":""} onClick={()=>setDisplay("cards")}><LayoutGrid size={16}/> Lista</button></div></div></div>
           {display==="map" ? <LawyerMap profiles={filtered} onSelect={(id)=>setSelected(sample.records.find(x=>x.id===id) ?? null)} /> : filtered.length===0 ? <div className="directory-empty"><Search size={28}/><h3>No hay coincidencias</h3><p>Prueba cambiar la especialidad, la ubicación o el precio.</p><button onClick={reset} type="button">Restablecer filtros</button></div> :
           <div className="directory-cards hv-vet-cards">{visible.map((lawyer,i)=><article key={lawyer.id} className={"directory-card hv-vet-card hv-vet-card-"+(i%4)}>
             <div className="directory-card-top"><div className="directory-avatar"><PawPrint size={32}/></div><div><span className={lawyer.demo_booking_enabled?"directory-small-tag demo-approved-tag":"directory-small-tag"}>{lawyer.demo_booking_enabled?"AGENDA DISPONIBLE · PERFIL FICTICIO":"MÉDICO VETERINARIO · SIN VERIFICAR"}</span><h3>{lawyer.display_name}</h3><p><MapPin size={14}/> {store.profiles[lawyer.id]?.location ?? lawyer.municipality}, {lawyer.jurisdictions[0]==="CDMX"?"CDMX":"Edomex"}</p></div></div>
