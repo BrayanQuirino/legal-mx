@@ -344,3 +344,9 @@ main.directory-preview > .container{
   transform:none!important;
 }
 @media(max-width:790px){main.directory-preview > .container{width:calc(100% - 28px)}}
+
+.hv-directory-safe-fallback{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;min-height:300px;padding:35px 24px;margin:15px 0;background:#fff;border:1px solid #e9dffc;border-radius:24px;color:#544078;box-shadow:0 12px 36px #7447eb12}
+.hv-directory-safe-fallback>svg{color:#7447eb}
+.hv-directory-safe-fallback h2{font-size:20px;color:#302344;margin:15px 0 7px}
+.hv-directory-safe-fallback p{font-size:13px;line-height:1.65;max-width:390px;color:#796b90}
+.hv-directory-safe-fallback button{background:#7447eb;color:white;border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:12px;margin-top:14px}
