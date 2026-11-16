@@ -100,3 +100,52 @@
 @media(max-width:940px){.hv-home .hero-grid{grid-template-columns:1fr;gap:30px;padding-block:70px}.hv-home .hero-content{padding-right:0}.hv-hero-stage{height:490px;max-width:570px;width:100%;margin:0 auto}.hv-stage-glow{height:445px;width:445px;left:50%;top:48%}.hv-stage-dog{width:390px;height:440px;left:50%;top:48%}.hv-pet-id-card{right:0;bottom:26px}.hv-stage-tag-upper{left:0}.hv-product-strip-inner{gap:16px}.hv-service-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.hv-service-0{grid-row:span 2}}
 @media(max-width:650px){.hv-home .hero-grid{padding:47px 0 57px;gap:23px}.hv-home .hero h1{font-size:clamp(39px,10vw,57px);letter-spacing:-2.4px}.hv-home .hero-description{font-size:14px}.hv-discovery-card{margin-top:23px;padding:14px;border-radius:21px}.hv-discovery-label{display:none}.hv-species-picker{gap:6px}.hv-species-picker button{padding:12px 7px;font-size:10px;gap:4px;justify-content:center}.hv-species-picker button>svg:first-child{width:18px}.hv-species-picker button>svg:last-child{display:none}.hv-discovery-form{grid-template-columns:1fr 52px;gap:7px}.hv-discovery-region{grid-column:1/3;grid-row:2;min-height:47px}.hv-discovery-region select{max-width:none;flex:1}.hv-discovery-input{grid-column:1;grid-row:1}.hv-discovery-submit{grid-column:2;grid-row:1}.hv-hero-stage{height:348px;max-width:350px}.hv-stage-glow{width:308px;height:308px;left:50%;top:48%}.hv-stage-dog{width:274px;height:325px;top:47%}.hv-stage-tag-upper{left:-2px;top:22px;padding:9px;font-size:8px;border-radius:12px;gap:5px}.hv-stage-tag-icon{padding:7px}.hv-pet-id-card{width:195px;right:-2px;bottom:6px;padding:11px;border-radius:16px}.hv-pet-id-main{margin-top:9px;gap:7px}.hv-pet-id-main strong{font-size:10px}.hv-pet-id-main small{font-size:8px}.hv-pet-id-avatar{width:34px;height:34px}.hv-pet-id-top{font-size:7px}.hv-pet-id-progress{margin-top:10px}.hv-product-strip-inner{grid-template-columns:1fr;gap:18px;padding-block:21px}.hv-explore{padding:67px 0}.hv-explore-intro{display:block;margin-bottom:27px}.hv-explore-intro h2{font-size:35px}.hv-view-all{margin-top:19px}.hv-service-bento{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:9px}.hv-service-tile{padding:17px;border-radius:18px;min-height:165px}.hv-service-0{grid-column:1/3;grid-row:auto;min-height:236px}.hv-service-icon{width:42px;height:42px;border-radius:12px}.hv-service-0 .hv-service-icon{width:57px;height:57px}.hv-service-copy strong{font-size:13px}.hv-service-0 .hv-service-copy strong{font-size:24px}.hv-service-copy small{font-size:9px;line-height:1.45;padding-right:10px}.hv-service-0 .hv-service-copy small{font-size:11px}.hv-service-arrow{bottom:11px;right:11px;width:25px;height:25px}.hv-service-arrow svg{width:14px}.hv-service-tile-top{gap:4px}}
 @media(prefers-reduced-motion:reduce){.hv-service-tile{transition:none}}
+
+/* Veterinarian discovery — horizontal filter dock, expressive cards, not a doctor's directory clone */
+.directory-preview{background:linear-gradient(180deg,#f6f3ff 0%,#fcfcff 360px,#fafaff 100%)}
+.hv-directory-cover{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) 245px;align-items:center;padding:27px 39px 33px;background:linear-gradient(110deg,#e9e4ff 0%,#f5f1ff 62%,#d7faf4 100%);border:1px solid #e4dfff;border-radius:27px;position:relative;overflow:hidden;margin-bottom:18px}
+.hv-directory-cover:before{content:"";position:absolute;right:105px;top:-160px;width:370px;height:370px;border:1px solid #c8bfff;border-radius:50%}
+.hv-directory-cover .section-label{color:#6b54e7}
+.hv-directory-cover h1{font-size:clamp(35px,3.4vw,49px);margin:16px 0 14px;color:#252354;letter-spacing:-2px;max-width:640px}
+.hv-directory-cover h1 em{color:#735df3}
+.hv-directory-cover p{max-width:575px;color:#6e7397;font-size:13px;line-height:1.8}
+.hv-directory-cover-mark{display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center;position:relative;z-index:1;color:#725bea;transform:rotate(-9deg)}
+.hv-directory-cover-mark svg{background:linear-gradient(145deg,#715ef7,#8c72ff);box-shadow:0 24px 45px #6754e53a;border-radius:35px;padding:23px;width:148px;height:148px;color:white}
+.hv-directory-cover-mark span{font-size:11px;font-weight:800;color:#7569ad;letter-spacing:.7px}
+.directory-preview .directory-demo-warning{padding:11px 16px;font-size:10px;line-height:1.4;margin-bottom:22px;border-radius:12px;background:#fffdf5;border-color:#f2ebd8;color:#8a7b64}
+.directory-preview .directory-demo-warning p{margin-top:2px}
+.directory-preview .directory-layout{display:flex;flex-direction:column;gap:21px}
+.directory-preview .hv-filter-dock{position:relative;top:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 17px;width:100%;padding:23px 25px;border:1px solid #ece8ff;background:#fff;box-shadow:0 15px 42px #5b54df0e;border-radius:24px}
+.hv-filter-dock .directory-filter-heading{grid-column:1/-1;margin:0 0 3px}
+.hv-filter-dock .directory-filter-heading h2{font-size:15px;color:#2d2b60}
+.hv-filter-dock .directory-field{margin:0!important;min-width:0}
+.hv-filter-dock .directory-field input,.hv-filter-dock .directory-field select{max-width:100%}
+.hv-filter-dock .directory-fieldset{margin:0}
+.hv-filter-dock .directory-demo-ready{display:flex;align-items:center;gap:8px;margin:0;align-self:center}
+.directory-preview .hv-vet-results{min-width:0;width:100%}
+.directory-preview .directory-result-header{background:transparent;border:0;padding:12px 4px 20px}
+.directory-preview .directory-result-header strong{font-size:16px;color:#28285b}
+.directory-preview .hv-vet-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.directory-preview .hv-vet-card{border-radius:23px;padding:0!important;overflow:hidden;background:#fff;display:flex;flex-direction:column;min-height:310px;border:1px solid #edeafb;box-shadow:0 16px 37px #6454e610}
+.directory-preview .hv-vet-card:before{content:"";display:block;height:74px;background:linear-gradient(110deg,#ddd7ff,#f2edff 62%,#d7f9f2)}
+.directory-preview .hv-vet-card-1:before{background:linear-gradient(110deg,#d6f9f4,#e5fffa 65%,#e8e6ff)}
+.directory-preview .hv-vet-card-2:before{background:linear-gradient(110deg,#ffe7e1,#fff1ee 65%,#e4ddff)}
+.directory-preview .hv-vet-card-3:before{background:linear-gradient(110deg,#e1e6ff,#f3f3ff 65%,#d9fffa)}
+.directory-preview .hv-vet-card .directory-card-top{padding:0 24px;margin-top:-33px;position:relative;z-index:1;gap:14px}
+.directory-preview .hv-vet-card .directory-avatar{border:4px solid #fff;background:#edeaff;box-shadow:0 8px 20px #5750bf28;width:68px;height:68px;flex-shrink:0}
+.directory-preview .hv-vet-card .directory-avatar svg{color:#6554e4}
+.directory-preview .hv-vet-card .directory-small-tag{font-size:9px;letter-spacing:.2px}
+.directory-preview .hv-vet-card h3{font-size:17px;margin:7px 0 7px}
+.directory-preview .hv-vet-card .directory-tags{padding:14px 24px 0;margin:0;flex-wrap:wrap}
+.directory-preview .hv-vet-card .directory-tags span{font-size:10px}
+.directory-preview .hv-vet-card .vet-species-line{padding:4px 24px 0;margin:8px 0}
+.directory-preview .hv-vet-card .directory-meta{margin:0 24px;padding:12px 0;border:0}
+.directory-preview .hv-vet-card .directory-card-foot{margin-top:auto;padding:16px 24px 22px;border-top:1px solid #f0effa;background:#fdfcff;gap:10px}
+.directory-preview .hv-vet-card .directory-card-buttons{gap:7px}
+.directory-preview .hv-vet-card .directory-card-buttons button{border-radius:10px;font-size:10px}
+.directory-preview .directory-switch{background:#efedff;border-radius:12px;padding:3px}
+.directory-preview .directory-switch button.active{border-radius:10px;background:#6453ef;color:#fff}
+.directory-preview .hv-vet-card:hover{transform:translateY(-6px);border-color:#cfc5ff;box-shadow:0 24px 50px #6454e62a}
+@media(max-width:1050px){.directory-preview .hv-filter-dock{grid-template-columns:repeat(3,minmax(0,1fr))}.directory-preview .hv-vet-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:780px){.hv-directory-cover{grid-template-columns:1fr;padding:26px}.hv-directory-cover-mark{display:none}.directory-preview .hv-filter-dock{grid-template-columns:repeat(2,minmax(0,1fr));padding:18px}.directory-preview .hv-vet-cards{grid-template-columns:1fr}.directory-preview .hv-vet-card .directory-card-foot{flex-wrap:wrap}}
+@media(max-width:480px){.directory-preview .hv-filter-dock{grid-template-columns:1fr}.directory-preview .hv-vet-card .directory-card-top{padding-inline:17px}.directory-preview .hv-vet-card .directory-tags{padding-inline:17px}.directory-preview .hv-vet-card .vet-species-line{padding-inline:17px}.directory-preview .hv-vet-card .directory-meta{margin-inline:17px}.directory-preview .hv-vet-card .directory-card-foot{padding-inline:17px}}
