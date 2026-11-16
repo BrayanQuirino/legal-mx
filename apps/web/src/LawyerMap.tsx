@@ -60,7 +60,7 @@ export function LawyerMap({ profiles, onSelect }: Props) {
   useEffect(() => {
     const element = elementRef.current;
     if (!element || mapRef.current) return;
-    const map = L.map(element, { scrollWheelZoom: false, zoomControl: true, maxZoom: 14 })
+    const map = L.map(element, { scrollWheelZoom: true, zoomControl: true, maxZoom: 18 })
       .setView([DEFAULT_CENTER.latitude, DEFAULT_CENTER.longitude], 10);
     mapRef.current = map;
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -131,7 +131,8 @@ export function LawyerMap({ profiles, onSelect }: Props) {
     // A radius circle drives the zoom, independently of the number of matches.
     // Widening the radius always expands the visible search area.
     map.invalidateSize();
-    map.fitBounds(circle.getBounds(), { padding: [24, 24], animate: true, maxZoom: 14 });
+    // Only recenter when the search radius or its center changes, not on every filter result.
+    map.fitBounds(circle.getBounds(), { padding: [24, 24], animate: true, maxZoom: 15 });
   }, [center, radiusKm, profiles]);
 
   const reset = () => { setCenter(DEFAULT_CENTER); setRadiusKm(DEFAULT_RADIUS_KM); };
