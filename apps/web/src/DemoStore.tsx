@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import fixture from "../../../data/fixtures/vet-appointments.synthetic.json";
+import petFixture from "../../../data/fixtures/pets.synthetic.json";
 import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
 import { slotEnabled, latestRule, type HourRule, type DayRule, type CellRule } from "./lib/availabilityPolicy";
 
@@ -81,7 +82,8 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   };
   const book=(lawyerId:string,userId:string,date:string,hour:string,modality:Mode,petId:string,reason:string)=>{
     const lawyer=demoLawyers.find(l=>l.id===lawyerId);
-    if(!lawyer||!userId||!petId||!reason.trim()||!profiles[lawyerId]?.modes.includes(modality)
+    const pet=petFixture.records.find(p=>p.id===petId);
+    if(!lawyer||!userId||!pet||pet.guardian_id!==userId||!lawyer.species_treated.includes(pet.species)||!reason.trim()||!profiles[lawyerId]?.modes.includes(modality)
       ||!isWorkingSlot(lawyerId,date,hour)
       ||isUnavailable(lawyerId,date,hour))return false;
     setAppointments(prev=>[...prev,{id:"demo-new-"+(prev.length+1),lawyer_id:lawyerId,user_id:userId,pet_id:petId,reason,date,hour,modality,status:"pending",synthetic:true}]);
