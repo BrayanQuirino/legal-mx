@@ -18,13 +18,15 @@ type Mode = "all" | "online" | "presencial";
 export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "" }: { onClose: () => void; initialQuery?: string; initialRegion?: string }) {
   // A colloquial search is translated into its relevant legal area instead of filtering names literally.
   const matchedSpecialty = matchSpecialties(initialQuery)[0]?.id;
+  const initialSpecies = ({perro:"perros",gato:"gatos",conejo:"conejos"} as Record<string,string>)[initialQuery.trim().toLowerCase()];
   const initialIsVetQuery = Boolean(initialQuery && matchedSpecialty);
   const store=useDemoStore();
-  const [term, setTerm] = useState(initialIsVetQuery ? "" : initialQuery);
+  const [term, setTerm] = useState(initialIsVetQuery || initialSpecies ? "" : initialQuery);
+  const [draftTerm,setDraftTerm] = useState(initialIsVetQuery || initialSpecies ? "" : initialQuery);
   const [specialty, setSpecialty] = useState(initialIsVetQuery ? matchedSpecialty : "all");
   const [region, setRegion] = useState(initialRegion || "all");
   const [mode, setMode] = useState<Mode>("all");
-  const [species,setSpecies]=useState("all");
+  const [species,setSpecies]=useState(initialSpecies || "all");
   const [maxPrice, setMaxPrice] = useState(1800);
   const [selected, setSelected] = useState<Lawyer | null>(null);
   const [limit, setLimit] = useState(9);
@@ -44,7 +46,16 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
       && (!demoReadyOnly || lawyer.demo_review.state === "approved_simulation");
   }).sort((a,b)=>Number(b.demo_booking_enabled)-Number(a.demo_booking_enabled)), [term, specialty, species, region, mode, maxPrice, demoReadyOnly, store.profiles]);
   const visible = filtered.slice(0, limit);
-  const reset = () => { setTerm("");setSpecialty("all");setSpecies("all");setRegion("all");setMode("all");setMaxPrice(1800);setDemoReadyOnly(false);setLimit(9); };
+  const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const next=draftTerm.trim();
+    const matched=matchSpecialties(next)[0]?.id;
+    setTerm(matched ? "" : next);
+    setSpecialty(matched || "all");
+    setLimit(9);
+    setDisplay("map");
+  };
+  const reset = () => { setDraftTerm("");setTerm("");setSpecialty("all");setSpecies("all");setRegion("all");setMode("all");setMaxPrice(1800);setDemoReadyOnly(false);setLimit(9); };
 
   return <main className="directory-preview" id="directorio-veterinario">
     <div className="container">
@@ -54,7 +65,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
       <div className="directory-layout">
         <aside className="directory-filters hv-filter-dock" aria-label="Filtros del directorio">
           <div className="directory-filter-heading"><SlidersHorizontal size={19}/><h2>Filtrar resultados</h2><button type="button" onClick={reset}>Limpiar</button></div>
-          <label className="directory-field">Buscar veterinario o zona<div className="directory-search"><Search size={18}/><input value={term} onChange={e => {setTerm(e.target.value);setLimit(9);}} placeholder="Especialidad o municipio" aria-label="Buscar en el directorio"/></div></label>
+          <form className="directory-field hv-search-field" role="search" onSubmit={submitSearch}><label htmlFor="directory-search-input">Buscar veterinario o zona</label><div className="directory-search"><Search size={18}/><input id="directory-search-input" value={draftTerm} onChange={e => setDraftTerm(e.target.value)} placeholder="Ej. vacunas, dermatología o Naucalpan" aria-label="Buscar en el directorio"/></div><button type="submit" className="hv-filter-submit"><Search size={17}/> Buscar en el mapa</button></form>
           <label className="directory-field">Especialidad<select value={specialty} onChange={e=>{setSpecialty(e.target.value);setLimit(9);}}><option value="all">Todas las especialidades</option>{specialties.map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</select></label>
           <label className="directory-field">Especie atendida<select value={species} onChange={e=>{setSpecies(e.target.value);setLimit(9);}}><option value="all">Todas las mascotas</option><option value="perros">Perros</option><option value="gatos">Gatos</option><option value="aves">Aves</option><option value="conejos">Conejos</option></select></label>
           <label className="directory-field">Ubicación<select value={region} onChange={e=>{setRegion(e.target.value);setLimit(9);}}><option value="all">CDMX y Estado de México</option><option value="CDMX">Ciudad de México</option><option value="EDOMEX">Estado de México</option></select></label>
