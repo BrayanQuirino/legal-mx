@@ -53,15 +53,15 @@ export function App(){
         <div className="example-searches"><span>Prueba con:</span>{["Vacunas","Mi gato tiene alergia","Revisión general"].map(x=><button type="button" key={x} onClick={()=>directory(x)}>{x}</button>)}</div>
         <div className="hero-footnote"><span className="hero-proof-icon"><BadgeCheck size={17}/></span> Una experiencia diseñada para cuidarlos <span className="dot-separator">✦</span> Desde tu celular o computadora</div>
       </div>
-      <div className="hero-art hv-hero-stage" aria-label="Un perrito alegre y una interfaz moderna de cuidado de mascotas">
+      <div className="hero-art hv-hero-stage" aria-label="Husky siberiano sonriente y gato naranja, juntos y felices">
         <div className="hv-stage-glow"/>
         <div className="hv-stage-grid"/>
         <div className="hv-stage-round"/>
         <div className="hv-stage-dog">
-          <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=1100&q=85" alt="Perro de pelaje claro, alegre y cariñoso" loading="eager" fetchPriority="high"/>
+          <img src={`${import.meta.env.BASE_URL}huellavet-husky-gato.png`} alt="Husky siberiano con lentes morados y gato naranja y blanco, juntos y felices" loading="eager" fetchPriority="high" width={900} height={507}/>
         </div>
         <div className="hv-stage-tag hv-stage-tag-upper"><span className="hv-stage-tag-icon"><Heart size={17} fill="currentColor"/></span><strong>Bienestar en cada etapa</strong></div>
-        <div className="hv-pet-id-card"><div className="hv-pet-id-top"><span><PawPrint size={16}/> MI COMPAÑERO</span><span className="hv-pet-id-verified"><CircleCheck size={14}/> Perfil</span></div><div className="hv-pet-id-main"><div className="hv-pet-id-avatar"><Dog size={25}/></div><div><strong>Mi mejor amigo</strong><small>Su salud, todo en un lugar</small></div></div><div className="hv-pet-id-progress"><span/><span/><span/><span/></div></div>
+        <div className="hv-pet-id-card"><div className="hv-pet-id-top"><span><PawPrint size={16}/> MI COMPAÑERO</span><span className="hv-pet-id-verified"><CircleCheck size={14}/> Perfil</span></div><div className="hv-pet-id-main"><div className="hv-pet-id-avatar"><Dog size={25}/></div><div><strong>Nuestros compañeros</strong><small>Su bienestar, nuestra alegría</small></div></div><div className="hv-pet-id-progress"><span/><span/><span/><span/></div></div>
         <div className="hv-stage-orbit-star a">✦</div><div className="hv-stage-orbit-star b">✧</div>
       </div>
     </div></section>
