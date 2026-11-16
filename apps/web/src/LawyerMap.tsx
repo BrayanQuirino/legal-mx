@@ -25,19 +25,18 @@ const DEFAULT_CENTER: Coordinates = MAP_CENTERS.cdmx;
 const DEFAULT_RADIUS_KM = 20;
 
 function lawyerPin(remoteOnly: boolean, near: boolean): L.DivIcon {
-  const color = remoteOnly ? "#197d77" : "#e17d65";
-  const svg = `<svg width="38" height="50" viewBox="0 0 38 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M19 2C9.7 2 2.5 9.6 2.5 18.8c0 12.8 16.5 28.7 16.5 28.7s16.5-15.9 16.5-28.7C35.5 9.6 28.3 2 19 2Z" fill="${color}" stroke="white" stroke-width="2.8"/>
-  <circle cx="19" cy="18.5" r="12" fill="white" fill-opacity=".12"/>
-  <g fill="#ffffff" stroke="none">
-    <ellipse cx="14" cy="14" rx="2.2" ry="3.1" transform="rotate(-20 14 14)"/>
-    <ellipse cx="20" cy="12.7" rx="2.2" ry="3.1"/>
-    <ellipse cx="26" cy="14.5" rx="2.2" ry="3.1" transform="rotate(20 26 14.5)"/>
-    <ellipse cx="10.7" cy="20" rx="2.0" ry="2.9" transform="rotate(-30 10.7 20)"/>
-    <path d="M12.5 27.5c-.2-3.4 3-8.7 6.5-8.7 3.8 0 7.2 5.2 6.8 8.5-.3 2.1-2 2.7-3.8 2.2-1.4-.4-2.6-1.1-4.1-1.1-1.6 0-2.8.8-4 1.1-1.8.4-3.1-.4-3.4-2Z"/>
-  </g>
-  <circle cx="19" cy="46.2" r="1.4" fill="white"/></svg>`;
-  return L.divIcon({className: "huellavet-pin-container " + (near ? "inside-search" : "outside-search"), html: svg, iconSize: [38,50], iconAnchor: [19,49], popupAnchor: [0,-44]});
+  // El mismo símbolo de huella de HuellaVet, sobre la paleta oficial de marca.
+  const color = remoteOnly ? "#BCA8FF" : "#7447EB";
+  const opacity = near ? "1" : ".65";
+  const svg = `<svg width="42" height="52" viewBox="0 0 42 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M21 1.5C10.9 1.5 3 9.5 3 19.3 3 33.1 21 50 21 50S39 33.1 39 19.3C39 9.5 31.1 1.5 21 1.5Z" fill="${color}" fill-opacity="${opacity}" stroke="#fff" stroke-width="2.7"/>
+    <g transform="translate(7 6) scale(1.14)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/>
+      <path d="M9 10a5 5 0 0 0-5 5c0 2.4 1.7 4.1 4 4.1 1.9 0 2.5-.9 4-.9s2.1.9 4 .9c2.3 0 4-1.7 4-4.1a5 5 0 0 0-5-5 5 5 0 0 0-6 0Z"/>
+      <circle cx="4" cy="8" r="2"/>
+    </g>
+  </svg>`;
+  return L.divIcon({ className:"huellavet-pin-container " + (near ? "inside-search" : "outside-search"), html:svg, iconSize:[42,52], iconAnchor:[21,51], popupAnchor:[0,-47] });
 }
 
 /**
@@ -90,15 +89,15 @@ export function LawyerMap({ profiles, onSelect }: Props) {
 
     const circle = L.circle([center.latitude, center.longitude], {
       radius: radiusKm * 1000,
-      color: "#24877f",
+      color: "#7447EB",
       weight: 2,
-      fillColor: "#9adbd2",
+      fillColor: "#BCA8FF",
       fillOpacity: .11,
       interactive: false
     });
     circle.addTo(layer);
     L.circleMarker([center.latitude, center.longitude], {
-      radius: 7, weight: 3, color: "#fff", fillColor: "#14796f", fillOpacity: 1,
+      radius: 7, weight: 3, color: "#fff", fillColor: "#7447EB", fillOpacity: 1,
       interactive: false
     }).addTo(layer);
 
@@ -169,7 +168,7 @@ export function LawyerMap({ profiles, onSelect }: Props) {
       </aside>
       <div className="lawyer-map-main">
         <div ref={elementRef} className="lawyer-leaflet-map" role="region" aria-label="Mapa interactivo con radio y veterinarios ficticios"/>
-        <p className="lawyer-map-footnote">Pines verde menta: orientación en línea · Pines coral: atención en clínica. © OpenStreetMap contributors. Sin GPS ni API key.</p>
+        <p className="lawyer-map-footnote">Huellas lavanda: orientación en línea · Huellas moradas: atención presencial. © OpenStreetMap contributors. Ubicaciones ficticias; sin GPS ni API key.</p>
       </div>
     </div>
   </div>;
