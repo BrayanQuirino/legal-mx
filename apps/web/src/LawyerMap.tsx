@@ -45,6 +45,7 @@ function lawyerPin(remoteOnly: boolean, near: boolean): L.DivIcon {
 export function LawyerMap({ profiles, onSelect }: Props) {
   const [center, setCenter] = useState<Coordinates>(DEFAULT_CENTER);
   const [radiusKm, setRadiusKm] = useState(DEFAULT_RADIUS_KM);
+  const [mapReady, setMapReady] = useState(false);
   const elementRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.LayerGroup | null>(null);
@@ -57,38 +58,61 @@ export function LawyerMap({ profiles, onSelect }: Props) {
 
   const outsideCount = profiles.filter(profile => profile.geo?.synthetic).length - nearbyProfiles.length;
 
+  // Initialize after layout. An exception in the map engine should never unmount
+  // the directory or hide the map; delayed initialization is retried if needed.
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element || mapRef.current) return;
-    const map = L.map(element, { scrollWheelZoom: true, zoomControl: true, maxZoom: 18 })
-      .setView([DEFAULT_CENTER.latitude, DEFAULT_CENTER.longitude], 10);
-    mapRef.current = map;
-    // Public raster tiles: if the primary host fails, use a second public OSM-based source.
-    // No API keys, no GPS or geolocation data is required.
-    const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>';
-    const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19, attribution
-    }).addTo(map);
-    let tileErrors = 0;
-    let fallbackEnabled = false;
-    tiles.on("tileerror", () => {
-      tileErrors += 1;
-      if (tileErrors < 2 || fallbackEnabled) return;
-      fallbackEnabled = true;
-      map.removeLayer(tiles);
-      L.tileLayer("https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: attribution + ' &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
-      }).addTo(map);
-    });
-    layerRef.current = L.layerGroup().addTo(map);
-    const handleClick = (event: L.LeafletMouseEvent) => {
-      setCenter({ latitude: event.latlng.lat, longitude: event.latlng.lng });
+    let disposed = false;
+    let frame = 0;
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
+    let attempts = 0;
+    const initialize = () => {
+      const element = elementRef.current;
+      if (disposed || !element || mapRef.current) return;
+      try {
+        const map = L.map(element, {
+          scrollWheelZoom: true,
+          zoomControl: true,
+          maxZoom: 18
+        }).setView([DEFAULT_CENTER.latitude, DEFAULT_CENTER.longitude], 10);
+        mapRef.current = map;
+        const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>';
+        const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19, attribution
+        }).addTo(map);
+        let tileErrors = 0;
+        let fallbackEnabled = false;
+        tiles.on("tileerror", () => {
+          tileErrors++;
+          if (tileErrors < 2 || fallbackEnabled || disposed) return;
+          fallbackEnabled = true;
+          map.removeLayer(tiles);
+          L.tileLayer("https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: attribution + ' &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
+          }).addTo(map);
+        });
+        layerRef.current = L.layerGroup().addTo(map);
+        map.on("click", (event: L.LeafletMouseEvent) => {
+          setCenter({ latitude: event.latlng.lat, longitude: event.latlng.lng });
+        });
+        map.invalidateSize();
+        setMapReady(true);
+      } catch (error) {
+        console.error("HuellaVet: map initialization issue", error);
+        try { mapRef.current?.remove(); } catch { /* avoid recursive errors */ }
+        mapRef.current = null;
+        layerRef.current = null;
+        if (attempts++ < 2 && !disposed) {
+          retryTimer = setTimeout(initialize, 160);
+        }
+      }
     };
-    map.on("click", handleClick);
+    frame = window.requestAnimationFrame(initialize);
     return () => {
-      map.off("click", handleClick);
-      map.remove();
+      disposed = true;
+      window.cancelAnimationFrame(frame);
+      if (retryTimer !== undefined) clearTimeout(retryTimer);
+      try { mapRef.current?.remove(); } catch (error) { console.warn("Map cleanup", error); }
       mapRef.current = null;
       layerRef.current = null;
     };
@@ -98,6 +122,7 @@ export function LawyerMap({ profiles, onSelect }: Props) {
     const map = mapRef.current;
     const layer = layerRef.current;
     if (!map || !layer) return;
+    try {
     layer.clearLayers();
 
     const circle = L.circle([center.latitude, center.longitude], {
@@ -144,15 +169,20 @@ export function LawyerMap({ profiles, onSelect }: Props) {
 
     // Rebuild markers without overriding any zoom or pan set by the visitor.
     map.invalidateSize();
-  }, [center, radiusKm, profiles]);
+    } catch (error) {
+      console.error("HuellaVet: map layer update issue", error);
+    }
+  }, [center, radiusKm, profiles, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
     // Changing the radius or center should frame the requested search area.
-    const area = L.circle([center.latitude, center.longitude], { radius: radiusKm * 1000 });
-    map.fitBounds(area.getBounds(), { padding: [24, 24], animate: true, maxZoom: 15 });
-  }, [center, radiusKm]);
+    try {
+      const area = L.circle([center.latitude, center.longitude], { radius: radiusKm * 1000 });
+      map.fitBounds(area.getBounds(), { padding: [24, 24], animate: mapReady, maxZoom: 15 });
+    } catch (error) { console.error("HuellaVet: map fit issue", error); }
+  }, [center, radiusKm, mapReady]);
 
   const reset = () => { setCenter(DEFAULT_CENTER); setRadiusKm(DEFAULT_RADIUS_KM); };
   return <div className="lawyer-map-wrap">
