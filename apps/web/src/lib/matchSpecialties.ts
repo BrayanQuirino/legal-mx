@@ -3,7 +3,7 @@ export function normalizeSearch(value:string):string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9ñ\s]/g," ").replace(/\s+/g," ").trim();
 }
 const aliases:Record<string,string[]>={
- medicina_general:["vacuna","vacunacion","desparasitacion","chequeo","consulta","perro","gato","cachorro","revision","bienestar","prevencion","veterinario"],
+ medicina_general:["vacuna","vacunacion","desparasitacion","chequeo","consulta","cachorro","revision","bienestar","prevencion","veterinario"],
  dermatologia:["comezon","picazon","piel","alergia","pulgas","dermatitis","pelaje","otitis"],
  cirugia:["operacion","esterilizacion","castracion","cirugia","hernia","procedimiento"],
  urgencias:["urgencia","emergencia","accidente","herida","intoxicacion","vomito","diarrea","sangrado","no respira"],
