@@ -3,6 +3,7 @@ import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, CircleCheck, Dog, 
 import { Portal } from "./Portal";
 import { DemoStoreProvider } from "./DemoStore";
 import { DirectoryPreview } from "./DirectoryPreview";
+import { DirectoryErrorBoundary } from "./DirectoryErrorBoundary";
 type Region="Todas las ubicaciones"|"Ciudad de México"|"Estado de México";
 const services=[
  {id:"consultas",name:"Consulta veterinaria",description:"Atención profesional, cercana y con cariño.",search:"consulta",Icon:Stethoscope},
@@ -36,7 +37,7 @@ export function App(){
     <button className="nav-cta" type="button" onClick={portal}>{portalOpen?"Cerrar sesión":"Iniciar sesión"} <ArrowRight size={16}/></button>
     <button className="mobile-menu" type="button" onClick={()=>setMenuOpen(v=>!v)} aria-label="Abrir o cerrar menú">{menuOpen?<X/>:<Menu/>}</button>
   </div></header>
-  {portalOpen?<Portal onBack={home}/> : directoryOpen?<DirectoryPreview initialQuery={query} initialRegion={region==="Ciudad de México"?"CDMX":region==="Estado de México"?"EDOMEX":""} onClose={home}/> :
+  {portalOpen?<Portal onBack={home}/> : directoryOpen?<DirectoryErrorBoundary scope="directory" onFallback={home}><DirectoryPreview initialQuery={query} initialRegion={region==="Ciudad de México"?"CDMX":region==="Estado de México"?"EDOMEX":""} onClose={home}/></DirectoryErrorBoundary> :
   <main className="hv-home">
     <section id="inicio" className="hero"><div className="container hero-grid">
       <div className="hero-content">
