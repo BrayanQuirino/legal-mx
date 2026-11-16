@@ -1,4 +1,4 @@
-import lawyers from "../../../../data/fixtures/lawyers.synthetic.json";
+import lawyers from "../../../../data/fixtures/veterinarians.synthetic.json";
 export type DemoLawyer = (typeof lawyers.records)[number];
 export type Slot = { date: string; day: string; hour: string; key: string };
 const localDate = new Intl.DateTimeFormat("en-CA", {timeZone:"America/Mexico_City", year:"numeric",month:"2-digit",day:"2-digit"});
@@ -25,7 +25,7 @@ export function makeDemoSlots(lawyer: DemoLawyer, horizonDays=21): Slot[] {
 }
 export const demoLawyers = lawyers.records.filter(l=>l.demo_booking_enabled);
 
-/** 24 visible grid rows, including hours outside the lawyer's working day. */
+/** 24 visible grid rows, including hours outside the veterinarian's working day. */
 export const DAY_HOURS = Array.from({length:24},(_,i)=>String(i).padStart(2,"0")+":00");
 export function weekdayUtc(date:string):number{return new Date(date+"T12:00:00Z").getUTCDay();}
 export function upcomingWeekStart(reference=getMexicoToday()):string {
