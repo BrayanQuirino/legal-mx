@@ -1,4 +1,4 @@
-import { PawPrint, Building2, CheckCircle2, Clock3, MapPin, ShieldAlert, Video } from "lucide-react";
+import { Building2, CheckCircle2, Clock3, MapPin, ShieldAlert, Video } from "lucide-react";
 import { useDemoStore, type Mode } from "./DemoStore";
 const DAYS=[["L",1],["M",2],["X",3],["J",4],["V",5],["S",6],["D",0]] as const;
 const PRICE_PRESETS=[350,500,750,1000,1500];
