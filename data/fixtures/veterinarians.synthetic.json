@@ -233,7 +233,7 @@
       ],
       "municipality": "Álvaro Obregón",
       "consultation_modes": [
-        "online"
+        "presencial"
       ],
       "years_experience_demo": 11,
       "consultation_price_mxn_demo": 550,
@@ -246,7 +246,7 @@
       "geo": {
         "latitude": 19.35975,
         "longitude": -99.2287,
-        "kind": "simulated_service_area",
+        "kind": "simulated_office_area",
         "approximate": true,
         "synthetic": true,
         "display_label": "Zona ilustrativa · Álvaro Obregón",
@@ -285,7 +285,7 @@
         "Consulta general",
         "Vacunación y prevención"
       ],
-      "clinic_name": null
+      "clinic_name": "Centro Vida Animal"
     },
     {
       "id": "demo-vet-005",
@@ -324,30 +324,11 @@
         "precision": "municipality_demo"
       },
       "demo_review": {
-        "state": "approved_simulation",
-        "simulation_only": true,
-        "identity_check": "passed_demo",
-        "professional_license_check": "passed_demo_only",
-        "reviewer": "AUTOMATED_FIXTURE_ONLY",
-        "reviewed_at_demo": "2026-11-12",
-        "source_verification_real": false,
-        "case_id": "POC-VET-005"
+        "state": "not_reviewed",
+        "simulation_only": true
       },
-      "demo_booking_enabled": true,
-      "demo_schedule": {
-        "timezone": "America/Mexico_City",
-        "duration_minutes": 60,
-        "weekdays": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "start_hour": 9,
-        "end_hour": 17,
-        "booking_mode": "simulation_only"
-      },
+      "demo_booking_enabled": false,
+      "demo_schedule": null,
       "species_treated": [
         "perros",
         "gatos"
@@ -395,11 +376,29 @@
         "precision": "municipality_demo"
       },
       "demo_review": {
-        "state": "not_reviewed",
-        "simulation_only": true
+        "state": "approved_simulation",
+        "simulation_only": true,
+        "identity_check": "passed_demo",
+        "professional_license_check": "passed_demo_only",
+        "source_verification_real": false,
+        "case_id": "POC-VET-006",
+        "reviewer": "AUTOMATED_FIXTURE_ONLY"
       },
-      "demo_booking_enabled": false,
-      "demo_schedule": null,
+      "demo_booking_enabled": true,
+      "demo_schedule": {
+        "timezone": "America/Mexico_City",
+        "duration_minutes": 60,
+        "weekdays": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "start_hour": 9,
+        "end_hour": 18,
+        "booking_mode": "simulation_only"
+      },
       "species_treated": [
         "perros",
         "gatos",
