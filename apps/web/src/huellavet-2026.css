@@ -172,7 +172,7 @@ footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
 .directory-preview .hv-filter-dock .directory-fieldset input,.directory-preview .hv-filter-dock input[type=checkbox]{accent-color:#7447eb}
 .directory-preview .hv-filter-dock .directory-demo-ready{font-size:11px;line-height:1.5}
 .directory-preview .hv-filter-dock .directory-field input[type=range]{accent-color:#7447eb}
-.directory-preview .hv-filter-dock .directory-field select,.directory-preview .hv-filter-dock .directory-search,.directory-preview .hv-filter-dock .directory-field input:not([type=range]){width:100%;min-width:0;border:1px solid #e7defa;border-radius:15px;background:#fdfbff;color:#33254d;min-height:44px;padding:11px 13px;box-shadow:none;font:600 12px 'DM Sans',sans-serif}
+.directory-preview .hv-filter-dock .directory-field select,.directory-preview .hv-filter-dock .directory-search,.directory-preview .hv-filter-dock .directory-field input:not([type=range]):not([type=radio]):not([type=checkbox]){width:100%;min-width:0;border:1px solid #e7defa;border-radius:15px;background:#fdfbff;color:#33254d;min-height:44px;padding:11px 13px;box-shadow:none;font:600 12px 'DM Sans',sans-serif}
 .directory-preview .hv-filter-dock .directory-field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:35px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%237447eb' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .directory-preview .hv-filter-dock .directory-search{display:flex;align-items:center;gap:7px;padding:0 11px}
 .directory-preview .hv-filter-dock .directory-search input{border:0!important;background:transparent!important;padding:10px 0!important;min-height:42px;outline:none;box-shadow:none!important;font-weight:500}
@@ -225,3 +225,7 @@ footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
 @keyframes hv-zoom-paw{from{transform:scale(.35) rotate(-18deg);opacity:0}to{transform:scale(1.12);opacity:1}}
 @keyframes hv-discovery-in{from{opacity:.55;transform:scale(.955) translateY(25px)}to{opacity:1;transform:scale(1) translateY(0)}}
 @media(prefers-reduced-motion:reduce){.hv-shell-zoom .hv-home .hero-content,.hv-shell-zoom .hv-home .hv-hero-stage,.hv-zoom-transition,.hv-zoom-transition-paw,.directory-preview{animation:none!important}}
+
+/* Keep radio and checkbox inputs compact within the premium filter rail. */
+.directory-preview .hv-filter-dock input[type=radio],.directory-preview .hv-filter-dock input[type=checkbox]{width:15px;height:15px;min-height:0;flex:0 0 15px;margin:0;accent-color:#7447eb}
+.directory-preview .hv-filter-dock .directory-fieldset label{display:flex;align-items:center;gap:9px}
