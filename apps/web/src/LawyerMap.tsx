@@ -63,10 +63,24 @@ export function LawyerMap({ profiles, onSelect }: Props) {
     const map = L.map(element, { scrollWheelZoom: true, zoomControl: true, maxZoom: 18 })
       .setView([DEFAULT_CENTER.latitude, DEFAULT_CENTER.longitude], 10);
     mapRef.current = map;
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'
+    // Public raster tiles: if the primary host fails, use a second public OSM-based source.
+    // No API keys, no GPS or geolocation data is required.
+    const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>';
+    const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19, attribution
     }).addTo(map);
+    let tileErrors = 0;
+    let fallbackEnabled = false;
+    tiles.on("tileerror", () => {
+      tileErrors += 1;
+      if (tileErrors < 2 || fallbackEnabled) return;
+      fallbackEnabled = true;
+      map.removeLayer(tiles);
+      L.tileLayer("https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: attribution + ' &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>'
+      }).addTo(map);
+    });
     layerRef.current = L.layerGroup().addTo(map);
     const handleClick = (event: L.LeafletMouseEvent) => {
       setCenter({ latitude: event.latlng.lat, longitude: event.latlng.lng });
