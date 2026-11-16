@@ -25,13 +25,19 @@ const DEFAULT_CENTER: Coordinates = MAP_CENTERS.cdmx;
 const DEFAULT_RADIUS_KM = 20;
 
 function lawyerPin(remoteOnly: boolean, near: boolean): L.DivIcon {
-  const color = remoteOnly ? "#24536d" : "#ad8850";
+  const color = remoteOnly ? "#197d77" : "#e17d65";
   const svg = `<svg width="38" height="50" viewBox="0 0 38 50" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <path d="M19 2C9.7 2 2.5 9.6 2.5 18.8c0 12.8 16.5 28.7 16.5 28.7s16.5-15.9 16.5-28.7C35.5 9.6 28.3 2 19 2Z" fill="${color}" stroke="white" stroke-width="2.8"/>
   <circle cx="19" cy="18.5" r="12" fill="white" fill-opacity=".12"/>
-  <g fill="none" stroke="white" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11v16M11 15.5h16M11 18l-3 6h6l-3-6Zm16 0-3 6h6l-3-6ZM15 27.5h8"/></g>
+  <g fill="#ffffff" stroke="none">
+    <ellipse cx="14" cy="14" rx="2.2" ry="3.1" transform="rotate(-20 14 14)"/>
+    <ellipse cx="20" cy="12.7" rx="2.2" ry="3.1"/>
+    <ellipse cx="26" cy="14.5" rx="2.2" ry="3.1" transform="rotate(20 26 14.5)"/>
+    <ellipse cx="10.7" cy="20" rx="2.0" ry="2.9" transform="rotate(-30 10.7 20)"/>
+    <path d="M12.5 27.5c-.2-3.4 3-8.7 6.5-8.7 3.8 0 7.2 5.2 6.8 8.5-.3 2.1-2 2.7-3.8 2.2-1.4-.4-2.6-1.1-4.1-1.1-1.6 0-2.8.8-4 1.1-1.8.4-3.1-.4-3.4-2Z"/>
+  </g>
   <circle cx="19" cy="46.2" r="1.4" fill="white"/></svg>`;
-  return L.divIcon({className: "legal-mx-pin-container " + (near ? "inside-search" : "outside-search"), html: svg, iconSize: [38,50], iconAnchor: [19,49], popupAnchor: [0,-44]});
+  return L.divIcon({className: "huellavet-pin-container " + (near ? "inside-search" : "outside-search"), html: svg, iconSize: [38,50], iconAnchor: [19,49], popupAnchor: [0,-44]});
 }
 
 /**
@@ -84,15 +90,15 @@ export function LawyerMap({ profiles, onSelect }: Props) {
 
     const circle = L.circle([center.latitude, center.longitude], {
       radius: radiusKm * 1000,
-      color: "#1d6285",
+      color: "#24877f",
       weight: 2,
-      fillColor: "#5aa1c2",
+      fillColor: "#9adbd2",
       fillOpacity: .11,
       interactive: false
     });
     circle.addTo(layer);
     L.circleMarker([center.latitude, center.longitude], {
-      radius: 7, weight: 3, color: "#fff", fillColor: "#123e55", fillOpacity: 1,
+      radius: 7, weight: 3, color: "#fff", fillColor: "#14796f", fillOpacity: 1,
       interactive: false
     }).addTo(layer);
 
@@ -115,10 +121,10 @@ export function LawyerMap({ profiles, onSelect }: Props) {
       const distance = document.createElement("p");
       distance.textContent = `${distanceKm(profile.geo, center).toFixed(1)} km del centro · ${profile.municipality}`;
       const label = document.createElement("small");
-      label.textContent = (inRadius ? "DENTRO DEL RADIO · " : "FUERA DEL RADIO · ") + (remoteOnly ? "ZONA REMOTA FICTICIA" : "DESPACHO FICTICIO");
+      label.textContent = (inRadius ? "DENTRO DEL RADIO · " : "FUERA DEL RADIO · ") + (remoteOnly ? "ZONA REMOTA FICTICIA" : "CLÍNICA FICTICIA");
       const button = document.createElement("button");
       button.type = "button";
-      button.textContent = "Ver ficha de prueba";
+      button.textContent = "Ver perfil veterinario";
       button.addEventListener("click", () => selectRef.current(profile.id));
       popup.append(title, distance, label, button);
       marker.bindPopup(popup).addTo(layer);
@@ -132,7 +138,7 @@ export function LawyerMap({ profiles, onSelect }: Props) {
 
   const reset = () => { setCenter(DEFAULT_CENTER); setRadiusKm(DEFAULT_RADIUS_KM); };
   return <div className="lawyer-map-wrap">
-    <div className="lawyer-map-caution" role="note">Mapa de simulación: los marcadores y sus distancias son ficticios; no corresponden a domicilios ni abogados reales.</div>
+    <div className="lawyer-map-caution" role="note">Mapa ilustrativo: los marcadores y distancias son de prueba y no corresponden a domicilios de clínicas reales.</div>
     <div className="lawyer-map-grid">
       <aside className="lawyer-map-sidebar" aria-label="Configurar radio de búsqueda">
         <div className="map-sidebar-title"><SlidersHorizontal size={18}/><strong>Área de búsqueda</strong></div>
@@ -156,14 +162,14 @@ export function LawyerMap({ profiles, onSelect }: Props) {
         <p className="map-center-help"><LocateFixed size={15}/> Haz clic sobre el mapa para mover el centro y buscar en otra zona.</p>
         <div className="map-sidebar-divider"/>
         <div className="map-result-stat" role="status" aria-live="polite">
-          <strong>{nearbyProfiles.length}</strong><span>abogados ficticios dentro de {radiusKm} km</span><small>{outsideCount} fuera del radio (visibles al explorar el mapa)</small>
+          <strong>{nearbyProfiles.length}</strong><span>veterinarios ficticios dentro de {radiusKm} km</span><small>{outsideCount} fuera del radio (visibles al explorar el mapa)</small>
         </div>
         <p className="map-filter-explanation">El radio destaca profesionales cercanos, pero no oculta a los demás que aparezcan en el mapa. Los otros filtros siguen activos.</p>
         <button className="map-reset" type="button" onClick={reset}><RotateCcw size={15}/> Restablecer radio y centro</button>
       </aside>
       <div className="lawyer-map-main">
-        <div ref={elementRef} className="lawyer-leaflet-map" role="region" aria-label="Mapa interactivo con radio y abogados ficticios"/>
-        <p className="lawyer-map-footnote">Pines azul marino: atención remota · Pines dorados: atención presencial. © OpenStreetMap contributors. Sin GPS ni API key.</p>
+        <div ref={elementRef} className="lawyer-leaflet-map" role="region" aria-label="Mapa interactivo con radio y veterinarios ficticios"/>
+        <p className="lawyer-map-footnote">Pines verde menta: orientación en línea · Pines coral: atención en clínica. © OpenStreetMap contributors. Sin GPS ni API key.</p>
       </div>
     </div>
   </div>;
