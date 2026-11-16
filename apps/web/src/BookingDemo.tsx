@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Building2, CalendarDays, CheckCircle2, Clock3, ShieldAlert, Video, X } from "lucide-react";
-import users from "../../../data/fixtures/users.synthetic.json";
+import users from "../../../data/fixtures/guardians.synthetic.json";
+import pets from "../../../data/fixtures/pets.synthetic.json";
+import { PawPrint } from "lucide-react";
 import { useDemoStore, type Mode } from "./DemoStore";
 import { DAY_HOURS, makeDemoSlots, upcomingWeekStart, weekDates, weekdayUtc, type DemoLawyer } from "./lib/scheduling";
 import "./booking-demo.css";
@@ -24,11 +26,14 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
   const profile = store.profiles[lawyer.id];
   const [modality, setModality] = useState<Mode>(profile.modes[0]);
   const [userId, setUserId] = useState(initialUserId);
+  const [petId,setPetId]=useState(pets.records.find(p=>p.guardian_id===initialUserId)?.id??"");
+  const [reason,setReason]=useState("Consulta general");
   const [week, setWeek] = useState(upcomingWeekStart);
   const [selected, setSelected] = useState<{ date: string; hour: string } | null>(null);
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState("");
   const days = useMemo(() => weekDates(week), [week]);
+  const myPets=pets.records.filter(p=>p.guardian_id===userId);
 
   // Show all explicitly enabled hours, including one-off exceptions outside
   // the normal timetable. Other days remain disabled, never bookable.
@@ -41,7 +46,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
   const selectedStillFree = selected !== null && hasFree(selected.date, selected.hour);
   const submit = () => {
     if (!selected || !selectedStillFree || !profile.modes.includes(modality)
-      || !store.book(lawyer.id, userId, selected.date, selected.hour, modality)) {
+      || !store.book(lawyer.id, userId, selected.date, selected.hour, modality,petId,reason)) {
       setError("Ese horario ya no está disponible. Selecciona otro.");
       setSelected(null);
       return;
@@ -59,19 +64,29 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
   return <div className="demo-book-backdrop" onMouseDown={e => { if (e.target === e.currentTarget) onClose(); }}>
     <section className="demo-book-modal demo-book-modal-weekly" role="dialog" aria-modal="true" aria-labelledby="book-title">
       <button type="button" className="demo-book-close" aria-label="Cerrar agenda" onClick={onClose}><X size={19} /></button>
-      <span className="demo-book-kicker">AGENDA SEMANAL · RESERVA DE DEMOSTRACIÓN</span>
-      <h2 id="book-title">Agendar con {lawyer.display_name}</h2>
-      <p className="demo-book-muted">Una columna por día y una fila por hora. Solo los horarios libres que el abogado habilitó se pueden seleccionar.</p>
-      <div className="demo-book-warning"><ShieldAlert size={18}/> Todos los perfiles, horarios y clientes son ficticios. No se realiza ninguna reserva, pago o verificación profesional real.</div>
+      <span className="demo-book-kicker">CITA VETERINARIA · AGENDA SEMANAL</span>
+      <h2 id="book-title">Agendar visita para tu mascota con {lawyer.display_name}</h2>
+      <p className="demo-book-muted">Una columna por día y una fila por hora. Selecciona una fecha disponible para la revisión de tu compañero.</p>
+      <div className="demo-book-warning"><ShieldAlert size={18}/> Los veterinarios, mascotas, tutores y horarios son ficticios. No se realiza ninguna reserva, pago ni verificación profesional real. La videollamada no sustituye una exploración clínica cuando es necesaria.</div>
       {confirmed ? <div className="demo-book-success" role="status">
         <CheckCircle2 size={32}/><h3>Solicitud guardada en esta sesión de prueba</h3>
         <p>{selected?.date} a las {selected?.hour} · {modality === "online" ? "Videollamada" : "Presencial"}. Quedó como pendiente en el panel del abogado. Se pierde al recargar la página.</p>
         <button className="demo-book-primary" type="button" onClick={onClose}>Cerrar</button>
       </div> : <>
         <div className="demo-book-fields">
-          <label className="book-demo-label">Cliente ficticio
-            <select value={userId} onChange={e => setUserId(e.target.value)}>
+          <label className="book-demo-label">Tutor de la mascota
+            <select value={userId} onChange={e => {setUserId(e.target.value);setPetId(pets.records.find(p=>p.guardian_id===e.target.value)?.id??"");}}>
               {users.records.map(u => <option value={u.id} key={u.id}>{u.display_name}</option>)}
+            </select>
+          </label>
+          <label className="book-demo-label"><span><PawPrint size={14}/> ¿Qué mascota atenderemos?</span>
+            <select value={petId} onChange={e=>setPetId(e.target.value)} required>
+              {myPets.map(p=><option key={p.id} value={p.id}>{p.name} · {p.species}</option>)}
+            </select>
+          </label>
+          <label className="book-demo-label">Motivo de la visita
+            <select value={reason} onChange={e=>setReason(e.target.value)}>
+              {["Consulta general","Vacunación","Desparasitación","Problema de piel","Revisión dental","Seguimiento","Otro motivo"].map(x=><option key={x}>{x}</option>)}
             </select>
           </label>
           <div className="demo-book-modality"><strong>Modalidad</strong><div className="demo-book-modes">
@@ -113,10 +128,10 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
           availableCount === 0 ? <p className="demo-book-empty">No quedan horarios libres esta semana. Utiliza la flecha para consultar la próxima.</p> : null}
         <div className="demo-book-selected">
           <div>{selected && selectedStillFree ? <><CalendarDays size={18}/><strong>{selected.date} · {selected.hour}</strong></> : <span>Selecciona una celda disponible del calendario</span>}</div>
-          <div><small>Consulta ficticia</small><strong>${profile.price.toLocaleString("es-MX")} MXN</strong></div>
+          <div><small>Consulta veterinaria de prueba</small><strong>${profile.price.toLocaleString("es-MX")} MXN</strong></div>
         </div>
         {error && <p role="alert" className="demo-book-error">{error}</p>}
-        <button type="button" className="demo-book-primary" disabled={!selectedStillFree} onClick={submit}>Solicitar cita ficticia</button>
+        <button type="button" className="demo-book-primary" disabled={!selectedStillFree} onClick={submit}>Solicitar cita de prueba</button>
       </>}
     </section>
   </div>;
