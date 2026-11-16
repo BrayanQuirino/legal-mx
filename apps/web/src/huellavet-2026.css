@@ -317,3 +317,30 @@ footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
   .directory-preview .directory-demo-warning,.directory-preview .hv-filter-dock,
   .directory-preview .directory-result-header{animation:none!important;will-change:auto}
 }
+
+/* Critical visibility guard: directory is a regular page, never a hidden transition layer. */
+.hv-shell{display:block!important;position:relative;min-height:100vh}
+.hv-shell > .directory-preview,
+.hv-shell main.directory-preview,
+main.directory-preview{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  z-index:1;
+  width:100%;
+  height:auto;
+  min-height:calc(100vh - 86px);
+  transform:none!important;
+  animation:none!important;
+}
+main.directory-preview > .container{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:relative!important;
+  width:min(1440px,calc(100% - 64px));
+  height:auto;
+  transform:none!important;
+}
+@media(max-width:790px){main.directory-preview > .container{width:calc(100% - 28px)}}
