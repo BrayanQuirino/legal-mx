@@ -1,5 +1,5 @@
 import { useMemo, useState, type FormEvent } from "react";
-import { ArrowRight, BadgeCheck, CalendarDays, Cat, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X } from "lucide-react";
+import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, CircleCheck, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, PawPrint, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X } from "lucide-react";
 import { matchSpecialties } from "./lib/matchSpecialties";
 import { Portal } from "./Portal";
 import { DemoStoreProvider } from "./DemoStore";
@@ -17,46 +17,63 @@ export function App(){
   <header className="site-header"><div className="container nav">
     <a className="brand" href="#inicio" onClick={home} aria-label="HuellaVet, inicio"><span className="brand-mark"><PawPrint size={23}/></span><span>huella<span className="brand-accent">vet</span><small>PET CARE, MADE SIMPLE</small></span></a>
     <nav className={menuOpen?"nav-links open":"nav-links"} aria-label="Navegación principal">
-      <a href="#especialidades" onClick={home}>Especialidades</a><button className="directory-nav-link" type="button" onClick={()=>directory()}>Veterinarios</button>
-      <a href="#como-funciona" onClick={home}>Cómo funciona</a><a href="#asistente" onClick={home}>Cuidados</a>
+      <a href="#especialidades" onClick={home}>Descubre</a><button className="directory-nav-link" type="button" onClick={()=>directory()}>Veterinarios</button>
+      <a href="#como-funciona" onClick={home}>Nuestra experiencia</a><a href="#asistente" onClick={home}>Cuidados</a>
       <button className="mobile-access" type="button" onClick={portal}>{portalOpen?"Cerrar sesión":"Iniciar sesión"}</button>
     </nav>
     <button className="nav-cta" type="button" onClick={portal}>{portalOpen?"Cerrar sesión":"Iniciar sesión"} <ArrowRight size={16}/></button>
     <button className="mobile-menu" type="button" onClick={()=>setMenuOpen(v=>!v)} aria-label="Abrir o cerrar menú">{menuOpen?<X/>:<Menu/>}</button>
   </div></header>
   {portalOpen?<Portal onBack={home}/> : directoryOpen?<DirectoryPreview initialQuery={query} initialRegion={region==="Ciudad de México"?"CDMX":region==="Estado de México"?"EDOMEX":""} onClose={home}/> :
-  <main>
+  <main className="hv-home">
     <section id="inicio" className="hero"><div className="container hero-grid">
       <div className="hero-content">
-        <div className="eyebrow"><span className="eyebrow-dot"/> EL FUTURO DEL BIENESTAR ANIMAL</div>
-        <h1>Su mundo es mejor <em>cuando están bien.</em></h1>
-        <p className="hero-description">Encuentra al veterinario ideal para tu mejor amigo. Explora especialidades, descubre perfiles y agenda su próxima visita en minutos.</p>
-        <form className="search-box" role="search" onSubmit={search}>
-          <label className="search-field"><Search size={20}/><span className="sr-only">Qué necesita tu mascota</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Vacunas, piel, chequeo, conejo…"/></label>
-          <label className="region-field"><MapPin size={18}/><span className="sr-only">Ubicación</span><select value={region} onChange={e=>setRegion(e.target.value as Region)}><option>Todas las ubicaciones</option><option>Ciudad de México</option><option>Estado de México</option></select><ChevronDown className="select-chevron" size={15}/></label>
-          <button type="submit">Encontrar veterinario <ArrowRight size={17}/></button>
-        </form>
+        <div className="eyebrow"><span className="eyebrow-dot"/> UNA NUEVA FORMA DE CUIDARLOS <span className="hv-eyebrow-star">✦</span></div>
+        <h1>Su felicidad empieza <em>con su salud.</em></h1>
+        <p className="hero-description">Un espacio creado para quienes son familia. Descubre veterinarios, cuida de cada etapa y organiza sus consultas de manera simple.</p>
+        <div className="hv-discovery-card">
+          <div className="hv-discovery-top"><span><PawPrint size={17}/> Empecemos con tu mascota</span><span className="hv-discovery-label">ENCUENTRA SU CUIDADO</span></div>
+          <div className="hv-species-picker" role="group" aria-label="Selecciona el tipo de mascota">
+            <button type="button" onClick={()=>directory("perro")}><Dog size={22}/><span>Perros</span><ArrowRight size={14}/></button>
+            <button type="button" onClick={()=>directory("gato")}><Cat size={22}/><span>Gatos</span><ArrowRight size={14}/></button>
+            <button type="button" onClick={()=>directory("conejo")}><Rabbit size={22}/><span>Otros</span><ArrowRight size={14}/></button>
+          </div>
+          <form className="hv-discovery-form" role="search" onSubmit={search}>
+            <label className="hv-discovery-input"><Search size={20}/><span className="sr-only">Qué necesita tu mascota</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="¿Qué necesita tu compañero?"/></label>
+            <label className="hv-discovery-region"><MapPin size={18}/><span className="sr-only">Ubicación</span><select value={region} onChange={e=>setRegion(e.target.value as Region)}><option>Todas las ubicaciones</option><option>Ciudad de México</option><option>Estado de México</option></select><ChevronDown className="select-chevron" size={14}/></label>
+            <button type="submit" className="hv-discovery-submit"><ArrowRight size={20}/><span className="sr-only">Encontrar veterinarios</span></button>
+          </form>
+        </div>
         <div className="example-searches"><span>Prueba con:</span>{["Vacunas","Mi gato tiene alergia","Revisión general"].map(x=><button type="button" key={x} onClick={()=>directory(x)}>{x}</button>)}</div>
         <div className="hero-footnote"><span className="hero-proof-icon"><BadgeCheck size={17}/></span> Una experiencia diseñada para cuidarlos <span className="dot-separator">✦</span> Desde tu celular o computadora</div>
       </div>
-      <div className="hero-art hero-art-premium" aria-label="Un perro golden retriever alegre, protagonista de HuellaVet">
-        <div className="premium-photo-orbit orbit-a"/>
-        <div className="premium-photo-orbit orbit-b"/>
-        <div className="premium-photo-frame">
-          <img className="premium-dog-photo" src="https://images.unsplash.com/photo-1638514891503-a9ef77a6039c?auto=format&fit=crop&w=1000&q=85" alt="Golden retriever sonriendo" loading="eager" fetchPriority="high"/>
-          <div className="premium-photo-sheen"/>
+      <div className="hero-art hv-hero-stage" aria-label="Un perrito alegre y una interfaz moderna de cuidado de mascotas">
+        <div className="hv-stage-glow"/>
+        <div className="hv-stage-grid"/>
+        <div className="hv-stage-round"/>
+        <div className="hv-stage-dog">
+          <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1100&q=85" alt="Golden retriever alegre" loading="eager" fetchPriority="high"/>
         </div>
-        <div className="premium-floating premium-floating-care"><div className="premium-floating-icon"><HeartPulse size={22}/></div><div><strong>Su salud, primero</strong><span>Más amor en cada consulta</span></div><span className="premium-check"><BadgeCheck size={18}/></span></div>
-        <div className="premium-floating premium-floating-visit"><div className="premium-floating-avatar"><PawPrint size={21}/></div><div><strong>¡Hora de cuidarme!</strong><span>Su próxima visita, sin estrés</span></div><CalendarDays size={20}/></div>
-        <div className="premium-mini-spark one">✦</div><div className="premium-mini-spark two">✳</div><div className="premium-mini-spark three">✦</div>
+        <div className="hv-stage-tag hv-stage-tag-upper"><span className="hv-stage-tag-icon"><Heart size={17} fill="currentColor"/></span><strong>Bienestar en cada etapa</strong></div>
+        <div className="hv-pet-id-card"><div className="hv-pet-id-top"><span><PawPrint size={16}/> MI COMPAÑERO</span><span className="hv-pet-id-verified"><CircleCheck size={14}/> Perfil</span></div><div className="hv-pet-id-main"><div className="hv-pet-id-avatar"><Dog size={25}/></div><div><strong>Mi mejor amigo</strong><small>Su salud, todo en un lugar</small></div></div><div className="hv-pet-id-progress"><span/><span/><span/><span/></div></div>
+        <div className="hv-stage-orbit-star a">✦</div><div className="hv-stage-orbit-star b">✧</div>
       </div>
     </div></section>
-    <section className="trust-strip"><div className="container trust-items"><span><PawPrint size={21}/> Perros, gatos y más compañeros</span><span><MapPin size={21}/> CDMX y Estado de México</span><span><CalendarDays size={21}/> Agenda veterinaria sencilla</span></div></section>
-    <section className="specialties-section" id="especialidades"><div className="container">
-      <div className="section-intro"><span className="section-label">ESPECIALIDADES Y SERVICIOS</span><h2>El cuidado que tu mascota <em>necesita.</em></h2><p>Desde una revisión de rutina hasta una valoración especializada. Explora nuestros perfiles de prueba.</p></div>
-      <div className="specialty-grid">{matches.map((item,i)=>{const Icon=icons[i%icons.length];return <article key={item.id} className="specialty-card"><span className="specialty-icon"><Icon size={25}/></span><span className="specialty-number">0{i+1}</span><h3>{item.name}</h3><p>{item.description}</p><button className="directory-specialty-button" type="button" onClick={()=>directory(item.name)}>Ver veterinarios <ArrowRight size={15}/></button></article>})}</div>
+    <section className="hv-product-strip"><div className="container hv-product-strip-inner">
+      <div><span className="hv-strip-icon"><HeartPulse size={22}/></span><strong>Cuidar es amar</strong><small>Atención enfocada en su bienestar</small></div>
+      <div><span className="hv-strip-icon"><CalendarDays size={22}/></span><strong>Agenda sin estrés</strong><small>Tu tiempo y el suyo importan</small></div>
+      <div><span className="hv-strip-icon"><Activity size={22}/></span><strong>Todo en un lugar</strong><small>Sus visitas, más organizadas</small></div>
     </div></section>
-    <section id="como-funciona" className="how-section"><div className="container"><div className="section-intro"><span className="section-label">FÁCIL PARA TI Y TU MASCOTA</span><h2>Su próxima consulta, <em>sin complicaciones.</em></h2></div><div className="steps"><div><span className="step-num">01</span><Search/><h3>Encuentra un veterinario</h3><p>Busca por especialidad, especie o ubicación.</p></div><div><span className="step-num">02</span><PawPrint/><h3>Elige a tu mascota</h3><p>Selecciona su perfil y explica el motivo de la visita.</p></div><div><span className="step-num">03</span><CalendarDays/><h3>Agenda su visita</h3><p>Selecciona un horario y envía la solicitud de cita.</p></div></div></div></section>
+    <section className="hv-explore" id="especialidades"><div className="container">
+      <div className="hv-explore-intro"><div><span className="section-label">EXPLORA SU UNIVERSO DE SALUD</span><h2>Cada huellita es <em>única.</em></h2><p>Un lugar para encontrar justo el tipo de atención que tu compañero necesita.</p></div><button type="button" className="hv-view-all" onClick={()=>directory()}><span>Explorar todos los veterinarios</span><ArrowRight size={18}/></button></div>
+      <div className="hv-service-bento">
+        {matches.map((item,i)=>{const Icon=icons[i%icons.length];return <button key={item.id} type="button" className={"hv-service-tile hv-service-"+i} onClick={()=>directory(item.name)}>
+          <span className="hv-service-tile-top"><span className="hv-service-icon"><Icon size={i===0?33:24} strokeWidth={1.8}/></span><span className="hv-service-index">0{i+1}</span></span>
+          <span className="hv-service-copy"><strong>{item.name}</strong><small>{item.description}</small></span><span className="hv-service-arrow"><ArrowRight size={19}/></span>
+        </button>})}
+      </div>
+    </div></section>
+    <section id="como-funciona" className="how-section hv-how-section"><div className="container"><div className="section-intro"><span className="section-label">FÁCIL PARA TI Y TU MASCOTA</span><h2>Su próxima consulta, <em>sin complicaciones.</em></h2></div><div className="steps"><div><span className="step-num">01</span><Search/><h3>Encuentra un veterinario</h3><p>Busca por especialidad, especie o ubicación.</p></div><div><span className="step-num">02</span><PawPrint/><h3>Elige a tu mascota</h3><p>Selecciona su perfil y explica el motivo de la visita.</p></div><div><span className="step-num">03</span><CalendarDays/><h3>Agenda su visita</h3><p>Selecciona un horario y envía la solicitud de cita.</p></div></div></div></section>
     <section id="asistente" className="assistant-section"><div className="container assistant-panel"><div className="assistant-icon"><Sparkles size={28}/></div><div><span className="section-label">PRÓXIMAMENTE</span><h2>Toda su salud en un solo lugar.</h2><p>Un futuro con perfiles de mascotas, recordatorios de vacunas y seguimientos más fáciles. Ante una urgencia, busca atención veterinaria presencial inmediata.</p></div><span className="assistant-status"><MessageCircle size={17}/> En desarrollo</span></div></section>
     <div className="vet-demo-disclosure container" role="note"><ShieldCheck size={19}/><span>Vista previa de HuellaVet: los veterinarios, mascotas, clínicas, ubicaciones y citas son ficticios. No hay profesionales verificados ni reservas reales.</span></div>
   </main>}
