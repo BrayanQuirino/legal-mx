@@ -128,12 +128,17 @@ export function LawyerMap({ profiles, onSelect }: Props) {
       marker.bindPopup(popup).addTo(layer);
     });
 
-    // A radius circle drives the zoom, independently of the number of matches.
-    // Widening the radius always expands the visible search area.
+    // Rebuild markers without overriding any zoom or pan set by the visitor.
     map.invalidateSize();
-    // Only recenter when the search radius or its center changes, not on every filter result.
-    map.fitBounds(circle.getBounds(), { padding: [24, 24], animate: true, maxZoom: 15 });
   }, [center, radiusKm, profiles]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    // Changing the radius or center should frame the requested search area.
+    const area = L.circle([center.latitude, center.longitude], { radius: radiusKm * 1000 });
+    map.fitBounds(area.getBounds(), { padding: [24, 24], animate: true, maxZoom: 15 });
+  }, [center, radiusKm]);
 
   const reset = () => { setCenter(DEFAULT_CENTER); setRadiusKm(DEFAULT_RADIUS_KM); };
   return <div className="lawyer-map-wrap">
