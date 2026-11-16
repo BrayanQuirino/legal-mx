@@ -3,7 +3,7 @@ import { LayoutGrid, Map as MapIcon } from "lucide-react";
 import { LawyerMap } from "./LawyerMap";
 import { BookingDemo } from "./BookingDemo";
 import { useDemoStore } from "./DemoStore";
-import { ArrowLeft, ArrowRight, Building2, Filter, Stethoscope, PawPrint, MapPin, Search, ShieldAlert, SlidersHorizontal, UserRound, Video, X, CalendarDays } from "lucide-react";
+import { ArrowLeft, ArrowRight, Building2, Filter, Stethoscope, PawPrint, MapPin, Search, ShieldAlert, SlidersHorizontal, Video, X, CalendarDays } from "lucide-react";
 import sample from "../../../data/fixtures/veterinarians.synthetic.json";
 import { specialties } from "./data/specialties";
 import { matchSpecialties } from "./lib/matchSpecialties";
@@ -21,7 +21,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
   const initialIsVetQuery = Boolean(initialQuery && matchedSpecialty);
   const store=useDemoStore();
   const [term, setTerm] = useState(initialIsVetQuery ? "" : initialQuery);
-  const [specialty, setSpecialty] = useState(initialIsLegalQuery ? matchedSpecialty : "all");
+  const [specialty, setSpecialty] = useState(initialIsVetQuery ? matchedSpecialty : "all");
   const [region, setRegion] = useState(initialRegion || "all");
   const [mode, setMode] = useState<Mode>("all");
   const [species,setSpecies]=useState("all");
