@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState, useEffect, type PointerEvent as ReactPointerEvent } from "react";
 import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Lock, Unlock, Users, CheckSquare, Square, X } from "lucide-react";
-import users from "../../../data/fixtures/users.synthetic.json";
+import users from "../../../data/fixtures/guardians.synthetic.json";
+import pets from "../../../data/fixtures/pets.synthetic.json";
 import { latestRule } from "./lib/availabilityPolicy";
 import { rectangularSelection, type GridSelectionPoint } from "./lib/calendarSelection";
 import { useDemoStore } from "./DemoStore";
@@ -172,7 +173,7 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
   };
   const canEdit=(date:string)=>date>getMexicoToday();
   return <section className="weekly-panel" aria-label="Agenda semanal con siete días">
-    <div className="weekly-topbar"><div><span className="section-label">AGENDA SEMANAL · 7 DÍAS</span><h3>Tu semana de un vistazo</h3><p>Todas las horas futuras comienzan libres. Bloquea con un clic y utiliza Repetir para aplicar el bloqueo cada semana.</p></div><div className="weekly-nav"><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,-1))} aria-label="Semana anterior"><ArrowLeft size={17}/></button><span>{dates[0].slice(5)} — {dates[6].slice(5)}<small>CDMX</small></span><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,1))} aria-label="Semana siguiente"><ArrowRight size={17}/></button><button type="button" className="weekly-today" onClick={()=>setWeek(nextFutureWeekStart())}>Próxima semana</button></div></div>
+    <div className="weekly-topbar"><div><span className="section-label">AGENDA VETERINARIA · 7 DÍAS</span><h3>Las visitas de esta semana</h3><p>Todas las horas futuras comienzan libres. Bloquea con un clic y utiliza Repetir para aplicar el bloqueo cada semana.</p></div><div className="weekly-nav"><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,-1))} aria-label="Semana anterior"><ArrowLeft size={17}/></button><span>{dates[0].slice(5)} — {dates[6].slice(5)}<small>CDMX</small></span><button type="button" onClick={()=>setWeek(v=>shiftWeek(v,1))} aria-label="Semana siguiente"><ArrowRight size={17}/></button><button type="button" className="weekly-today" onClick={()=>setWeek(nextFutureWeekStart())}>Próxima semana</button></div></div>
     <div className="weekly-kpis"><span><CalendarDays size={15}/> {bookedCount} citas esta semana</span><span className="weekly-kpi-free"><span/> Horario disponible</span><span className="weekly-kpi-booked"><span/> Reservado</span><span className="weekly-kpi-closed"><span/> Bloqueado</span></div>
     <div className="weekly-multi-toolbar" ref={toolbarRef}>
       <button className={selectMode?"weekly-select-toggle active":"weekly-select-toggle"} type="button" aria-pressed={selectMode} onClick={()=>{setSelectMode(v=>!v);setSelectedHours([]);setSelectedDates([]);}}>
@@ -256,16 +257,16 @@ export function WeeklyCalendar({lawyerId}:{lawyerId:string}) {
     <p className="weekly-help"><strong>Verde:</strong> hora habilitada; clic para bloquearla. <strong>✕:</strong> hora bloqueada; clic para liberarla. Usa <strong>Repetir</strong> dentro del recuadro para aplicarlo cada semana. Las citas existentes no se modifican y las horas pasadas no pueden editarse.</p>
     {focusedBooking&&<div className="weekly-scope-overlay" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setFocused(null);}}>
       <section role="dialog" aria-modal="true" aria-labelledby="weekly-appointment-title" className="weekly-scope-dialog weekly-appointment-dialog">
-        <div className="weekly-appointment-heading"><span className="section-label">DETALLE DE CITA · DATOS FICTICIOS</span>
+        <div className="weekly-appointment-heading"><span className="section-label">FICHA DE CONSULTA VETERINARIA · POC</span>
           <button type="button" aria-label="Cerrar detalle" className="weekly-appointment-x" onClick={()=>setFocused(null)}><X size={19}/></button></div>
-        <h4 id="weekly-appointment-title">{users.records.find(u=>u.id===focusedBooking.user_id)?.display_name ?? "Cliente de prueba"}</h4>
-        <div className="weekly-appointment-data">
+        <h4 id="weekly-appointment-title">{pets.records.find(p=>p.id===focusedBooking.pet_id)?.name ?? "Paciente de prueba"}</h4>
+        <div className="weekly-appointment-data"><p><strong>Tutor:</strong> {users.records.find(u=>u.id===focusedBooking.user_id)?.display_name ?? "Tutor de prueba"}</p><p><strong>Especie:</strong> {pets.records.find(p=>p.id===focusedBooking.pet_id)?.species ?? "No especificada"}</p><p><strong>Motivo:</strong> {focusedBooking.reason}</p>
           <p><strong>Fecha:</strong> {focusedBooking.date}</p>
           <p><strong>Hora:</strong> {focusedBooking.hour} (CDMX)</p>
           <p><strong>Modalidad:</strong> {focusedBooking.modality==="online"?"Videollamada":"Presencial"}</p>
           <p><strong>Estado:</strong> {focusedBooking.status==="pending"?"Por confirmar":"Confirmada"}</p>
         </div>
-        <p className="weekly-scope-disclaimer">Esta es una cita simulada. Cancelarla solo modifica los datos de la sesión actual.</p>
+        <p className="weekly-scope-disclaimer">Esta consulta veterinaria es una simulación. La información se reinicia al actualizar la página.</p>
         <div className="weekly-scope-actions">
           <button type="button" onClick={()=>setFocused(null)}>Cerrar</button>
           {focusedBooking.status==="pending"&&<button type="button" onClick={()=>{store.updateStatus(focusedBooking.id,"confirmed");setFocused(null);}}>Confirmar</button>}
