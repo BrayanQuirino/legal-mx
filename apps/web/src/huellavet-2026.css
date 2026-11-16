@@ -229,3 +229,91 @@ footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
 /* Keep radio and checkbox inputs compact within the premium filter rail. */
 .directory-preview .hv-filter-dock input[type=radio],.directory-preview .hv-filter-dock input[type=checkbox]{width:15px;height:15px;min-height:0;flex:0 0 15px;margin:0;accent-color:#7447eb}
 .directory-preview .hv-filter-dock .directory-fieldset label{display:flex;align-items:center;gap:9px}
+
+/* Floating benefit popups — same glass-paper language as the pet hero overlays. */
+.hv-home .hv-product-strip{
+  position:relative;z-index:6;
+  background:transparent;border:0;
+  margin-top:-36px;margin-bottom:0;
+  overflow:visible;
+  pointer-events:none;
+}
+.hv-home .hv-product-strip-inner{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;gap:22px;
+  padding-block:0 35px;
+}
+.hv-home .hv-product-strip-inner>div{
+  position:relative;
+  display:grid;grid-template-columns:48px minmax(0,1fr);grid-template-rows:auto auto;
+  gap:4px 13px;align-items:center;
+  padding:21px 23px;
+  background:rgba(255,255,255,.94);
+  border:1px solid rgba(232,224,249,.95);
+  border-radius:23px;
+  box-shadow:0 18px 44px rgba(99,64,161,.13),0 3px 12px rgba(92,52,164,.04);
+  backdrop-filter:blur(14px);
+  animation:hv-benefit-float 6.3s ease-in-out infinite;
+  pointer-events:auto;
+  will-change:transform;
+}
+.hv-home .hv-product-strip-inner>div:nth-child(2){animation-delay:-2.1s}
+.hv-home .hv-product-strip-inner>div:nth-child(3){animation-delay:-4.2s}
+.hv-home .hv-product-strip-inner>div:before{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(125deg,rgba(255,255,255,.36),transparent 70%);
+  pointer-events:none;
+}
+.hv-home .hv-product-strip .hv-strip-icon{
+  grid-row:1/3;width:48px;height:48px;border-radius:16px;
+  background:#f0e9ff;color:#7447eb;
+  box-shadow:inset 0 0 0 1px #ece2ff;
+}
+.hv-home .hv-product-strip-inner>div:nth-child(2) .hv-strip-icon{background:#e6f8ee;color:#28866a;box-shadow:none}
+.hv-home .hv-product-strip-inner>div:nth-child(3) .hv-strip-icon{background:#ffebf3;color:#d56f9c;box-shadow:none}
+.hv-home .hv-product-strip-inner strong{
+  font:800 13px/1.3 'Plus Jakarta Sans',Manrope,sans-serif;
+  color:#302344;
+  letter-spacing:-.15px;
+}
+.hv-home .hv-product-strip-inner small{
+  font:500 11px/1.45 'DM Sans',sans-serif;
+  color:#797089;
+}
+@keyframes hv-benefit-float{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%{transform:translate3d(0,-3px,0)}
+}
+/* Entering the directory zooms into the search experience without a blocking overlay.
+   Never transform the Leaflet map itself or its ancestor during initialization. */
+.directory-preview{animation:none!important}
+.directory-preview .directory-back,
+.directory-preview .hv-directory-cover,
+.directory-preview .directory-demo-warning,
+.directory-preview .hv-filter-dock,
+.directory-preview .directory-result-header{
+  animation:hv-directory-zoom-entry .48s cubic-bezier(.18,.75,.28,1) both;
+}
+.directory-preview .hv-filter-dock{animation-delay:.045s}
+.directory-preview .directory-result-header{animation-delay:.08s}
+@keyframes hv-directory-zoom-entry{
+  0%{opacity:.35;transform:scale(.965) translateY(15px)}
+  100%{opacity:1;transform:scale(1) translateY(0)}
+}
+@media(max-width:940px){
+  .hv-home .hv-product-strip{margin-top:-18px}
+  .hv-home .hv-product-strip-inner{gap:12px}
+  .hv-home .hv-product-strip-inner>div{padding:16px 14px;gap:4px 9px;border-radius:19px}
+}
+@media(max-width:650px){
+  .hv-home .hv-product-strip{margin-top:-8px}
+  .hv-home .hv-product-strip-inner{grid-template-columns:1fr;gap:12px;padding-bottom:30px}
+  .hv-home .hv-product-strip-inner>div{padding:15px 18px;grid-template-columns:43px minmax(0,1fr);min-height:75px}
+  .hv-home .hv-product-strip .hv-strip-icon{width:43px;height:43px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hv-home .hv-product-strip-inner>div,
+  .directory-preview .directory-back,.directory-preview .hv-directory-cover,
+  .directory-preview .directory-demo-warning,.directory-preview .hv-filter-dock,
+  .directory-preview .directory-result-header{animation:none!important;will-change:auto}
+}
