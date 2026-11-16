@@ -33,7 +33,8 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
   const [confirmed, setConfirmed] = useState(false);
   const [error, setError] = useState("");
   const days = useMemo(() => weekDates(week), [week]);
-  const myPets=pets.records.filter(p=>p.guardian_id===userId);
+  const myPets=pets.records.filter(p=>p.guardian_id===userId&&lawyer.species_treated.includes(p.species));
+  const petEligible=myPets.some(p=>p.id===petId);
 
   // Show all explicitly enabled hours, including one-off exceptions outside
   // the normal timetable. Other days remain disabled, never bookable.
@@ -45,7 +46,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
     n + workingHours.filter(hour => hasFree(date, hour)).length, 0);
   const selectedStillFree = selected !== null && hasFree(selected.date, selected.hour);
   const submit = () => {
-    if (!selected || !selectedStillFree || !profile.modes.includes(modality)
+    if (!selected || !selectedStillFree || !petEligible || !profile.modes.includes(modality)
       || !store.book(lawyer.id, userId, selected.date, selected.hour, modality,petId,reason)) {
       setError("Ese horario ya no está disponible. Selecciona otro.");
       setSelected(null);
@@ -75,7 +76,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
       </div> : <>
         <div className="demo-book-fields">
           <label className="book-demo-label">Tutor de la mascota
-            <select value={userId} onChange={e => {setUserId(e.target.value);setPetId(pets.records.find(p=>p.guardian_id===e.target.value)?.id??"");}}>
+            <select value={userId} onChange={e => {setUserId(e.target.value);setPetId(pets.records.find(p=>p.guardian_id===e.target.value&&lawyer.species_treated.includes(p.species))?.id??"");}}>
               {users.records.map(u => <option value={u.id} key={u.id}>{u.display_name}</option>)}
             </select>
           </label>
@@ -84,6 +85,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
               {myPets.map(p=><option key={p.id} value={p.id}>{p.name} · {p.species}</option>)}
             </select>
           </label>
+          {myPets.length===0&&<p className="demo-book-warning" role="note">Este médico veterinario no atiende la especie de la mascota seleccionada. Prueba con otro profesional.</p>}
           <label className="book-demo-label">Motivo de la visita
             <select value={reason} onChange={e=>setReason(e.target.value)}>
               {["Consulta general","Vacunación","Desparasitación","Problema de piel","Revisión dental","Seguimiento","Otro motivo"].map(x=><option key={x}>{x}</option>)}
@@ -131,7 +133,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
           <div><small>Consulta veterinaria de prueba</small><strong>${profile.price.toLocaleString("es-MX")} MXN</strong></div>
         </div>
         {error && <p role="alert" className="demo-book-error">{error}</p>}
-        <button type="button" className="demo-book-primary" disabled={!selectedStillFree} onClick={submit}>Solicitar cita de prueba</button>
+        <button type="button" className="demo-book-primary" disabled={!selectedStillFree||!petEligible} onClick={submit}>Solicitar cita de prueba</button>
       </>}
     </section>
   </div>;
