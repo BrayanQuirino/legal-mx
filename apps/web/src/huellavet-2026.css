@@ -1,0 +1,96 @@
+/* HuellaVet 2026 — warm editorial pet-care design system */
+:root{--hv-violet:#7447eb;--hv-lavender:#bca8ff;--hv-lilac:#eee8ff;--hv-cream:#fcfaff;--hv-ink:#242139;--hv-pink:#ffdceb;--hv-mint:#ddf7ea;--hv-butter:#fff0ba}
+html{scroll-padding-top:96px}
+body{background:var(--hv-cream);color:var(--hv-ink)}
+button,a{transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--hv-violet);outline-offset:3px}
+.site-header{height:86px;background:#fcfafff2;border-bottom:1px solid #eee7ff;backdrop-filter:blur(20px)}
+.container{width:min(1270px,calc(100% - 76px))}
+.brand{font-family:'Plus Jakarta Sans',Manrope,sans-serif;font-weight:800;font-size:27px;color:#3c247e;letter-spacing:-1.5px}
+.brand-mark{color:var(--hv-violet);background:transparent;padding:0}
+.brand-mark svg{width:36px;height:36px;fill:var(--hv-violet);stroke:#fff;stroke-width:1.5}
+.brand-accent,.footer-brand span{color:var(--hv-violet)}
+.nav-links{gap:30px;color:#413456}.nav-links a:hover,.directory-nav-link:hover{color:var(--hv-violet)}
+.nav-cta{border:1.5px solid #c8b3ff;border-radius:999px;background:white;color:var(--hv-violet);padding:13px 22px;font-size:12px}
+.nav-cta:hover{background:var(--hv-lilac)}
+.hv-home .hero{background:linear-gradient(110deg,#fcfaff 15%,#faf6ff 70%,#f6eeff);overflow:hidden}
+.hv-home .hero:before{background:radial-gradient(circle,#f2e6ff 0%,transparent 68%)}
+.hv-home .hero:after{background:radial-gradient(circle,#ffeaf4 0%,transparent 73%)}
+.hv-home .hero-grid{min-height:700px;padding-block:65px 66px;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+.hv-home .eyebrow{display:inline-flex;background:#f2ebff;color:#7447eb;box-shadow:none}
+.eyebrow-dot{background:var(--hv-violet)}
+.hv-eyebrow-star{color:#e9a83e}
+.hv-home .hero h1{font-family:'Plus Jakarta Sans',Manrope,sans-serif;color:var(--hv-ink);font-size:clamp(45px,5vw,70px);letter-spacing:-3.7px;line-height:1.1}
+.hv-home .hero h1 em,.hv-explore-intro h2 em,.hv-people h2 em,.hv-family h2 em{background:none;-webkit-text-fill-color:var(--hv-violet);color:var(--hv-violet)}
+.hv-home .hero-description{font-size:16px;line-height:1.75;color:#625c76;max-width:535px}
+.hv-hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:13px;margin:30px 0 0}
+.hv-primary-action,.hv-secondary-action{border:0;border-radius:999px;padding:15px 22px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:13px;min-height:50px}
+.hv-primary-action{background:var(--hv-violet);color:#fff;box-shadow:0 11px 24px #7447eb30}
+.hv-primary-action:hover{background:#5f30d9;transform:translateY(-2px)}
+.hv-secondary-action{background:#fff;color:#4d328b;border:1.5px solid #d1c0fc}
+.hv-secondary-action:hover{background:#f2ebff;transform:translateY(-2px)}
+.hv-discovery-card{margin-top:29px;padding:16px;border:1px solid #eee6ff;box-shadow:0 14px 46px #7447eb12;max-width:590px}
+.hv-discovery-top>span:first-child,.hv-discovery-top svg{color:var(--hv-violet)}
+.hv-species-picker button{background:#f4efff;color:#6c45cb;border-color:#e9ddff}
+.hv-species-picker button:nth-child(2){background:#f0fbf6;color:#34866c;border-color:#d9f2e5}
+.hv-species-picker button:nth-child(3){background:#fff1f6;color:#bd5c8d;border-color:#ffe1ed}
+.hv-discovery-input,.hv-discovery-region{background:#fcfaff;border-color:#eae2fa;color:#7447eb}
+.hv-discovery-submit{background:var(--hv-violet);box-shadow:0 8px 20px #7447eb30}
+.hv-discovery-submit:hover{background:#5f30d9}
+.hv-home .hero-footnote{color:#766e89}
+.hv-stage-glow{background:linear-gradient(140deg,#efe0ff,#c9a9ff 55%,#f8dbe9);border-radius:48% 52% 42% 58%;box-shadow:0 38px 85px #8b5cef22}
+.hv-stage-dog{border-radius:48% 52% 43% 49%;border:9px solid #ffffff88;box-shadow:0 35px 72px #7447eb22}
+.hv-stage-dog img{object-position:50% 45%;filter:saturate(1.06)}
+.hv-stage-tag{color:#44315f}.hv-stage-tag-icon{color:#e86b9a}
+.hv-pet-id-verified{color:#27876b}.hv-pet-id-avatar{background:#eee5ff;color:var(--hv-violet)}
+.hv-pet-id-progress>span:nth-child(1),.hv-pet-id-progress>span:nth-child(2){background:var(--hv-violet)}
+.hv-pet-id-progress>span:nth-child(3){background:#a58aee}
+.hv-stage-orbit-star.b{color:#eaaacb}
+.hv-product-strip{background:white;border-color:#f0eafa}.hv-strip-icon{background:#efe8ff;color:var(--hv-violet)}.hv-product-strip-inner>div:nth-child(2) .hv-strip-icon{background:#e4f8eb;color:#288365}.hv-product-strip-inner>div:nth-child(3) .hv-strip-icon{background:#ffebf3;color:#cf6b92}
+.hv-product-strip-inner strong{color:var(--hv-ink)}.hv-product-strip-inner small{color:#706980}
+.hv-explore{background:#fff;padding:100px 0 105px}.hv-explore-intro h2{color:var(--hv-ink)}.hv-explore-intro .section-label,.section-label{color:var(--hv-violet)}
+.hv-view-all{color:var(--hv-violet);background:#f7f3ff;border-color:#e3d8fa}
+.hv-service-tile{border:0;box-shadow:none;color:var(--hv-ink)}
+.hv-service-0{background:#eee5ff;color:#3b286e}
+.hv-service-1{background:#fff0ba;color:#74541b}
+.hv-service-2{background:#ffe4ee;color:#844161}
+.hv-service-3{background:#ddf7ea;color:#2e7052}
+.hv-service-4{background:#f2eaff;color:#634094}
+.hv-service-5{background:#e4f2ff;color:#3b638c}
+.hv-service-0 .hv-service-icon{background:#ffffffc7}
+.hv-service-icon{background:#ffffffb8}
+.hv-service-tile:hover{box-shadow:0 20px 38px #7447eb17}
+.hv-people{padding:95px 0 100px;background:#fcfaff}
+.hv-people-heading{text-align:center;max-width:760px;margin:0 auto 35px}
+.hv-people h2,.hv-family h2{font:800 clamp(31px,3.7vw,48px)/1.17 'Plus Jakarta Sans',Manrope,sans-serif;letter-spacing:-1.9px;margin:13px 0 16px;color:var(--hv-ink)}
+.hv-people-heading p{color:#716b7f;line-height:1.65}
+.hv-people-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.hv-person-card{background:#fff;border:1px solid #eee6fa;border-radius:28px;overflow:hidden;box-shadow:0 14px 42px #7447eb0e;transition:transform .2s}
+.hv-person-card:hover{transform:translateY(-5px)}
+.hv-person-image{height:200px;overflow:hidden;background:#ece3ff}
+.hv-person-image img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.hv-person-details{padding:23px}.hv-person-details>span{display:flex;gap:7px;align-items:center;color:#7953d9;font-size:11px;font-weight:800}
+.hv-person-details h3{font-size:18px;line-height:1.4;color:var(--hv-ink);margin:11px 0}
+.hv-person-details p{display:flex;align-items:center;gap:6px;color:#797187;font-size:12px;margin:0 0 18px}
+.hv-person-details button{display:flex;align-items:center;gap:7px;color:#fff;background:var(--hv-violet);border:0;border-radius:99px;font-size:12px;font-weight:700;padding:10px 15px}
+.hv-people-note{display:flex;justify-content:center;align-items:center;gap:7px;color:#847e8e;font-size:11px;margin-top:22px;text-align:center}
+.hv-family{padding:30px 0 95px;background:#fcfaff}
+.hv-family-grid{display:grid;grid-template-columns:1fr .8fr;align-items:center;gap:5vw;background:linear-gradient(100deg,#fff7fa,#f9f3ff);border-radius:56px;overflow:hidden}
+.hv-family-photo{height:440px;position:relative;overflow:hidden;border-radius:50px 130px 130px 50px}
+.hv-family-photo img{width:100%;height:100%;object-fit:cover}
+.hv-family-heart{position:absolute;top:35px;right:35px;color:#fff;transform:rotate(-13deg)}
+.hv-family-copy{padding:45px 70px 45px 0}
+.hv-family-copy p{color:#625a73;line-height:1.85;font-size:14px;margin-bottom:23px}
+.hv-how-section{background:#f2ecff}.hv-how-section .steps svg{color:var(--hv-violet)}
+.hv-vet-invite{padding:60px 0;background:#fff}
+.hv-vet-invite-inner{display:flex;align-items:center;justify-content:space-between;gap:35px;background:#eee8ff;border-radius:34px;padding:36px 45px}
+.hv-vet-invite h2{font-size:27px;color:var(--hv-ink);margin:8px 0}.hv-vet-invite p{margin:0;color:#625779;font-size:13px}
+.assistant-section{background:#fff;padding:45px 0 65px}.assistant-panel{background:linear-gradient(110deg,#eee7ff,#ffeaf1);color:var(--hv-ink);border-radius:35px}
+.assistant-icon{background:white;color:var(--hv-violet)}.assistant-panel h2{color:var(--hv-ink)}.assistant-panel p{color:#625977}.assistant-status{border-color:#c9b8ef;color:#7447eb}
+.vet-demo-disclosure{background:#fffdf6;border-color:#f2ead2;color:#756b60}
+footer{background:#f9f5ff;color:#655c76;border-top:1px solid #e9def7}
+.footer-brand{color:#412977}.footer-inner p{color:#776d87}
+@media(max-width:1050px){.container{width:min(100% - 48px,1270px)}.nav-links{gap:16px}.hv-people-grid{gap:12px}.hv-family-copy{padding-right:30px}}
+@media(max-width:940px){.hv-home .hero-grid{grid-template-columns:1fr}.hv-people-grid{grid-template-columns:1fr 1fr}.hv-family-grid{grid-template-columns:1fr}.hv-family-photo{height:370px;border-radius:40px 40px 130px 40px}.hv-family-copy{padding:10px 35px 40px}.hv-vet-invite-inner{flex-wrap:wrap}}
+@media(max-width:650px){.container{width:min(100% - 34px,1270px)}.site-header{height:70px}.brand{font-size:23px}.brand-mark svg{width:29px;height:29px}.hv-home .hero h1{font-size:clamp(38px,10vw,53px);letter-spacing:-2.2px}.hv-hero-actions{gap:10px}.hv-primary-action,.hv-secondary-action{font-size:12px;padding:13px 16px}.hv-discovery-card{margin-top:23px}.hv-people{padding:66px 0}.hv-people-grid{grid-template-columns:1fr}.hv-people h2,.hv-family h2{letter-spacing:-1px}.hv-person-image{height:220px}.hv-family{padding-bottom:65px}.hv-family-photo{height:280px}.hv-family-grid{border-radius:28px}.hv-family-copy{padding:12px 24px 32px}.hv-vet-invite-inner{padding:29px 24px;border-radius:25px}.hv-vet-invite h2{font-size:23px}.hv-people-note{line-height:1.6}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
