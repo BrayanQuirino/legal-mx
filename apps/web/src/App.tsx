@@ -20,7 +20,7 @@ export function App(){
  const home=()=>{if(zoomTimer.current!==null)clearTimeout(zoomTimer.current);setZooming(false);setPortalOpen(false);setDirectoryOpen(false);setMenuOpen(false);setQuery("");};
  const directory=(term="")=>{
    if(zooming)return;
-   const open=()=>{setQuery(term);setDirectoryOpen(true);setPortalOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"instant"});setZooming(false);};
+   const open=()=>{setQuery(term);setDirectoryOpen(true);setPortalOpen(false);setMenuOpen(false);window.scrollTo({top:0,behavior:"auto"});setZooming(false);};
    if(portalOpen||directoryOpen||window.matchMedia("(prefers-reduced-motion: reduce)").matches){open();return;}
    setZooming(true);
    zoomTimer.current=setTimeout(open,520);
@@ -101,5 +101,5 @@ export function App(){
     <div className="vet-demo-disclosure container" role="note"><ShieldCheck size={19}/><span>Vista previa de HuellaVet: los veterinarios, mascotas, clínicas, ubicaciones y citas son ficticios. No hay profesionales verificados ni reservas reales.</span></div>
   </main>}
   <footer><div className="container footer-inner"><span className="footer-brand"><PawPrint size={22}/> huella<span>vet</span></span><p>Plataforma veterinaria en desarrollo. Los datos actuales son sintéticos; no sustituye atención profesional de urgencias.</p><small>© {new Date().getFullYear()} HuellaVet</small></div></footer>
- </DemoStoreProvider>;
+ </div></DemoStoreProvider>;
 }
