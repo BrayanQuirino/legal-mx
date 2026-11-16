@@ -350,3 +350,75 @@ main.directory-preview > .container{
 .hv-directory-safe-fallback h2{font-size:20px;color:#302344;margin:15px 0 7px}
 .hv-directory-safe-fallback p{font-size:13px;line-height:1.65;max-width:390px;color:#796b90}
 .hv-directory-safe-fallback button{background:#7447eb;color:white;border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:12px;margin-top:14px}
+
+/* 2026 HERO — three genuine HTML/CSS cards orbit the pet photography.
+   No image assets, no lower benefit strip, and ultra-subtle 3px motion. */
+.hv-home .hero{overflow:hidden}
+.hv-home .hv-hero-stage{overflow:visible;isolation:isolate}
+.hv-home .hv-stage-benefits{position:absolute;inset:0;z-index:8;pointer-events:none}
+.hv-home .hv-benefit-popup{
+  position:absolute;display:flex;align-items:center;gap:12px;
+  width:max-content;max-width:235px;min-width:195px;
+  padding:13px 16px;
+  border:1px solid rgba(255,255,255,.94);
+  border-radius:19px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 20px 46px rgba(76,43,133,.15),0 5px 13px rgba(111,64,173,.08);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  color:#28213e;
+  animation:hv-benefit-float 6.3s ease-in-out infinite;
+  pointer-events:none;
+  will-change:transform;
+}
+.hv-home .hv-benefit-popup .hv-benefit-icon{
+  display:grid;place-items:center;flex:0 0 42px;
+  width:42px;height:42px;border-radius:13px;
+  background:#f1eaff;color:#7447eb;
+}
+.hv-home .hv-benefit-popup .hv-benefit-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.hv-home .hv-benefit-popup strong{
+  font:800 12px/1.3 'Plus Jakarta Sans',Manrope,sans-serif;letter-spacing:-.1px;
+  color:#312448;white-space:nowrap;
+}
+.hv-home .hv-benefit-popup small{
+  font:500 10px/1.5 'DM Sans',sans-serif;
+  color:#776d88;
+}
+.hv-home .hv-benefit-care{top:10%;left:-7%;animation-delay:0s}
+.hv-home .hv-benefit-agenda{top:38%;right:-12%;animation-delay:-2.1s}
+.hv-home .hv-benefit-agenda .hv-benefit-icon{background:#e4f7ec;color:#26916b}
+.hv-home .hv-benefit-all{bottom:7%;left:-3%;animation-delay:-4.2s}
+.hv-home .hv-benefit-all .hv-benefit-icon{background:#ffe9f2;color:#d56699}
+@media(max-width:1180px){
+  .hv-home .hv-benefit-popup{min-width:0;max-width:206px;padding:11px 12px;gap:9px}
+  .hv-home .hv-benefit-popup .hv-benefit-icon{width:37px;height:37px;flex-basis:37px}
+  .hv-home .hv-benefit-care{left:-4%;top:9%}
+  .hv-home .hv-benefit-agenda{right:-3%;top:38%}
+  .hv-home .hv-benefit-all{left:0;bottom:8%}
+}
+@media(max-width:940px){
+  .hv-home .hv-benefit-care{left:1%;top:8%}
+  .hv-home .hv-benefit-agenda{right:0;top:42%}
+  .hv-home .hv-benefit-all{left:3%;bottom:6%}
+}
+@media(max-width:650px){
+  .hv-home .hv-hero-stage{height:365px}
+  .hv-home .hv-benefit-popup{padding:8px 10px;gap:7px;max-width:157px;min-width:0;border-radius:13px}
+  .hv-home .hv-benefit-popup .hv-benefit-icon{width:30px;height:30px;flex-basis:30px;border-radius:9px}
+  .hv-home .hv-benefit-popup .hv-benefit-icon svg{width:17px;height:17px}
+  .hv-home .hv-benefit-popup strong{font-size:9px;white-space:normal}
+  .hv-home .hv-benefit-popup small{font-size:8px;line-height:1.35}
+  .hv-home .hv-benefit-care{left:-1%;top:1%}
+  .hv-home .hv-benefit-agenda{right:-3%;top:37%}
+  .hv-home .hv-benefit-all{left:0;bottom:1%}
+}
+@media(prefers-reduced-motion:reduce){
+  .hv-home .hv-benefit-popup{animation:none!important;will-change:auto}
+}
+/* The view switch is a mutually exclusive segmented control. */
+.directory-preview .directory-switch{display:inline-flex;gap:3px;background:#f0eaff;border:1px solid #e2d5fb;border-radius:999px;padding:4px}
+.directory-preview .directory-switch button{border:0!important;background:transparent!important;color:#67577f!important;border-radius:999px!important;font-weight:750;box-shadow:none!important}
+.directory-preview .directory-switch button.active,
+.directory-preview .directory-switch button[aria-pressed="true"]{background:#7447eb!important;color:#fff!important;box-shadow:0 5px 13px #7447eb2b!important}
+.directory-preview .directory-switch button:not(.active):hover{background:#e6d9ff!important;color:#5430a8!important}
