@@ -430,3 +430,7 @@ main.directory-preview > .container{
 .brand-mark .huella-icon circle,.brand-mark .huella-icon path{fill:none!important}
 .directory-preview .hv-directory-cover-mark .huella-icon{fill:none}
 .huellavet-pin-container svg circle,.huellavet-pin-container svg g{vector-effect:non-scaling-stroke}
+
+/* Original diagonal paw brand mark: restore its intended purple outline. */
+.brand-mark svg.lucide-paw-print{fill:none!important;stroke:#7447eb!important;stroke-width:2.15!important}
+.brand-mark svg.lucide-paw-print circle,.brand-mark svg.lucide-paw-print path{fill:none!important}
