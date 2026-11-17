@@ -1,8 +1,8 @@
+import { HuellaIcon } from "./HuellaIcon";
 import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Building2, CalendarDays, CheckCircle2, Clock3, ShieldAlert, Video, X } from "lucide-react";
 import users from "../../../data/fixtures/guardians.synthetic.json";
 import pets from "../../../data/fixtures/pets.synthetic.json";
-import { PawPrint } from "lucide-react";
 import { useDemoStore, type Mode } from "./DemoStore";
 import { DAY_HOURS, makeDemoSlots, upcomingWeekStart, weekDates, weekdayUtc, type DemoLawyer } from "./lib/scheduling";
 import "./booking-demo.css";
@@ -80,7 +80,7 @@ export function BookingDemo({ lawyer, onClose, initialUserId = "demo-user-026" }
               {users.records.map(u => <option value={u.id} key={u.id}>{u.display_name}</option>)}
             </select>
           </label>
-          <label className="book-demo-label"><span><PawPrint size={14}/> ¿Qué mascota atenderemos?</span>
+          <label className="book-demo-label"><span><HuellaIcon size={14}/> ¿Qué mascota atenderemos?</span>
             <select value={petId} onChange={e=>setPetId(e.target.value)} required>
               {myPets.map(p=><option key={p.id} value={p.id}>{p.name} · {p.species}</option>)}
             </select>
