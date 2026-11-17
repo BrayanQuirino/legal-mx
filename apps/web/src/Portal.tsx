@@ -1,5 +1,6 @@
+import { HuellaIcon } from "./HuellaIcon";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, CalendarDays, PawPrint, ShieldAlert, ShieldCheck, UserRound, Users, Video } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, ShieldAlert, ShieldCheck, UserRound, Users, Video } from "lucide-react";
 import { VerificationFlow } from "./VerificationFlow";
 import { LawyerDashboard, ClientDashboard } from "./DemoDashboards";
 import { useDemoStore } from "./DemoStore";
@@ -22,7 +23,7 @@ export function Portal({onBack}:{onBack:()=>void}){
  return <main className="poc"><div className="container">
   <div className="poc-head"><button onClick={onBack} className="poc-back"><ArrowLeft size={17}/> Volver a HuellaVet</button><span className="poc-tag">VISTAS DE PRUEBA · ACCESO DIRECTO</span></div>
   <div className={step==="dashboard"&&role==="lawyer"?"poc-grid poc-grid-wide":"poc-grid"}><aside className="poc-sidebar"><span className="section-label">TRES EXPERIENCIAS</span><h1>Su mundo <em>de cuidados.</em></h1><p>Elige una vista para explorar cómo funcionará HuellaVet.</p>
-   <div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep(OPEN_POC_VIEWS?"dashboard":"welcome");setVerify(false);setConsent(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<PawPrint/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div>
+   <div className="poc-roles">{roles.map(r=><button key={r} type="button" className={r===role?"poc-role active":"poc-role"} onClick={()=>{setRole(r);setStep(OPEN_POC_VIEWS?"dashboard":"welcome");setVerify(false);setConsent(false);}}><span>{r==="client"?<UserRound/>:r==="lawyer"?<HuellaIcon/>:<ShieldCheck/>}</span><strong>{labels[r]}</strong><ArrowRight size={15}/></button>)}</div>
    <div className="poc-alert"><ShieldAlert size={21}/><span>Modo de prueba: las vistas son públicas y los datos son ficticios. Falta conectar autenticación, permisos, SEP para cédulas MVZ, almacenamiento de expedientes y permisos seguros.</span></div>
   </aside>
   <section className="poc-paper" aria-label={"Portal "+labels[role]}>
@@ -45,7 +46,7 @@ export function Portal({onBack}:{onBack:()=>void}){
     <p>Todos los resultados son ficticios y los cambios permanecen únicamente durante esta sesión de navegación.</p>
     {role==="client"&&<ClientDashboard/>}
     {role==="lawyer"&&<LawyerDashboard/>}
-    {role==="admin"&&<div className="poc-panel"><h3>Operación y revisión · Demostración</h3><div className="poc-metrics"><span><Users/> 100 tutores ficticios</span><span><PawPrint/> 40 veterinarios ficticios</span><span><CalendarDays/> {store.appointments.filter(a=>a.status!=="cancelled").length} citas demo</span></div><p>Cinco expedientes aprobados solo en simulación, 35 pendientes. No existe validación real de cédulas de Médico Veterinario Zootecnista ante la SEP.</p>
+    {role==="admin"&&<div className="poc-panel"><h3>Operación y revisión · Demostración</h3><div className="poc-metrics"><span><Users/> 100 tutores ficticios</span><span><HuellaIcon/> 40 veterinarios ficticios</span><span><CalendarDays/> {store.appointments.filter(a=>a.status!=="cancelled").length} citas demo</span></div><p>Cinco expedientes aprobados solo en simulación, 35 pendientes. No existe validación real de cédulas de Médico Veterinario Zootecnista ante la SEP.</p>
      {demoLawyers.map(l=><div className="poc-request" key={l.id}><span>{l.display_name} · {l.demo_review.case_id}</span><span>{store.appointments.filter(a=>a.lawyer_id===l.id&&a.status!=="cancelled").length} citas</span></div>)}
      <button className="poc-outline" type="button" onClick={()=>setVerify(!verify)}>{verify?"Cerrar verificación de prueba":"Explorar verificación de prueba"}</button>{verify&&<VerificationFlow/>}
     </div>}
