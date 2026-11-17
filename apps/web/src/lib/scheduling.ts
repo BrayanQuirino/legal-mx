@@ -8,6 +8,20 @@ export function getMexicoToday(): string {
   const by = (type: string) => parts.find(p=>p.type===type)?.value ?? "";
   return `${by("year")}-${by("month")}-${by("day")}`;
 }
+/** Date and minutes elapsed in Mexico City, independent of visitor timezone. */
+export function getMexicoNow(now = new Date()): {date:string;minutes:number} {
+  const fmt = new Intl.DateTimeFormat("en-US", {
+    timeZone:"America/Mexico_City", year:"numeric", month:"2-digit", day:"2-digit",
+    hour:"2-digit", minute:"2-digit", hourCycle:"h23"
+  });
+  const parts=fmt.formatToParts(now);
+  const part=(type:string)=>parts.find(item=>item.type===type)?.value ?? "00";
+  return {
+    date:`${part("year")}-${part("month")}-${part("day")}`,
+    minutes:Number(part("hour"))*60+Number(part("minute"))
+  };
+}
+
 export function makeDemoSlots(lawyer: DemoLawyer, horizonDays=21): Slot[] {
   if(!lawyer.demo_schedule || !lawyer.demo_booking_enabled) return [];
   const base=new Date(getMexicoToday()+"T12:00:00Z");
