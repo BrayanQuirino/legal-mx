@@ -53,8 +53,8 @@ export function App(){
             <label className="hv-discovery-region"><MapPin size={18}/><span className="sr-only">Ubicación</span><select value={region} onChange={e=>setRegion(e.target.value as Region)}><option>Todas las ubicaciones</option><option>Ciudad de México</option><option>Estado de México</option></select><ChevronDown className="select-chevron" size={14}/></label>
             <button type="submit" className="hv-discovery-submit hv-primary-action"><HuellaIcon size={19}/> <span>Encontrar veterinario</span> <ArrowRight size={18}/></button>
           </form>
+          <div className="example-searches"><span>Prueba con:</span>{["Vacunas","Mi gato tiene alergia","Revisión general"].map(x=><button type="button" key={x} onClick={()=>directory(x)}>{x}</button>)}</div>
         </div>
-        <div className="example-searches"><span>Prueba con:</span>{["Vacunas","Mi gato tiene alergia","Revisión general"].map(x=><button type="button" key={x} onClick={()=>directory(x)}>{x}</button>)}</div>
         <div className="hero-footnote"><span className="hero-proof-icon"><BadgeCheck size={17}/></span> Una experiencia diseñada para cuidarlos <span className="dot-separator">✦</span> Desde tu celular o computadora</div>
       </div>
       <div className="hero-art hv-hero-stage" aria-label="Husky siberiano sonriente y gato naranja, juntos y felices">
