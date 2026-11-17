@@ -3,12 +3,20 @@ export function normalizeSearch(value:string):string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9ñ\s]/g," ").replace(/\s+/g," ").trim();
 }
 const aliases:Record<string,string[]>={
- medicina_general:["vacuna","vacunacion","desparasitacion","chequeo","consulta","cachorro","revision","bienestar","prevencion","veterinario"],
- dermatologia:["comezon","picazon","piel","alergia","pulgas","dermatitis","pelaje","otitis"],
+ cardiologia:["corazon","soplo cardiaco","arritmia","cardiaco"],
  cirugia:["operacion","esterilizacion","castracion","cirugia","hernia","procedimiento"],
+ dermatologia:["comezon","picazon","piel","alergia","pulgas","dermatitis","pelaje","otitis"],
+ animales_exoticos:["conejo","ave","loro","cobaya","hamster","reptil","exotico"],
  urgencias:["urgencia","emergencia","accidente","herida","intoxicacion","vomito","diarrea","sangrado","no respira"],
+ medicina_general:["vacuna","vacunacion","desparasitacion","chequeo","consulta","cachorro","revision","bienestar","prevencion","veterinario"],
+ medicina_interna:["enfermedad cronica","enfermedad interna","diagnostico complejo"],
+ neurologia:["convulsion","epilepsia","sistema nervioso","temblor"],
+ nutricion_clinica:["alimentacion","dieta","obesidad","nutricion"],
  odontologia:["dientes","dentadura","limpieza dental","mal aliento","encias","colmillos"],
- animales_exoticos:["conejo","ave","loro","cobaya","hamster","reptil","exotico"]
+ oftalmologia:["ojos","ojo","vision","catarata","conjuntivitis"],
+ oncologia:["cancer","tumor","quimioterapia","oncologia"],
+ reproduccion_obstetricia:["parto","embarazo","gestacion","fertilidad","reproduccion"],
+ traumatologia_ortopedia:["fractura","cojera","hueso","articulacion","ortopedia"]
 };
 export function matchSpecialties(query:string){
  const q=normalizeSearch(query);
