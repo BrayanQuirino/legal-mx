@@ -1,5 +1,5 @@
+import { HuellaIcon } from "./HuellaIcon";
 import { Component, type ErrorInfo, type ReactNode } from "react";
-import { PawPrint } from "lucide-react";
 
 type Props = {
   children: ReactNode;
@@ -24,7 +24,7 @@ export class DirectoryErrorBoundary extends Component<Props, State> {
     if (!this.state.hasError) return this.props.children;
     return (
       <section className="hv-directory-safe-fallback" role="alert">
-        <PawPrint size={28} />
+        <HuellaIcon size={28} />
         <h2>No se pudo mostrar {this.props.scope === "map" ? "el mapa" : "el directorio"}</h2>
         <p>La búsqueda sigue disponible. Puedes continuar con la vista de lista y volver a intentar.</p>
         <button type="button" onClick={this.props.onFallback}>
