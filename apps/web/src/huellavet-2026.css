@@ -422,3 +422,11 @@ main.directory-preview > .container{
 .directory-preview .directory-switch button.active,
 .directory-preview .directory-switch button[aria-pressed="true"]{background:#7447eb!important;color:#fff!important;box-shadow:0 5px 13px #7447eb2b!important}
 .directory-preview .directory-switch button:not(.active):hover{background:#e6d9ff!important;color:#5430a8!important}
+
+/* HuellaVet canonical paw: THREE outlined circles, not solid dots. */
+.huella-icon{fill:none;flex-shrink:0}
+.huella-icon circle,.huella-icon path{fill:none!important}
+.brand-mark .huella-icon{fill:none;stroke:var(--hv-violet);stroke-width:2.2}
+.brand-mark .huella-icon circle,.brand-mark .huella-icon path{fill:none!important}
+.directory-preview .hv-directory-cover-mark .huella-icon{fill:none}
+.huellavet-pin-container svg circle,.huellavet-pin-container svg g{vector-effect:non-scaling-stroke}
