@@ -622,3 +622,56 @@ main.directory-preview > .container{
   .hv-home .hv-hero-stage .hv-stage-orbit-star.c{top:53%;right:1%;font-size:29px}
   .hv-home .hv-hero-stage .hv-stage-orbit-star.d{bottom:11%;right:26%;font-size:27px}
 }
+
+
+/* Clear-space composition: the pet artwork has its own footprint.
+   Benefit cards live outside the silhouettes, never on the faces or paws. */
+.hv-home .hv-hero-stage{
+  height:650px;
+  overflow:visible;
+}
+.hv-home .hv-stage-dog{
+  top:43%;
+  left:46%;
+  width:min(630px,105%);
+  transform:translate(-47%,-45%);
+}
+/* Top row in the empty air; bottom card in the lower-right margin. */
+.hv-home .hv-benefit-care{
+  left:0;
+  right:auto;
+  top:2%;
+}
+.hv-home .hv-benefit-agenda{
+  left:auto;
+  right:0;
+  top:0;
+}
+.hv-home .hv-benefit-all{
+  left:auto;
+  right:0;
+  bottom:0;
+  top:auto;
+}
+/* Maintain a clear gap from the artwork as the layout narrows. */
+@media(max-width:1180px){
+  .hv-home .hv-hero-stage{height:600px}
+  .hv-home .hv-stage-dog{width:98%;top:42%;left:46%}
+  .hv-home .hv-benefit-care{left:0;top:1%}
+  .hv-home .hv-benefit-agenda{right:0;top:0}
+  .hv-home .hv-benefit-all{left:auto;right:0;bottom:0}
+}
+@media(max-width:940px){
+  .hv-home .hv-hero-stage{height:550px;max-width:650px}
+  .hv-home .hv-stage-dog{width:88%;top:42%;left:46%}
+  .hv-home .hv-benefit-care{left:0;top:1%}
+  .hv-home .hv-benefit-agenda{right:0;top:0}
+  .hv-home .hv-benefit-all{left:auto;right:0;bottom:0}
+}
+@media(max-width:650px){
+  .hv-home .hv-hero-stage{height:420px;max-width:390px}
+  .hv-home .hv-stage-dog{width:105%;top:43%;left:47%}
+  .hv-home .hv-benefit-care{left:0;top:1%}
+  .hv-home .hv-benefit-agenda{right:0;top:0}
+  .hv-home .hv-benefit-all{left:auto;right:0;bottom:0}
+}
