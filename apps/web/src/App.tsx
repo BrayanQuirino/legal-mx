@@ -69,7 +69,7 @@ export function App(){
           <div className="hv-benefit-popup hv-benefit-agenda"><span className="hv-benefit-icon"><CalendarDays size={22}/></span><span className="hv-benefit-copy"><strong>Agenda sin estrés</strong><small>Tu tiempo y el suyo importan</small></span></div>
           <div className="hv-benefit-popup hv-benefit-all"><span className="hv-benefit-icon"><Activity size={22}/></span><span className="hv-benefit-copy"><strong>Todo en un lugar</strong><small>Sus visitas, más organizadas</small></span></div>
         </div>
-        <div className="hv-stage-orbit-star a">✦</div><div className="hv-stage-orbit-star b">✧</div>
+        <div className="hv-stage-orbit-star a" aria-hidden="true">✦</div><div className="hv-stage-orbit-star b" aria-hidden="true">✧</div><div className="hv-stage-orbit-star c" aria-hidden="true">✦</div><div className="hv-stage-orbit-star d" aria-hidden="true">✦</div>
       </div>
     </div></section>
     <section className="hv-explore" id="especialidades"><div className="container">
