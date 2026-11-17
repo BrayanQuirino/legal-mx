@@ -1,6 +1,6 @@
 import { HuellaIcon } from "./HuellaIcon";
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Activity, BadgeCheck, CalendarDays, Cat, Dog, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, Rabbit, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star } from "lucide-react";
+import { ArrowRight, Activity, BadgeCheck, CalendarDays, ChevronDown, Heart, HeartPulse, MapPin, Menu, MessageCircle, Search, ShieldCheck, Sparkles, Stethoscope, Syringe, X, Video, Star } from "lucide-react";
 import { Portal } from "./Portal";
 import { DemoStoreProvider } from "./DemoStore";
 import { DirectoryPreview } from "./DirectoryPreview";
@@ -45,18 +45,13 @@ export function App(){
         <div className="eyebrow"><span className="eyebrow-dot"/> BIENVENIDO A UN MUNDO MÁS FELIZ <span className="hv-eyebrow-star">✦</span></div>
         <h1>Su mundo es más feliz <em>contigo.</em> El tuyo, <em>con ellos.</em></h1>
         <p className="hero-description">Encuentra veterinarios, cuida su salud y acompaña cada etapa de su vida. Todo en un solo lugar.</p>
-        <div className="hv-hero-actions"><button type="button" className="hv-primary-action" onClick={()=>directory()}><HuellaIcon size={19}/> Encontrar veterinario <ArrowRight size={18}/></button><button type="button" className="hv-secondary-action" onClick={()=>document.getElementById("especialidades")?.scrollIntoView({behavior:"smooth"})}>Explorar HuellaVet <ArrowRight size={17}/></button></div>
+        <div className="hv-hero-actions"><button type="button" className="hv-secondary-action" onClick={()=>document.getElementById("especialidades")?.scrollIntoView({behavior:"smooth"})}>Explorar HuellaVet <ArrowRight size={17}/></button></div>
         <div className="hv-discovery-card">
           <div className="hv-discovery-top"><span><HuellaIcon size={17}/> Empecemos con tu mascota</span><span className="hv-discovery-label">ENCUENTRA SU CUIDADO</span></div>
-          <div className="hv-species-picker" role="group" aria-label="Selecciona el tipo de mascota">
-            <button type="button" onClick={()=>directory("perro")}><Dog size={22}/><span>Perros</span><ArrowRight size={14}/></button>
-            <button type="button" onClick={()=>directory("gato")}><Cat size={22}/><span>Gatos</span><ArrowRight size={14}/></button>
-            <button type="button" onClick={()=>directory("conejo")}><Rabbit size={22}/><span>Otros</span><ArrowRight size={14}/></button>
-          </div>
           <form className="hv-discovery-form" role="search" onSubmit={search}>
             <label className="hv-discovery-input"><Search size={20}/><span className="sr-only">Qué necesita tu mascota</span><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Ej. vacunas, revisión, especialista..."/></label>
             <label className="hv-discovery-region"><MapPin size={18}/><span className="sr-only">Ubicación</span><select value={region} onChange={e=>setRegion(e.target.value as Region)}><option>Todas las ubicaciones</option><option>Ciudad de México</option><option>Estado de México</option></select><ChevronDown className="select-chevron" size={14}/></label>
-            <button type="submit" className="hv-discovery-submit" aria-label="Buscar veterinarios"><ArrowRight size={20}/><span className="sr-only">Encontrar veterinarios</span></button>
+            <button type="submit" className="hv-discovery-submit hv-primary-action"><HuellaIcon size={19}/> <span>Encontrar veterinario</span> <ArrowRight size={18}/></button>
           </form>
         </div>
         <div className="example-searches"><span>Prueba con:</span>{["Vacunas","Mi gato tiene alergia","Revisión general"].map(x=><button type="button" key={x} onClick={()=>directory(x)}>{x}</button>)}</div>
