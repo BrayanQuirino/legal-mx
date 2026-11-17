@@ -1,3 +1,4 @@
+import { huellaSvgMarkup } from "./HuellaIcon";
 import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import { LocateFixed, MapPin, RotateCcw, SlidersHorizontal } from "lucide-react";
@@ -30,10 +31,7 @@ function lawyerPin(remoteOnly: boolean, near: boolean): L.DivIcon {
   const opacity = near ? "1" : ".65";
   const svg = `<svg width="42" height="52" viewBox="0 0 42 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M21 1.5C10.9 1.5 3 9.5 3 19.3 3 33.1 21 50 21 50S39 33.1 39 19.3C39 9.5 31.1 1.5 21 1.5Z" fill="${color}" fill-opacity="${opacity}" stroke="#fff" stroke-width="2.7"/>
-    <g transform="translate(7 6) scale(1.14)" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/>
-      <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>
-    </g>
+    ${huellaSvgMarkup("#fff")}
   </svg>`;
   return L.divIcon({ className:"huellavet-pin-container " + (near ? "inside-search" : "outside-search"), html:svg, iconSize:[42,52], iconAnchor:[21,51], popupAnchor:[0,-47] });
 }
