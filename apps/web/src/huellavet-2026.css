@@ -706,3 +706,109 @@ main.directory-preview > .container{
   .hv-home .hv-discovery-card .example-searches>span{font-size:11px}
   .hv-home .hv-discovery-card .example-searches>button{font-size:11px}
 }
+
+
+/* Hero composition: two clearly bounded columns for editorial copy and pets.
+   Search is a full-width second row, never overlaid on the photography. */
+.hv-home .hero-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);
+  column-gap:clamp(30px,4vw,66px);
+  row-gap:0;
+  align-items:center;
+  min-height:0;
+  padding-block:60px 72px;
+}
+.hv-home .hero-grid>.hero-content{
+  grid-column:1;
+  grid-row:1;
+  min-width:0;
+  padding-right:0;
+  position:relative;
+  z-index:3;
+}
+.hv-home .hero-grid>.hv-hero-stage{
+  grid-column:2;
+  grid-row:1;
+  min-width:0;
+  width:100%;
+  max-width:100%;
+  justify-self:center;
+  z-index:2;
+}
+/* No fixed/overflowing 790px width inside the left half-column. */
+.hv-home .hero-grid>.hv-discovery-card{
+  grid-column:1/-1;
+  grid-row:2;
+  justify-self:center;
+  width:min(900px,100%);
+  max-width:100%;
+  margin:0;
+  position:relative;
+  z-index:4;
+}
+.hv-home .hero-grid>.hv-discovery-card .hv-discovery-form{
+  grid-template-columns:minmax(220px,1fr) minmax(160px,190px) minmax(200px,225px);
+  gap:12px;
+}
+.hv-home .hero-grid>.hero-footnote{
+  grid-column:1/-1;
+  grid-row:3;
+  justify-self:center;
+  text-align:center;
+  margin:20px 0 0;
+}
+/* The stage gets its own top row, including its floating cards and stars. */
+@media(min-width:941px){
+  .hv-home .hero-grid>.hv-hero-stage{height:550px}
+}
+@media(min-width:651px) and (max-width:1100px){
+  .hv-home .hero-grid>.hv-discovery-card .hv-discovery-form{
+    grid-template-columns:minmax(0,1fr) minmax(145px,175px) minmax(185px,215px);
+  }
+  .hv-home .hero-grid>.hv-discovery-card .hv-discovery-submit{
+    grid-column:auto;
+    min-height:60px;
+  }
+}
+@media(max-width:940px){
+  .hv-home .hero-grid{
+    grid-template-columns:minmax(0,1fr);
+    gap:0;
+    padding-block:48px 62px;
+  }
+  .hv-home .hero-grid>.hero-content{grid-column:1;grid-row:1}
+  .hv-home .hero-grid>.hv-hero-stage{
+    grid-column:1;grid-row:2;
+    margin:15px auto 18px;
+    max-width:620px;
+    height:470px;
+  }
+  .hv-home .hero-grid>.hv-discovery-card{
+    grid-column:1;grid-row:3;
+    width:min(790px,100%);
+  }
+  .hv-home .hero-grid>.hero-footnote{grid-column:1;grid-row:4}
+}
+@media(max-width:650px){
+  .hv-home .hero-grid>.hv-hero-stage{
+    height:365px;
+    margin:15px auto 12px;
+    max-width:390px;
+  }
+  .hv-home .hero-grid>.hv-discovery-card{
+    width:100%;
+    max-width:100%;
+    margin:0;
+  }
+  .hv-home .hero-grid>.hv-discovery-card .hv-discovery-form{
+    grid-template-columns:minmax(0,1fr);
+    gap:9px;
+  }
+  .hv-home .hero-grid>.hv-discovery-card .hv-discovery-input,
+  .hv-home .hero-grid>.hv-discovery-card .hv-discovery-region,
+  .hv-home .hero-grid>.hv-discovery-card .hv-discovery-submit{
+    grid-column:1;
+    grid-row:auto;
+  }
+}
