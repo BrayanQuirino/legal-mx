@@ -543,3 +543,46 @@ main.directory-preview > .container{
 @media(prefers-reduced-motion:reduce){
   .hv-home .hv-benefit-popup{animation:none!important;will-change:auto}
 }
+
+
+/* Keep agenda popup in the airy top-right, outside the husky's face. */
+.hv-home .hv-benefit-agenda{
+  right:-4%;
+  top:3%;
+  z-index:9;
+}
+/* Two extra four-point stars, consistent with the existing purple accent. */
+.hv-home .hv-stage-orbit-star.c,
+.hv-home .hv-stage-orbit-star.d{
+  position:absolute;
+  z-index:7;
+  color:#7447eb;
+  text-shadow:0 6px 15px #7447eb23;
+  pointer-events:none;
+}
+.hv-home .hv-stage-orbit-star.c{
+  font-size:21px;
+  top:26%;
+  right:5%;
+  opacity:.9;
+}
+.hv-home .hv-stage-orbit-star.d{
+  font-size:16px;
+  right:15%;
+  bottom:17%;
+  color:#a585f3;
+  opacity:.85;
+}
+@media(max-width:1180px){
+  .hv-home .hv-benefit-agenda{right:0;top:1%}
+  .hv-home .hv-stage-orbit-star.c{top:28%;right:5%}
+  .hv-home .hv-stage-orbit-star.d{right:12%;bottom:15%}
+}
+@media(max-width:940px){
+  .hv-home .hv-benefit-agenda{right:0;top:2%}
+}
+@media(max-width:650px){
+  .hv-home .hv-benefit-agenda{right:0;top:-5%}
+  .hv-home .hv-stage-orbit-star.c{top:28%;right:0;font-size:17px}
+  .hv-home .hv-stage-orbit-star.d{bottom:15%;right:4%;font-size:13px}
+}
