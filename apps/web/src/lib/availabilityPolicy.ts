@@ -14,6 +14,9 @@ export type AvailabilityPolicy = {
   date:string;
   hour:string;
   today:string;
+  /** Allow same-day appointment slots only if strictly after local current time. */
+  allowToday?:boolean;
+  nowMinutes?:number;
   profile?:WorkingSettings;
   blocked:readonly SlotOverride[];
   enabledSlots:readonly SlotOverride[];
@@ -25,12 +28,13 @@ export type AvailabilityPolicy = {
   recurringCells?:readonly CellRule[];
 };
 export function slotEnabled(input:AvailabilityPolicy):boolean {
-  const {lawyerId,date,hour,today,profile,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours=[],recurringDays=[],recurringCells=[]}=input;
-  if(!profile||date<=today)return false;
+  const {lawyerId,date,hour,today,profile,blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours=[],recurringDays=[],recurringCells=[],allowToday=false,nowMinutes=1440}=input;
+  if(!profile||date<today||date===today&&!allowToday)return false;
+  const hourNumber=Number(hour.slice(0,2));
+  if(date===today && (hourNumber*60<=nowMinutes || hourNumber<profile.startHour || hourNumber>=profile.endHour || !profile.weekdays.includes(new Date(date+"T12:00:00Z").getUTCDay())))return false;
   const same=(slot:SlotOverride)=>slot.lawyerId===lawyerId&&slot.date===date&&slot.hour===hour;
   if(blocked.some(same))return false;
   if(enabledSlots.some(same))return true;
-  const hourNumber=Number(hour.slice(0,2));
   const weekday=new Date(date+"T12:00:00Z").getUTCDay();
   const hourRule=latestRule(recurringHours.filter(rule=>rule.lawyerId===lawyerId&&rule.hour===hourNumber),date);
   const dayRule=latestRule(recurringDays.filter(rule=>rule.lawyerId===lawyerId&&rule.weekday===weekday),date);
