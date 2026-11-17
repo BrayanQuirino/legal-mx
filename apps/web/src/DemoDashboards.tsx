@@ -1,8 +1,9 @@
+import { HuellaIcon } from "./HuellaIcon";
 import { useState } from "react";
 import { CalendarDays, Clock3, Settings2, ListChecks, ShieldAlert } from "lucide-react";
 import users from "../../../data/fixtures/guardians.synthetic.json";
 import pets from "../../../data/fixtures/pets.synthetic.json";
-import { PawPrint, Dog, Cat } from "lucide-react";
+import { Dog, Cat } from "lucide-react";
 import { BookingDemo } from "./BookingDemo";
 import { useDemoStore } from "./DemoStore";
 import { demoLawyers } from "./lib/scheduling";
@@ -49,7 +50,7 @@ export function ClientDashboard(){
       {mine.length===0&&<p className="dash-muted">Todavía no tienes citas de demostración.</p>}
       {mine.map(a=><div className="dash-appointment" key={a.id}><div><strong>{demoLawyers.find(l=>l.id===a.lawyer_id)?.display_name}</strong><small>{a.date} · {a.hour} · {a.modality==="online"?"Videollamada":"Presencial"}</small></div><span className={"dash-status status-"+a.status}>{statusLabels[a.status]}</span></div>)}
     </section>
-    <section className="dash-box"><h4><PawPrint size={19}/> Agendar consulta veterinaria</h4><p className="dash-muted">Estos cinco médicos veterinarios cuentan con agendas simuladas. Ninguno está acreditado realmente ante la SEP.</p>
+    <section className="dash-box"><h4><HuellaIcon size={19}/> Agendar consulta veterinaria</h4><p className="dash-muted">Estos cinco médicos veterinarios cuentan con agendas simuladas. Ninguno está acreditado realmente ante la SEP.</p>
       <div className="dash-lawyer-choices">{demoLawyers.map(l=><div className="dash-lawyer-item" key={l.id}><div><strong>{l.display_name}</strong><small>{store.profiles[l.id]?.location} · ${store.profiles[l.id]?.price.toLocaleString("es-MX")} MXN (demo)</small></div><button onClick={()=>setChosen(l)}>Agendar <CalendarDays size={14}/></button></div>)}</div>
     </section>
     {chosen&&<BookingDemo lawyer={chosen} initialUserId={userId} onClose={()=>setChosen(null)}/>}
