@@ -586,3 +586,39 @@ main.directory-preview > .container{
   .hv-home .hv-stage-orbit-star.c{top:28%;right:0;font-size:17px}
   .hv-home .hv-stage-orbit-star.d{bottom:15%;right:4%;font-size:13px}
 }
+
+
+/* Three prominent four-point stars around the pets. Kept above the photo and
+   away from the floating cards, with responsive positions. */
+.hv-home .hv-hero-stage .hv-stage-orbit-star.a,
+.hv-home .hv-hero-stage .hv-stage-orbit-star.c,
+.hv-home .hv-hero-stage .hv-stage-orbit-star.d{
+  position:absolute;
+  z-index:10;
+  display:block;
+  visibility:visible;
+  opacity:1;
+  color:#7447EB;
+  line-height:1;
+  pointer-events:none;
+  text-shadow:0 5px 13px #7447eb32;
+}
+.hv-home .hv-hero-stage .hv-stage-orbit-star.a{
+  top:12%;right:35%;left:auto;bottom:auto;font-size:39px;
+}
+.hv-home .hv-hero-stage .hv-stage-orbit-star.c{
+  top:46%;right:0;left:auto;bottom:auto;font-size:35px;
+}
+.hv-home .hv-hero-stage .hv-stage-orbit-star.d{
+  top:auto;bottom:13%;right:27%;left:auto;font-size:33px;
+}
+@media(max-width:1180px){
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.a{top:14%;right:37%;font-size:37px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.c{top:51%;right:1%;font-size:34px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.d{bottom:11%;right:27%;font-size:31px}
+}
+@media(max-width:650px){
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.a{top:12%;right:32%;font-size:31px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.c{top:53%;right:1%;font-size:29px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.d{bottom:11%;right:26%;font-size:27px}
+}
