@@ -624,54 +624,40 @@ main.directory-preview > .container{
 }
 
 
-/* Clear-space composition: the pet artwork has its own footprint.
-   Benefit cards live outside the silhouettes, never on the faces or paws. */
-.hv-home .hv-hero-stage{
-  height:650px;
-  overflow:visible;
+/* Stars around the IMAGE, not across either pet: distribute on open perimeter.
+   Deliberately leave the hero photograph and all three floating cards unchanged. */
+.hv-home .hv-hero-stage .hv-stage-orbit-star{
+  position:absolute;
+  display:block;
+  visibility:visible;
+  opacity:1;
+  z-index:7;
+  color:#7447eb;
+  line-height:1;
+  text-shadow:0 5px 15px #7447eb30;
+  pointer-events:none;
 }
-.hv-home .hv-stage-dog{
-  top:43%;
-  left:46%;
-  width:min(630px,105%);
-  transform:translate(-47%,-45%);
+.hv-home .hv-hero-stage .hv-stage-orbit-star.a{
+  top:14%;left:48%;right:auto;bottom:auto;font-size:38px;
 }
-/* Top row in the empty air; bottom card in the lower-right margin. */
-.hv-home .hv-benefit-care{
-  left:0;
-  right:auto;
-  top:2%;
+.hv-home .hv-hero-stage .hv-stage-orbit-star.b{
+  top:53%;left:1%;right:auto;bottom:auto;font-size:30px;
 }
-.hv-home .hv-benefit-agenda{
-  left:auto;
-  right:0;
-  top:0;
+.hv-home .hv-hero-stage .hv-stage-orbit-star.c{
+  top:50%;right:1%;left:auto;bottom:auto;font-size:36px;
 }
-.hv-home .hv-benefit-all{
-  left:auto;
-  right:0;
-  bottom:0;
-  top:auto;
-}
-/* Maintain a clear gap from the artwork as the layout narrows. */
-@media(max-width:1180px){
-  .hv-home .hv-hero-stage{height:600px}
-  .hv-home .hv-stage-dog{width:98%;top:42%;left:46%}
-  .hv-home .hv-benefit-care{left:0;top:1%}
-  .hv-home .hv-benefit-agenda{right:0;top:0}
-  .hv-home .hv-benefit-all{left:auto;right:0;bottom:0}
+.hv-home .hv-hero-stage .hv-stage-orbit-star.d{
+  bottom:10%;right:5%;left:auto;top:auto;font-size:34px;
 }
 @media(max-width:940px){
-  .hv-home .hv-hero-stage{height:550px;max-width:650px}
-  .hv-home .hv-stage-dog{width:88%;top:42%;left:46%}
-  .hv-home .hv-benefit-care{left:0;top:1%}
-  .hv-home .hv-benefit-agenda{right:0;top:0}
-  .hv-home .hv-benefit-all{left:auto;right:0;bottom:0}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.a{top:13%;left:48%;font-size:35px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.b{top:52%;left:0;font-size:29px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.c{top:50%;right:0;font-size:33px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.d{bottom:7%;right:3%;font-size:31px}
 }
 @media(max-width:650px){
-  .hv-home .hv-hero-stage{height:420px;max-width:390px}
-  .hv-home .hv-stage-dog{width:105%;top:43%;left:47%}
-  .hv-home .hv-benefit-care{left:0;top:1%}
-  .hv-home .hv-benefit-agenda{right:0;top:0}
-  .hv-home .hv-benefit-all{left:auto;right:0;bottom:0}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.a{top:14%;left:48%;font-size:29px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.b{top:52%;left:0;font-size:23px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.c{top:50%;right:0;font-size:27px}
+  .hv-home .hv-hero-stage .hv-stage-orbit-star.d{bottom:7%;right:2%;font-size:25px}
 }
