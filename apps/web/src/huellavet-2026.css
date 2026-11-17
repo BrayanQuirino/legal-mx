@@ -1050,3 +1050,54 @@ main.directory-preview > .container{
     width:94%;max-width:94%;left:47%;top:50%;
   }
 }
+
+
+/* Tail-side hero composition: restore a large pet portrait.
+   Position the existing pink "Todo en un lugar" popup across the far-right
+   tail edge, without affecting the left search card or other popups. */
+@media(min-width:941px){
+  .hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{
+    width:118%;
+    max-width:none;
+    left:43.5%;
+    top:52%;
+    transform:translate(-50%,-50%);
+  }
+  .hv-home .hero-grid>.hv-hero-stage .hv-benefit-all{
+    left:auto;
+    right:-1%;
+    top:auto;
+    bottom:24%;
+    z-index:12;
+  }
+}
+@media(min-width:651px) and (max-width:940px){
+  .hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{
+    width:112%;
+    max-width:none;
+    left:45%;
+    top:50%;
+  }
+  .hv-home .hero-grid>.hv-hero-stage .hv-benefit-all{
+    left:auto;
+    right:0;
+    top:auto;
+    bottom:23%;
+    z-index:12;
+  }
+}
+@media(max-width:650px){
+  .hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{
+    width:112%;
+    max-width:none;
+    left:44%;
+    top:50%;
+  }
+  .hv-home .hero-grid>.hv-hero-stage .hv-benefit-all{
+    left:auto;
+    right:0;
+    top:auto;
+    bottom:22%;
+    z-index:12;
+  }
+}
