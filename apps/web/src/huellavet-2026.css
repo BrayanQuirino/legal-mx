@@ -477,3 +477,69 @@ main.directory-preview > .container{
  .hv-home .hv-discovery-form .hv-discovery-submit{grid-column:1;grid-row:auto;min-height:49px}
  .hv-home .hv-discovery-form .hv-discovery-submit{font-size:12px;width:100%}
 }
+
+
+/* Suggested searches belong to the same unified search surface. */
+.hv-home .hv-discovery-card .example-searches{
+  display:flex;align-items:center;flex-wrap:wrap;gap:9px;
+  margin:16px 0 0;padding:13px 0 0;
+  border-top:1px solid #f0eafb;
+}
+.hv-home .hv-discovery-card .example-searches>span{
+  color:#8b82a3;font-size:11px;font-weight:700;white-space:nowrap;
+}
+.hv-home .hv-discovery-card .example-searches>button{
+  border:1px solid #e4d9ff;border-radius:999px;
+  background:#faf7ff;color:#7447eb;
+  font-size:11px;font-weight:750;
+  padding:9px 13px;box-shadow:none;
+}
+.hv-home .hv-discovery-card .example-searches>button:hover{
+  background:#eee8ff;border-color:#c8b3ff;transform:translateY(-1px);
+}
+/* Float with gentle individual tilts, staying clear of the search card. */
+.hv-home .hv-stage-benefits{z-index:8}
+.hv-home .hv-benefit-popup{
+  animation:hv-benefit-tilt-float 5.2s ease-in-out infinite;
+  transform:rotate(var(--hv-tilt,-2deg));
+  transform-origin:50% 50%;
+}
+.hv-home .hv-benefit-care{
+  --hv-tilt:-4deg;
+  left:8%;top:7%;
+  animation-delay:-.5s;
+}
+.hv-home .hv-benefit-agenda{
+  --hv-tilt:3.5deg;
+  right:-3%;top:35%;
+  animation-delay:-2.2s;
+}
+.hv-home .hv-benefit-all{
+  --hv-tilt:-3deg;
+  left:39%;bottom:2%;
+  animation-delay:-3.9s;
+}
+@keyframes hv-benefit-tilt-float{
+  0%,100%{transform:translate3d(0,0,0) rotate(var(--hv-tilt,-2deg))}
+  50%{transform:translate3d(0,-8px,0) rotate(calc(var(--hv-tilt,-2deg) + 1deg))}
+}
+@media(max-width:1180px){
+  .hv-home .hv-benefit-care{left:8%;top:6%}
+  .hv-home .hv-benefit-agenda{right:0;top:35%}
+  .hv-home .hv-benefit-all{left:40%;bottom:2%}
+}
+@media(max-width:940px){
+  .hv-home .hv-benefit-care{left:5%;top:6%}
+  .hv-home .hv-benefit-agenda{right:1%;top:38%}
+  .hv-home .hv-benefit-all{left:42%;bottom:3%}
+}
+@media(max-width:650px){
+  .hv-home .hv-discovery-card .example-searches{gap:7px;margin-top:12px;padding-top:12px}
+  .hv-home .hv-discovery-card .example-searches>button{font-size:10px;padding:8px 10px}
+  .hv-home .hv-benefit-care{left:4%;top:2%}
+  .hv-home .hv-benefit-agenda{right:0;top:36%}
+  .hv-home .hv-benefit-all{left:40%;bottom:1%}
+}
+@media(prefers-reduced-motion:reduce){
+  .hv-home .hv-benefit-popup{animation:none!important;will-change:auto}
+}
