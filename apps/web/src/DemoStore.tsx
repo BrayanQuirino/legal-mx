@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
 import fixture from "../../../data/fixtures/vet-appointments.synthetic.json";
 import petFixture from "../../../data/fixtures/pets.synthetic.json";
-import { demoLawyers, makeDemoSlots, getMexicoToday } from "./lib/scheduling";
+import { demoLawyers, makeDemoSlots, getMexicoToday, getMexicoNow } from "./lib/scheduling";
 import { slotEnabled, latestRule, type HourRule, type DayRule, type CellRule } from "./lib/availabilityPolicy";
 
 export type Mode = "online"|"presencial";
@@ -63,7 +63,7 @@ export function DemoStoreProvider({children}:{children:ReactNode}){
   const [recurringDays,setRecurringDays]=useState<DayRule[]>([]);
   const [recurringCells,setRecurringCells]=useState<CellRule[]>([]);
   const isWorkingSlot=(lawyerId:string,date:string,hour:string)=>slotEnabled({
-    lawyerId,date,hour,today:getMexicoToday(),profile:profiles[lawyerId],
+    lawyerId,date,hour,today:getMexicoToday(),allowToday:true,nowMinutes:getMexicoNow().minutes,profile:profiles[lawyerId],
     blocked,enabledSlots,leaves,daysOff,weeklyBlockedHours,recurringHours,recurringDays,recurringCells
   });
   const isUnavailable=(lawyerId:string,date:string,hour:string)=>
