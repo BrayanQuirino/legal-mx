@@ -661,3 +661,48 @@ main.directory-preview > .container{
   .hv-home .hv-hero-stage .hv-stage-orbit-star.c{top:50%;right:0;font-size:27px}
   .hv-home .hv-hero-stage .hv-stage-orbit-star.d{bottom:7%;right:2%;font-size:25px}
 }
+
+
+/* Hero search enlargement and typography parity with "Explorar HuellaVet". */
+@media(min-width:1101px){
+  .hv-home .hero-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)}
+  .hv-home .hero-content{padding-right:0}
+  .hv-home .hv-discovery-card{width:min(790px,calc(100vw - 70px));max-width:none}
+  .hv-home .hv-discovery-form{
+    grid-template-columns:minmax(200px,1fr) minmax(165px,185px) minmax(210px,225px);
+    gap:12px;
+  }
+}
+.hv-home .hv-discovery-card{
+  padding:24px 25px;
+  border-radius:29px;
+}
+.hv-home .hv-discovery-top{margin-bottom:18px}
+.hv-home .hv-discovery-top>span:first-child{font-size:13px}
+.hv-home .hv-discovery-form .hv-discovery-input,
+.hv-home .hv-discovery-form .hv-discovery-region{min-height:60px}
+.hv-home .hv-discovery-form .hv-discovery-input input{font-size:13px}
+.hv-home .hv-discovery-form .hv-discovery-region select{font-size:12px}
+.hv-home .hv-discovery-form .hv-discovery-submit{
+  min-height:60px;
+  font-size:13px;
+  font-weight:800;
+  gap:9px;
+  padding-inline:18px;
+}
+.hv-home .hv-discovery-card .example-searches{margin-top:19px;padding-top:16px;gap:10px}
+.hv-home .hv-discovery-card .example-searches>span{font-size:12px}
+.hv-home .hv-discovery-card .example-searches>button{font-size:12px;padding:10px 15px}
+@media(min-width:651px) and (max-width:1100px){
+  .hv-home .hv-discovery-card{width:100%;max-width:770px}
+  .hv-home .hv-discovery-form .hv-discovery-submit{font-size:13px}
+}
+@media(max-width:650px){
+  .hv-home .hv-discovery-card{width:100%;max-width:100%;padding:19px 18px;border-radius:24px}
+  .hv-home .hv-discovery-form .hv-discovery-input,
+  .hv-home .hv-discovery-form .hv-discovery-region,
+  .hv-home .hv-discovery-form .hv-discovery-submit{min-height:54px}
+  .hv-home .hv-discovery-form .hv-discovery-submit{font-size:13px}
+  .hv-home .hv-discovery-card .example-searches>span{font-size:11px}
+  .hv-home .hv-discovery-card .example-searches>button{font-size:11px}
+}
