@@ -10,7 +10,7 @@ describe("HuellaVet approved catalogues",()=>{
   it("has exactly 14 alphabetically sorted veterinary areas without changing legacy IDs",()=>{
     expect(specialties).toHaveLength(14);
     expect(specialties.map(item=>item.name)).toEqual([...specialties.map(item=>item.name)].sort(collator.compare));
-    const ids=new Set(specialties.map(item=>item.id));
+    const ids=new Set<string>(specialties.map(item=>item.id));
     expect(ids.size).toBe(14);
     expect(["medicina_general","dermatologia","cirugia","urgencias","odontologia","animales_exoticos"].every(id=>ids.has(id))).toBe(true);
     expect(vets.records.every(vet=>vet.specialties.every(id=>ids.has(id)))).toBe(true);
