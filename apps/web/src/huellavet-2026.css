@@ -1009,3 +1009,44 @@ main.directory-preview > .container{
 @media(max-width:940px){
   .hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{width:100%;left:50%;top:50%}
 }
+
+
+/* Tail visibility repair: reserve breathing room on the right side of the pets.
+   Earlier zoom rules and the hero's overflow clipping removed the outer fur. */
+.hv-home .hero{
+  overflow:visible;
+}
+.hv-home .hero-grid>.hv-hero-stage{
+  overflow:visible;
+  isolation:isolate;
+}
+.hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{
+  box-sizing:border-box;
+  width:94%;
+  max-width:94%;
+  left:46%;
+  top:52%;
+  height:auto;
+  aspect-ratio:900/507;
+  transform:translate(-50%,-50%);
+  overflow:visible;
+}
+.hv-home .hero-grid>.hv-hero-stage .hv-stage-dog img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  object-position:center;
+  clip-path:none;
+  mask-image:none;
+}
+@media(max-width:940px){
+  .hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{
+    width:93%;max-width:93%;left:47%;top:50%;
+  }
+}
+@media(max-width:650px){
+  .hv-home .hero-grid>.hv-hero-stage .hv-stage-dog{
+    width:94%;max-width:94%;left:47%;top:50%;
+  }
+}
