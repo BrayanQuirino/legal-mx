@@ -7,6 +7,7 @@ import { useDemoStore } from "./DemoStore";
 import { ArrowLeft, ArrowRight, Building2, Filter, Stethoscope, MapPin, Search, ShieldAlert, SlidersHorizontal, Video, X, CalendarDays } from "lucide-react";
 import sample from "../../../data/fixtures/veterinarians.synthetic.json";
 import { specialties } from "./data/specialties";
+import { companionAnimalCategories, treatsAnimalCategory } from "./data/animalCategories";
 import { matchSpecialties } from "./lib/matchSpecialties";
 import { getMexicoNow } from "./lib/scheduling";
 import { hasAvailabilityToday } from "./lib/availabilityToday";
@@ -32,8 +33,9 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
   const [species,setSpecies]=useState(initialSpecies || "all");
   // Values come from the records actually searchable in this prototype.
   // They are real veterinary service/species categories, NOT verified professionals or market prices.
-  const speciesOptions=useMemo(()=>[...new Set(sample.records.flatMap(vet=>vet.species_treated))].sort(),[]);
-  const specialtyOptions=useMemo(()=>specialties.filter(item=>sample.records.some(vet=>vet.specialties.includes(item.id))),[]);
+  // All approved categories remain selectable, including categories without demo records.
+  const speciesOptions=companionAnimalCategories;
+  const specialtyOptions=specialties;
   const prices=Object.values(store.profiles).map(p=>p.price);
   const priceMin=Math.floor(Math.min(...prices)/50)*50;
   const priceMax=Math.ceil(Math.max(...prices)/50)*50;
@@ -55,7 +57,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
     const search = term.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
     return (!search || haystack.includes(search))
       && (specialty === "all" || lawyer.specialties.includes(specialty))
-      && (species==="all" || lawyer.species_treated.includes(species))
+      && treatsAnimalCategory(lawyer.species_treated,species)
       && (region === "all" || lawyer.jurisdictions.includes(region))
       && (mode === "all" || store.profiles[lawyer.id]?.modes.includes(mode))
       && (store.profiles[lawyer.id]?.price ?? lawyer.consultation_price_mxn_demo) <= maxPrice
@@ -86,8 +88,8 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
         <aside className="directory-filters hv-filter-dock" aria-label="Filtros del directorio">
           <div className="directory-filter-heading"><SlidersHorizontal size={19}/><h2>Filtrar resultados</h2><button type="button" onClick={reset}>Limpiar</button></div>
           <form className="directory-field hv-search-field" role="search" onSubmit={submitSearch}><label htmlFor="directory-search-input">Buscar veterinario o zona</label><div className="directory-search"><Search size={18}/><input id="directory-search-input" value={draftTerm} onChange={e => setDraftTerm(e.target.value)} placeholder="Ej. vacunas, dermatología o Naucalpan" aria-label="Buscar en el directorio"/></div><button type="submit" className="hv-filter-submit"><Search size={17}/> Buscar en el mapa</button></form>
-          <label className="directory-field">Especialidad<select value={specialty} onChange={e=>{setSpecialty(e.target.value);setLimit(9);}}><option value="all">Todas las especialidades</option>{specialtyOptions.map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</select></label>
-          <label className="directory-field">Especie atendida<select value={species} onChange={e=>{setSpecies(e.target.value);setLimit(9);}}><option value="all">Todas las mascotas</option>{speciesOptions.map(value=><option key={value} value={value}>{({perros:"Perros",gatos:"Gatos",aves:"Aves",conejos:"Conejos"} as Record<string,string>)[value]??value}</option>)}</select></label>
+          <label className="directory-field">Área de atención veterinaria<select value={specialty} onChange={e=>{setSpecialty(e.target.value);setLimit(9);}}><option value="all">Todas las áreas de atención</option>{specialtyOptions.map(s=><option value={s.id} key={s.id}>{s.name}</option>)}</select></label>
+          <label className="directory-field">Especie atendida<select value={species} onChange={e=>{setSpecies(e.target.value);setLimit(9);}}><option value="all">Todas las mascotas</option>{speciesOptions.map(category=><option key={category.id} value={category.id}>{category.name}</option>)}</select></label>
           <label className="directory-field">Ubicación<select value={region} onChange={e=>{setRegion(e.target.value);setLimit(9);}}><option value="all">CDMX y Estado de México</option><option value="CDMX">Ciudad de México</option><option value="EDOMEX">Estado de México</option></select></label>
           <fieldset className="directory-field directory-fieldset"><legend>Tipo de consulta</legend>{([["all","Cualquiera"],["online","Videollamada"],["presencial","Presencial"]] as const).map(([key,label])=><label key={key}><input type="radio" name="directory-mode" checked={mode===key} onChange={()=>{setMode(key);setLimit(9);}}/>{label}</label>)}</fieldset>
           <label className="directory-demo-ready"><input type="checkbox" checked={todayOnly} onChange={e=>{setTodayOnly(e.target.checked);setClock(getMexicoNow());setLimit(9);}}/> Con disponibilidad hoy</label>
@@ -95,7 +97,7 @@ export function DirectoryPreview({ onClose, initialQuery = "", initialRegion = "
         </aside>
         <section className="directory-results hv-vet-results" aria-label="Médicos veterinarios ficticios">
           <div className="directory-result-header"><div><strong>{filtered.length} perfiles de prueba</strong><p>Coincidencias según los filtros seleccionados{todayOnly ? " · Horarios libres hoy (CDMX, simulados)" : ""}</p></div><div className="directory-view-tools"><span className="directory-tag"><Filter size={15}/> Datos de prueba</span><div className="directory-switch" role="group" aria-label="Visualización de resultados"><button type="button" aria-pressed={display==="map"} className={display==="map"?"active":""} onClick={()=>setDisplay("map")}><MapIcon size={16}/> Mapa</button><button type="button" aria-pressed={display==="cards"} className={display==="cards"?"active":""} onClick={()=>setDisplay("cards")}><LayoutGrid size={16}/> Lista</button></div></div></div>
-          {display==="map" ? <LawyerMap profiles={filtered} onSelect={(id)=>setSelected(sample.records.find(x=>x.id===id) ?? null)} /> : filtered.length===0 ? <div className="directory-empty"><Search size={28}/><h3>No hay coincidencias</h3><p>Prueba cambiar la especialidad, la ubicación o el precio.</p><button onClick={reset} type="button">Restablecer filtros</button></div> :
+          {display==="map" ? <LawyerMap profiles={filtered} onSelect={(id)=>setSelected(sample.records.find(x=>x.id===id) ?? null)} /> : filtered.length===0 ? <div className="directory-empty"><Search size={28}/><h3>No hay coincidencias</h3><p>Aún no tenemos perfiles de prueba en esta categoría o con estos filtros. Prueba otra área, especie, ubicación o precio.</p><button onClick={reset} type="button">Restablecer filtros</button></div> :
           <div className="directory-cards hv-vet-cards">{visible.map((lawyer,i)=><article key={lawyer.id} className={"directory-card hv-vet-card hv-vet-card-"+(i%4)}>
             <div className="directory-card-top"><div className="directory-avatar"><HuellaIcon size={32}/></div><div><span className={lawyer.demo_booking_enabled?"directory-small-tag demo-approved-tag":"directory-small-tag"}>{lawyer.demo_booking_enabled?"AGENDA DISPONIBLE · PERFIL FICTICIO":"MÉDICO VETERINARIO · SIN VERIFICAR"}</span><h3>{lawyer.display_name}</h3><p><MapPin size={14}/> {store.profiles[lawyer.id]?.location ?? lawyer.municipality}, {lawyer.jurisdictions[0]==="CDMX"?"CDMX":"Edomex"}</p></div></div>
             <div className="directory-tags">{lawyer.specialties.map(s=><span key={s}>{specialties.find(a=>a.id===s)?.name ?? s}</span>)}</div>
